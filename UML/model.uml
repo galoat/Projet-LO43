@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_hjv9wGOLEeSwmNrgfOKadw" name="model">
-  <packagedElement xmi:type="uml:Class" xmi:id="_jeM4QGOLEeSwmNrgfOKadw" name="Reseaux"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_jeM4QGOLEeSwmNrgfOKadw" name="Reseau"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_kiLdwGOLEeSwmNrgfOKadw" name="Vehicule"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_9PmZUGQFEeSz4-Qw0u6gBg" name="Class1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9PmZUGQFEeSz4-Qw0u6gBg" name="Lieu"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_DIs3EGR8EeSvW4hu6A6_vg" name="Route"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EdGeMGR8EeSvW4hu6A6_vg" name="Mission"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LlKGAGR8EeSvW4hu6A6_vg" name="Release">
+    <generalization xmi:type="uml:Generalization" xmi:id="_k1BnwGR8EeSvW4hu6A6_vg" general="_9PmZUGQFEeSz4-Qw0u6gBg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_On-90GR8EeSvW4hu6A6_vg" name="Place">
+    <generalization xmi:type="uml:Generalization" xmi:id="_i5xcAGR8EeSvW4hu6A6_vg" general="_9PmZUGQFEeSz4-Qw0u6gBg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_P4JlMGR8EeSvW4hu6A6_vg" name="Enroll">
+    <generalization xmi:type="uml:Generalization" xmi:id="_ly6MUGR8EeSvW4hu6A6_vg" general="_9PmZUGQFEeSz4-Qw0u6gBg"/>
+  </packagedElement>
 </uml:Model>
