@@ -1,5 +1,5 @@
 package Modele;
 
-public class Enroll {
+public class Enroll extends Lieu{
 
 }

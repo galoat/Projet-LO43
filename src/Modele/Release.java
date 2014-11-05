@@ -1,5 +1,5 @@
 package Modele;
 
-public class Release {
+public class Release extends Lieu{
 
 }

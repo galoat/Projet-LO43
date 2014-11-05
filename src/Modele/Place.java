@@ -1,5 +1,5 @@
 package Modele;
 
-public class Place {
+public class Place extends Lieu{
 
 }
