@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * <b> C'est la classe qui dirige la partie objet </b>
+ * <b> La classe qui régit toute la partie Objet </b>
  * <p>
- * les caractéristique sont les suivante:
+ * Ses caractéristiques sont les suivantes :
  * <ul>
- * <li><b>HashMap<Integer, Boolean></b> une hasmap representant l'occupation des
- * places sur le plateau le premier parametre etant l'identifiant de la place et
- * le segond sont occupation</li>
- * <li><b>BoiteAuxLettres</b> elle contient les différente requete envoyer au
- * controleur</li>
- * <li><b>FlotteVehicule</b> contient toute les voitures ausquel le controleur
+ * <li><b>HashMap<Integer, Boolean></b> une hashmap représentant l'occupation des
+ * places sur le plateau. Le premier paramètre étant l'identifiant de la place et
+ * le second son occupation</li>
+ * <li><b>BoiteAuxLettres</b> elle contient les différentes requêtes envoyées au
+ * contrôleur</li>
+ * <li><b>FlotteVehicule</b> contient toutes les voitures auxquelles le contrôleur
  * peut donner des ordres</li>
  * </ul>
  * 
@@ -27,7 +27,7 @@ public class Controleur implements Observable {
 	private FlotteVehicules maFlotte;
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
 
-	Controleur() {
+	public Controleur() {
 
 	}
 

@@ -4,10 +4,9 @@ import Modele.Controleur;
 
 public class Verificateur {
 	protected Controleur model;
-	
-  public Controler(AbstractModel cal){
-    model = cal;
-    
-   }
-	 
+
+	public Verificateur(Controleur c) {
+		model = c;
+	}
+
 }
