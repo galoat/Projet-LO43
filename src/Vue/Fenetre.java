@@ -1,24 +1,30 @@
 package Vue;
 
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.io.IOException;
 import java.net.URL;
 
-import javax.swing.BorderFactory;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 import Controleur.Verificateur;
 import Modele.Observer;
 
 public class Fenetre extends JFrame implements Observer {
 	private Verificateur verif;
-	private JPanel mainpan, secondpan;
+	private MainPan mp;
+	private JPanel secondpan;
 	private JLabel titre;
 	private JButton Bcredits, Bmanu, Bauto, Bopt, close, reduce;
 	private BarPanel barpan;
@@ -29,7 +35,6 @@ public class Fenetre extends JFrame implements Observer {
 		this.verif = v;
 		this.setUndecorated(true);
 		this.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
-		this.getContentPane().setLayout(new BorderLayout());
 		this.setSize(350, 500);
 		this.theme = "Dark";
 		this.sound=false;
@@ -39,17 +44,24 @@ public class Fenetre extends JFrame implements Observer {
 		this.setResizable(false);
 		createBarPanel();
 		createCompos();
+		this.setContentPane(mp);
 		this.setVisible(true);
 	}
 	private void createBarPanel(){
 		barpan = new BarPanel(this);
+		barpan.setBackground(new Color(150, 50, 50));
 		barpan.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		barpan.setPreferredSize(new Dimension(350, 25));
-		barpan.setBorder(BorderFactory.createLineBorder(Color.black));
 		ImageIcon icon = createImageIcon("close.png", "");
 		ImageIcon icon2 = createImageIcon("reduce.png", "");
 		close = new JButton("");
 		reduce = new JButton("");
+		close.setContentAreaFilled(false);
+		reduce.setContentAreaFilled(false);
+		close.setBorderPainted(false);
+		reduce.setBorderPainted(false);
+		close.setRolloverEnabled(false);
+		reduce.setRolloverEnabled(false);
 		close.setIcon(icon);
 		reduce.setIcon(icon2);
 		barpan.add(reduce);
@@ -70,7 +82,8 @@ public class Fenetre extends JFrame implements Observer {
 	}
 	 	
 	private void createCompos() {
-		mainpan = new JPanel();
+		mp = new MainPan();
+		mp.setLayout(new BorderLayout());
 		secondpan = new JPanel();
 		titre = new JLabel("Road Simulator 2014");
 		Bmanu = new JButton("Mode Manuel");
@@ -78,19 +91,31 @@ public class Fenetre extends JFrame implements Observer {
 		Bopt = new JButton("Options");
 		Bcredits = new JButton("Credits");
 		secondpan.setPreferredSize(new Dimension(170, 200));
+		secondpan.setBackground(new Color(0,0,0,0));
 		secondpan.add(Bmanu);
 		secondpan.add(Bauto);
 		secondpan.add(Bopt);
 		secondpan.add(Bcredits);
-		this.getContentPane().add(barpan, BorderLayout.NORTH);
-		this.getContentPane().add(titre, BorderLayout.CENTER);
-		this.getContentPane().add(secondpan, BorderLayout.SOUTH);
-		
-		
+		mp.add(barpan, BorderLayout.NORTH);
+		mp.add(titre, BorderLayout.CENTER);
+		mp.add(secondpan, BorderLayout.SOUTH);
 	}
-
+	
+	
+	
 	@Override
 	public void update(String str) {
+	}
+	
+	protected void paintComponent1(Graphics g) {
+		try {
+			//Painting the image
+			g.drawImage(ImageIO.read(this.getClass().getResource("theme"+theme+".png")),
+					0, 0, this.getWidth(), this.getHeight(), 0, 57,
+				this.getWidth(), this.getHeight()+57, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
