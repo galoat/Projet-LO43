@@ -61,7 +61,7 @@
 			Java
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Dec 01 17:04:14 CET 2014'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue Dec 02 00:18:03 CET 2014'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -630,6 +630,21 @@
               </UML:StructuralFeature.multiplicity>
               <UML:StructuralFeature.type>
                 <UML:Class xmi.idref = '-64--88-1-10-6f95708a:149fbc5c5ec:-8000:0000000000000D6B'/>
+              </UML:StructuralFeature.type>
+            </UML:Attribute>
+            <UML:Attribute xmi.id = '-64--88-1-10--33f260d8:14a08249ef0:-8000:0000000000000D60'
+              name = 'Identifiant' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              changeability = 'changeable' targetScope = 'instance'>
+              <UML:StructuralFeature.multiplicity>
+                <UML:Multiplicity xmi.id = '-64--88-1-10--33f260d8:14a08249ef0:-8000:0000000000000D61'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '-64--88-1-10--33f260d8:14a08249ef0:-8000:0000000000000D62'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:StructuralFeature.multiplicity>
+              <UML:StructuralFeature.type>
+                <UML:DataType href = 'http://argouml.org/profiles/uml14/default-java.xmi#.:000000000000086C'/>
               </UML:StructuralFeature.type>
             </UML:Attribute>
           </UML:Classifier.feature>
@@ -2203,7 +2218,7 @@
     </group>
   </group>
   <group name="Fig4"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[88, 376, 160, 128]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[88, 376, 176, 280]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
        href="-64--88-1-14-1e3b4b70:149f2d78c5c:-8000:0000000000000CA6"
        fill="1"
        fillcolor="white"
@@ -2216,8 +2231,8 @@
     <rectangle name="Fig4.0"
       x="88"
       y="376"
-      width="160"
-      height="128"
+      width="176"
+      height="280"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -2226,7 +2241,7 @@
     <text name="Fig4.1"
       x="89"
       y="377"
-      width="158"
+      width="174"
       height="23"
       fill="0"
       fillcolor="white"
@@ -2265,7 +2280,7 @@
     <rectangle name="Fig4.3"
       x="88"
       y="400"
-      width="160"
+      width="176"
       height="1"
       fill="1"
       fillcolor="black"
@@ -2273,7 +2288,7 @@
       strokecolor="black"
     />
     <group name="Fig4.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[89, 401, 158, 59]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[89, 401, 174, 143]"
          href="-64--88-1-14-1e3b4b70:149f2d78c5c:-8000:0000000000000CA6"
          fill="0"
          fillcolor="white"
@@ -2286,8 +2301,8 @@
       <rectangle name="Fig4.4.0"
         x="89"
         y="401"
-        width="158"
-        height="59"
+        width="174"
+        height="143"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -2296,7 +2311,7 @@
       <text name="Fig4.4.1"
         x="89"
         y="401"
-        width="158"
+        width="174"
         height="17"
         fill="0"
         fillcolor="white"
@@ -2312,7 +2327,7 @@
       <text name="Fig4.4.2"
         x="89"
         y="418"
-        width="158"
+        width="174"
         height="17"
         fill="0"
         fillcolor="white"
@@ -2328,8 +2343,8 @@
       <text name="Fig4.4.3"
         x="89"
         y="435"
-        width="158"
-        height="23"
+        width="174"
+        height="17"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -2341,11 +2356,27 @@
         textsize="12"
         justification="Left"
       >priorite : ArrayList&lt;int&gt;</text>
+      <text name="Fig4.4.4"
+        x="89"
+        y="452"
+        width="174"
+        height="23"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        textcolor="black"
+        font="Dialog"
+        italic="false"
+        bold="false"
+        textsize="12"
+        justification="Left"
+      >Identifiant : int</text>
     </group>
     <rectangle name="Fig4.5"
       x="88"
-      y="460"
-      width="160"
+      y="544"
+      width="176"
       height="1"
       fill="1"
       fillcolor="black"
@@ -2353,7 +2384,7 @@
       strokecolor="black"
     />
     <group name="Fig4.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[89, 461, 158, 42]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[89, 545, 174, 109]"
          href="-64--88-1-14-1e3b4b70:149f2d78c5c:-8000:0000000000000CA6"
          fill="0"
          fillcolor="white"
@@ -2365,9 +2396,9 @@
       
       <rectangle name="Fig4.6.0"
         x="89"
-        y="461"
-        width="158"
-        height="42"
+        y="545"
+        width="174"
+        height="109"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -2375,8 +2406,8 @@
       />
       <text name="Fig4.6.1"
         x="89"
-        y="461"
-        width="158"
+        y="545"
+        width="174"
         height="17"
         fill="0"
         fillcolor="white"
@@ -2391,8 +2422,8 @@
       >setTrajet() : void</text>
       <text name="Fig4.6.2"
         x="89"
-        y="478"
-        width="158"
+        y="562"
+        width="174"
         height="23"
         fill="0"
         fillcolor="white"
@@ -2517,7 +2548,7 @@
     >
       <moveto x="416"
               y="199" />
-      <lineto x="247"
+      <lineto x="263"
               y="376" />
     </path>
   </group>
@@ -2688,7 +2719,7 @@
     >
       <moveto x="400"
               y="408" />
-      <lineto x="247"
+      <lineto x="263"
               y="408" />
     </path>
   </group>
