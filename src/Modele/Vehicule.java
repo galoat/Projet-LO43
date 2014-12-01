@@ -6,7 +6,7 @@ public class Vehicule {
 private ArrayList <Boolean> trajet;
 private boolean authoriser;
 private  ArrayList <Integer> prioriter;
-private Mission maMission;
+private Passager maMission;
 public void setTrajet(){
 	
 };
