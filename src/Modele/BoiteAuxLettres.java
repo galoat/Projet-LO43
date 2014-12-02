@@ -4,12 +4,12 @@ import java.util.LinkedList;
 
 import Exception.BoiteAuxLettresException;
 /**
- * <b>BoiteAuxLettres est la classe contenant toute les requete adresser au controleur</b>
+ * <b>BoiteAuxLettres est la classe contenant toutes les requ&ecirc;tes adress&eacute;es au contr&ocirc;leur</b>
  * <p>
  * Un membre de BoiteAuxLettres est caractériser par les information suivante :
  * <ul>
- * <li> Un liste de requete</li>
- * <li> un entier representant le debut des requete de debut de trajet</li>
+ * <li> Une liste de requ&ecirc;tes</li>
+ * <li> Un entier repres&eacute;ntant le d&eacute;but des requ&ecirc;tes de d&eacute;but de trajet</li>
  * </ul>
  * @author florian + theo
  *	@version 0.1
