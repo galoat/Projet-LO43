@@ -13,7 +13,12 @@ public class RMap implements Requete {
 	 * de 6 a 11 : Place classique
 	 * de 12 a 17 : Place de sortie
 	 * 30 : centre
-	 * A chaque index se trouve un booleen, qui indique si on veut reserver la place ou non
+	 * A chaque index se trouve un booleen, qui indique si on veut reserver la place ou non :
+	 *
+	 * I1 I2 I3 I4 I5 I6 R1 R2 R3 R4 R5 R6 O1 O2 O3 O4 O5 O6 C
+	 * T  F  F  F  F  F  T  T  F  F  F  F  F  T  F  F  F  F  F
+	 * 
+	 * T=true et F=false
 	 */
 	private ArrayList<Boolean> request_map;
 
