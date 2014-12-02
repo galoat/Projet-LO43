@@ -25,109 +25,101 @@ public class Vehicule {
 		int ID;
 	
 	/**
-	 * tabelau de boolean permetant de savooir le chemin implmenter sous forme de maRequestpar exmemple si la voiture desire partir de 1 et arriver a 2
-	 * I1 I2 I3 I4 I5 I6 R1 R2 R3 R4 R5 R6 O1 O2 O3 O4 O5 O6 30
-	 * T  F  F  F  F  F  T  T  F  F  F  F  F  T  F  F  F  F  F
-	 * T=true et F=false
-	 * 
-	 * Toute les route roule dans le sens inverse des aiguille d'une montre
+	 * Tableau d'Integer contenant le trajet que le vehicule souhaite suivre,
+	 * sous forme d'une suite d'identifiants. Celui-ci sera ensuite converti en
+	 * une Request_Map, afin de demander au Controleur l'autorisation de
+	 * l'emprunter.
 	 */
-private ArrayList <Boolean> trajet;
-/**
- * boolean permetant de decider si la voiture peut partir ou non.
- * true si la voiture peut partir sinon false
- */
-private boolean authoriser;
-/**
- * contient la liste des prioriter afin que a partir d'un passager la voiture puisse creer sont trajet
- */
-private  ArrayList <Integer> prioriter;
-/**
- * passager permetant de connaitre le point de depart et d'arriver du vehicule
- */
-private Passager passager;
-/**
- * constructeur par default du vehicule.
- */
-Vehicule(){
-				
-}
-/**
- * constructeur permetant de creer un vehicule et de lui assigner une mission
- * @param m
- * 			Une mission 
- */
-Vehicule(Passager m, int ID){
-	this.ID=ID;
-	this.passager=m;
-	trajet=new ArrayList <Boolean>();
-	authoriser=false;
-	initTrajet();
-	genererRequestMap();
-}
-/**
- * Fonction permettant d'initialiser le trajet avec des false partout
- */
-private void initTrajet(){
-	//le tableau a 6 route, 6entré,sortie est une place central soit 18 case
-	//RISQUE ERREUR SUR LA TAILLE DU TABLEAU (qui se repercuterer sur genererRequestMAp
-	for(int i=0;i<17;i++){
-		trajet.add(false);
+	private ArrayList<Integer> trajet;
+
+	/**
+	 * passager permetant de connaitre le point de depart et d'arriver du
+	 * vehicule
+	 */
+	private Passager passager;
+
+	/**
+	 * constructeur par default du vehicule.
+	 */
+	Vehicule() {
+
 	}
-}
-/**
- * fonction permettant de generer une request map 
- * Atention par exemple la route entre I1 et I2 et la route R1
- */
-/*
- * pour l'instant gestion des route en face+des route a coter
- * rester a generer les route a 2 d'intervalle
- */
-public void genererRequestMap(){
-	//Si la difference entre le premier est le dernier est egal a 1 alors on est en face est on a le droit de passer par le Millieux
-	if(Math.abs(passager.getDebut()-passager.getFin())==3){
-		//set de la place d'entré
-		trajet.set(passager.getDebut()-1, true);
-		//reservation de la derniére place
-		trajet.set(12+passager.getFin()-1,true);
-		//reservation de la palce central
-		trajet.set(18, true);
+
+	/**
+	 * constructeur permetant de creer un vehicule et de lui assigner une
+	 * mission
+	 * 
+	 * @param m
+	 *            Une mission
+	 */
+	Vehicule(Passager m, int ID) {
+		this.ID = ID;
+		this.trajet = new ArrayList<Integer>();
+		this.passager = m;
 	}
-	//si ils sont a coter (sauf le cas 6-1 et 1-6
-	if(Math.abs(passager.getDebut()-passager.getFin())==1){
-		//set de la place d'entré
-				trajet.set(passager.getDebut()-1, true);
-		//reservation de la derniére place
-				trajet.set(12+passager.getFin()-1,true);
-		//reservation de la route
-				trajet.set(6+passager.getDebut(), true);
-	}
-	//gestion de l'exception route depart 1 avec toute 6 arriver
-	if(passager.getDebut()==1&& passager.getFin()==6){
-		//set de la place d'entré
-		trajet.set(passager.getDebut()-1, true);
-		//reservation de la derniére place
-		trajet.set(12+passager.getFin()-1,true);
-		//reservation des route 1-2-3-4-5 car on troune dans l'odre inverse des aiguille d'une montre
-		trajet.set(6, true);
-		trajet.set(7, true);
-		trajet.set(8, true);
-		trajet.set(9, true);
-		trajet.set(10, true);
+
+	/**
+	 * Fonction permettant de trouver un chemin de la place de départ vers celle d'arrivée
+	 */
+	public void findPath(Passager p){
+		trajet.clear();
+		int dep = p.getDebut();
+		int fin = p.getFin();
+		int a, b;
+		int count = -1;
+		int[] l1 = new int[3];
+		int[] l2 = new int[3];
 		
-	}
-	//gestion de l'exception route 6 depart et route 1 arriver
-	if(passager.getDebut()==6 && passager.getFin()==1){
-		//set de la place d'entré
-		trajet.set(passager.getDebut()-1, true);
-		//reservation de la derniére place
-		trajet.set(12+passager.getFin()-1,true);
-		//reservation de la route 6(soit dans le tableau la 11eme entré.
-		trajet.set(11, true);
+		trajet.add(dep-10);
+		if(Math.abs(dep-fin)==3){
+			trajet.add(dep);
+			trajet.add(30);
+		}else{
+			a=dep;
+			b=dep;
+			while(a!=fin && b!=fin){
+				count++;
+				l1[count]=a;
+				l2[count]=b;
+				if(a==16){
+					a=10;
+				}if(b==11){
+					b=17;
+				}
+				a++;
+				b--;
+			}if(b==fin){
+				l1=l2;
+			}for(int i=0; i<l1.length; i++){
+				if(l1[i]!=0){
+					trajet.add(l1[i]);
+				}
+			}
+		}trajet.add(fin);
+		trajet.add(fin+10);
 	}
 	
-}
-public void setTrajet(){
+	/**
+	 * Fonction permettant de convertir un trajet en une RMap
+	 */
+	public RMap trajetToMap(ArrayList<Integer> l){
+		RMap rq = new RMap(ID);
+		for(int i : l){
+			if(i-30>=0){
+				rq.getRequest_map().set(18, true);
+			}else{
+				if(i-20>=0){
+					rq.getRequest_map().set(i-9, true);
+				}else{
+					if(i-10>=0){
+						rq.getRequest_map().set(i-5, true);
+					}else{
+						rq.getRequest_map().set(i-1, true);
+					}
+				}
+			}
+		}
+		return rq;
+	}
 	
-}
 }
