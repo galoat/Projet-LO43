@@ -38,13 +38,10 @@ public class RMap extends Requete {
 	private ArrayList<Boolean> request_map;
 	/**
 	 * Le constructeur de Rmap.
-	 * Afin de generer la request map nous devont savoir par quel chemin la voiture desire passer
 	 * @param id
 	 * 			L'identfiant unnique du vehicule
-	 * @param trajet
-	 *				Le trajet effectuer par le vehicule.
 	 */
-	public RMap(int id, ArrayList<Integer> trajet) {
+	public RMap(int id) {
 		identifiant = id;
 		for(int i=0; i<19; i++){
 			request_map.add(false);
