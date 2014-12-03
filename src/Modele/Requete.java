@@ -1,5 +1,5 @@
 package Modele;
 
-public interface Requete {
+public abstract class Requete {
 
 }

@@ -103,7 +103,7 @@ public class Vehicule {
 	 * Fonction permettant de convertir un trajet en une RMap
 	 */
 	public RMap trajetToMap(ArrayList<Integer> l){
-		RMap rq = new RMap(ID);
+		RMap rq = new RMap(ID,trajet);
 		for(int i : l){
 			if(i-30>=0){
 				rq.getRequest_map().set(18, true);

@@ -8,8 +8,10 @@ import Exception.BoiteAuxLettresException;
  * <p>
  * Un membre de BoiteAuxLettres est caractériser par les information suivante :
  * <ul>
- * <li> Une liste de requ&ecirc;tes</li>
- * <li> Un entier repres&eacute;ntant le d&eacute;but des requ&ecirc;tes de d&eacute;but de trajet</li>
+ * <li> Une liste de requete conentant les requete de fin de rajet</li>
+ * <li> Une liste de requete contenant les requete de debut de trajet</li>
+ * <li> Une liste de requete conetant les requete d'update de la map d'un vehicule </li>
+ * 
  * </ul>
  * @author florian + theo
  *	@version 0.1
@@ -17,20 +19,30 @@ import Exception.BoiteAuxLettresException;
 public class BoiteAuxLettres {
 	/**
 	 * La liste des requete. Elle est modifier par le vehicule ou la vue.
-	 * Les requete ont un ordre:
-	 * <ul>
-	 * <li> En premier les requete de fin de trajet.</li>
-	 * <li> Les requete de mise a jour des disponibilite</li>
-	 * <li> Les requete pour embaucher un nouveau vehicule</li>
-	 * </ul>
-	 * @see BoiteAuxLettres#addRequete(RDepart)
+	 * Requete de fin.
+	 * <
+	 * @see BoiteAuxLettres#addRequete(RFin)
+	 * @see getRequete
 	 */
-	private LinkedList<Requete> boite;
+	private LinkedList<Requete> rFin;
 	/**
-	 *Un entier representant la position des requete de debut de trajet dans la liste des requete de la boite. 
-	 * 
+	 * La liste des requete. Elle est modifier par le vehicule ou la vue.
+	 * Requete de depart.
+	 * <
+	 * @see BoiteAuxLettres#addRequete(RDepart)
+	 * @see getRequete
 	 */
-	private int posDebutTrajet;
+	private LinkedList<Requete> rDepart;
+	
+	/**
+	 * La liste des requete. Elle est modifier par le vehicule ou la vue.
+	 * Requete de  d'update de map.
+	 * 
+	 * @see BoiteAuxLettres#addRequete(RMap)
+	 * @see getRequete
+	 */
+	private LinkedList<Requete> rMap;
+	
 	/**
 	 * Contructeur par default de BoiteAuxLettres
 	 * <p>
@@ -38,8 +50,10 @@ public class BoiteAuxLettres {
 	 * 
 	 */
 	BoiteAuxLettres(){
-		posDebutTrajet=0;
-		boite=new LinkedList<Requete>();
+		
+		rFin=new LinkedList<Requete>();
+		rDepart=new LinkedList<Requete>();
+		rMap=new LinkedList<Requete>();
 	}
 	/**
 	 * fonction servant a ajouter une requete de depart
@@ -49,8 +63,7 @@ public class BoiteAuxLettres {
 	 *  
 	 */
 	public void addRequete(RDepart req){
-		boite.add(posDebutTrajet,req);
-		posDebutTrajet++;
+		rDepart.add(req);
 	}
 	/**
 	 * fonction permetant d'ajouter une requete de fin de trajet cette requet etant prioritaire elle se trouve au debut de la liste.
@@ -58,7 +71,7 @@ public class BoiteAuxLettres {
 	 * 			La requete de fin de trajet;
 	 */
 	public void addRequete(RFinTrajet req){
-		boite.add(0,req);
+		rFin.add(req);
 	}
 	/**
 	 * fonction permetant d'ajouter une requete d'upload de map
@@ -66,8 +79,7 @@ public class BoiteAuxLettres {
 	 * 				La requete de mise a jour de la carte
 	 */
 	public void addRequete(RMap req){
-		boite.add(req);
-		
+		rMap.add(req);
 	}
 	
 	/**
@@ -80,12 +92,28 @@ public class BoiteAuxLettres {
 	 */
 	
 	public Requete getFirst() throws BoiteAuxLettresException{
-		if(boite.size()==0){
+		if(rFin.size()==0&& rDepart.size()==0&&rMap.size()==0){
 			throw new BoiteAuxLettresException();
 		}
 		else{
-		Requete sortie=boite.get(0);	
-		boite.remove(0);
-		return sortie;}
+			Requete sortie;
+		if(rFin.size()!=0){
+			
+			sortie =rFin.get(0);
+			rFin.removeFirst();
+			return sortie;
+		}
+		else if(rDepart.size()!=0){
+			sortie =rDepart.get(0);
+			rDepart.removeFirst();
+			return sortie;
+		}
+		else{
+			sortie =rMap.get(0);
+			rMap.removeFirst();
+			return sortie;
+		}
+		
 	}
+}
 }
