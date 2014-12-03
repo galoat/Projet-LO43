@@ -2,30 +2,28 @@ package Modele;
 
 import java.util.ArrayList;
 /**
- * <b> vehicule est la classe contenant toute les voiture autonome
+ * <b> Vehicule est la classe contenant toutes les voitures autonomes
  * <p>
- * Un membre de Vehicule est caracteriser par les information suivante
+ * Un membre de Vehicule est compos&eacute; des caract&eacute;ristiques suivantes
  * <ul>
- * <li>un tableau de coolean permetant de savoir quel chemin le vehicule desire prendre ( dans la fiche projet elle est nomer maprequest</li>
- * <li> un boolean permetant de savoir si la voiture peut partir.</li>
- * <li> un arraylist de int contenant la pririter des route ce tableau est utile pour la reservation </li>
- * <li>un passager qui demande a la voiture d'aller d'un point a a un point b </li>
- * <li> un identifiant permetant de savoir de quel vehicule il s'agit.
+ * <li>Un tableau d'Integer permettant de savoir quel chemin le v&eacute;hicule d&eacute;sire prendre</li>
+ * <li>Un passager, qui demande &agrave; la voiture d'aller d'un point a &agrave; un point b </li>
+ * <li>Un identifiant unique pour ce V&eacute;hicule
  * </ul>
  * 
  * @author florian+theo
- *@version 0.1
+ * @version 0.1
  */
 //ICI GESTION DE THREAD
 public class Vehicule {
 	
 	/**
-	 * L'identidiant du vehicule ne peut pas etre modifier
+	 * L'identifiant du v&eacute;hicule ne peut pas etre modifi&eacute; et est unique
 	 */
 		int ID;
 	
 	/**
-	 * Tableau d'Integer contenant le trajet que le vehicule souhaite suivre,
+	 * Tableau d'Integer contenant le trajet que le v&eacute;hicule souhaite suivre,
 	 * sous forme d'une suite d'identifiants. Celui-ci sera ensuite converti en
 	 * une Request_Map, afin de demander au Controleur l'autorisation de
 	 * l'emprunter.
@@ -33,33 +31,27 @@ public class Vehicule {
 	private ArrayList<Integer> trajet;
 
 	/**
-	 * passager permetant de connaitre le point de depart et d'arriver du
-	 * vehicule
+	 * Passager permettant de conna&icirc;tre le point de depart et d'arriv&eacute;e du
+	 * v&eacute;hicule
 	 */
 	private Passager passager;
 
 	/**
-	 * constructeur par default du vehicule.
-	 */
-	Vehicule() {
-
-	}
-
-	/**
-	 * constructeur permetant de creer un vehicule et de lui assigner une
-	 * mission
+	 * Constructeur permettant de cr&eacute;er un v&eacute;hicule et de lui assigner une
+	 * mission et une identit&eacute;
 	 * 
-	 * @param m
-	 *            Une mission
+	 * @param p
+	 *            Le passager
 	 */
-	Vehicule(Passager m, int ID) {
+	Vehicule(Passager p, int ID) {
 		this.ID = ID;
 		this.trajet = new ArrayList<Integer>();
-		this.passager = m;
+		this.passager = p;
 	}
 
 	/**
-	 * Fonction permettant de trouver un chemin de la place de départ vers celle d'arrivée
+	 * Fonction permettant de trouver un chemin de la place de d&eacute;part vers celle d'arriv&eacute;e
+	 * @param p Un passager, indiquant les places de d&eacute;part et d'arriv&eacute;e
 	 */
 	public void findPath(Passager p){
 		trajet.clear();
@@ -103,7 +95,7 @@ public class Vehicule {
 	 * Fonction permettant de convertir un trajet en une RMap
 	 */
 	public RMap trajetToMap(ArrayList<Integer> l){
-		RMap rq = new RMap(ID,trajet);
+		RMap rq = new RMap(ID);
 		for(int i : l){
 			if(i-30>=0){
 				rq.getRequest_map().set(18, true);
