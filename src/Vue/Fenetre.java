@@ -12,6 +12,8 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,7 +27,7 @@ import Modele.Observer;
 public class Fenetre extends JFrame implements Observer {
 	private Verificateur verif;
 	private MainPan mp;
-	private JPanel secondpan;
+	private JPanel buttonpan;
 	private JLabel titre;
 	private JButton Bcredits, Bmanu, Bauto, Bopt, close, reduce;
 	private BarPanel barpan;
@@ -36,7 +38,7 @@ public class Fenetre extends JFrame implements Observer {
 		this.verif = v;
 		this.setUndecorated(true);
 		this.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
-		this.setSize(350, 500);
+		this.setSize(350, 400);
 		this.theme = "Dark";
 		this.sound=false;
 		this.setTitle("Road Simulator 2014");
@@ -85,22 +87,45 @@ public class Fenetre extends JFrame implements Observer {
 	private void createCompos() {
 		mp = new MainPan("try1.jpg");
 		mp.setLayout(new BorderLayout());
-		secondpan = new JPanel();
+		buttonpan = new JPanel();
 		Icon icon = new ImageIcon(getClass().getResource("titre.png"));   
 		titre = new JLabel(" ", icon, JLabel.CENTER);
+		titre.setPreferredSize(new Dimension(30, 50));
+		//titre.setBorder(BorderFactory.createLineBorder(Color.black));
+		
 		Bmanu = new JButton("Mode Manuel");
+		Bmanu.setAlignmentX(CENTER_ALIGNMENT);
+		Bmanu.setMaximumSize(new Dimension(150, 30));
+		Bmanu.setMinimumSize(new Dimension(150, 30));
+		Bmanu.setPreferredSize(new Dimension(150, 30));
 		Bauto = new JButton("Mode Automatique");
+		Bauto.setAlignmentX(CENTER_ALIGNMENT);
+		Bauto.setMaximumSize(new Dimension(150, 30));
+		Bauto.setMinimumSize(new Dimension(150, 30));
+		Bauto.setPreferredSize(new Dimension(150, 30));
 		Bopt = new JButton("Options");
+		Bopt.setAlignmentX(CENTER_ALIGNMENT);
+		Bopt.setMaximumSize(new Dimension(150, 30));
+		Bopt.setMinimumSize(new Dimension(150, 30));
+		Bopt.setPreferredSize(new Dimension(150, 30));
 		Bcredits = new JButton("Credits");
-		secondpan.setPreferredSize(new Dimension(170, 200));
-		secondpan.setBackground(new Color(0,0,0,0));
-		secondpan.add(Bmanu);
-		secondpan.add(Bauto);
-		secondpan.add(Bopt);
-		secondpan.add(Bcredits);
+		Bcredits.setMaximumSize(new Dimension(150, 30));
+		Bcredits.setMinimumSize(new Dimension(150, 30));
+		Bcredits.setPreferredSize(new Dimension(150, 30));
+		Bcredits.setAlignmentX(CENTER_ALIGNMENT);
+		buttonpan.setPreferredSize(new Dimension(170, 200));
+		buttonpan.setLayout(new BoxLayout(buttonpan, BoxLayout.PAGE_AXIS));
+		buttonpan.setBackground(new Color(0,0,0,0));
+		buttonpan.add(Bmanu);
+		buttonpan.add(Box.createRigidArea(new Dimension(5,10)));
+		buttonpan.add(Bauto);
+		buttonpan.add(Box.createRigidArea(new Dimension(5,10)));
+		buttonpan.add(Bopt);
+		buttonpan.add(Box.createRigidArea(new Dimension(5,10)));
+		buttonpan.add(Bcredits);
 		mp.add(barpan, BorderLayout.NORTH);
 		mp.add(titre, BorderLayout.CENTER);
-		mp.add(secondpan, BorderLayout.SOUTH);
+		mp.add(buttonpan, BorderLayout.SOUTH);
 	}
 	
 	
