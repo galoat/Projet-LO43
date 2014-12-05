@@ -26,7 +26,7 @@ import Modele.Observer;
 
 public class Fenetre extends JFrame implements Observer {
 	private Verificateur verif;
-	private MainPan mp;
+	private MainPan fenpanmain, fenpanopt, fenpancredits, fenpansimul, actual;
 	private JPanel buttonpan;
 	private JLabel titre;
 	private JButton Bcredits, Bmanu, Bauto, Bopt, close, reduce;
@@ -46,8 +46,15 @@ public class Fenetre extends JFrame implements Observer {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		createBarPanel();
-		createCompos();
-		this.setContentPane(mp);
+		this.getContentPane().add(barpan);
+		createFenPanMain();
+		actual=fenpanmain;
+		this.getContentPane().add(actual);
+		/*createFenPanOpt();
+		createFenPanCredits();
+		createFenPanSimul();
+		createCompos();*/
+		
 		this.setVisible(true);
 	}
 	private void createBarPanel(){
@@ -69,8 +76,6 @@ public class Fenetre extends JFrame implements Observer {
 		reduce.setIcon(icon2);
 		barpan.add(reduce);
 		barpan.add(close);
-		
-		
 	}
 	
 
@@ -84,15 +89,15 @@ public class Fenetre extends JFrame implements Observer {
 	 	}
 	}
 	 	
-	private void createCompos() {
-		mp = new MainPan("try1.jpg");
-		mp.setLayout(new BorderLayout());
+	private void createFenPanMain() {
+		fenpanmain = new MainPan();
+		fenpanmain.setPreferredSize(new Dimension(350,375));
+		fenpanmain.setLayout(new BorderLayout());
 		buttonpan = new JPanel();
 		Icon icon = new ImageIcon(getClass().getResource("titre.png"));   
 		titre = new JLabel(" ", icon, JLabel.CENTER);
 		titre.setPreferredSize(new Dimension(30, 50));
 		//titre.setBorder(BorderFactory.createLineBorder(Color.black));
-		
 		Bmanu = new JButton("Mode Manuel");
 		Bmanu.setAlignmentX(CENTER_ALIGNMENT);
 		Bmanu.setMaximumSize(new Dimension(150, 30));
@@ -123,12 +128,23 @@ public class Fenetre extends JFrame implements Observer {
 		buttonpan.add(Bopt);
 		buttonpan.add(Box.createRigidArea(new Dimension(5,10)));
 		buttonpan.add(Bcredits);
-		mp.add(barpan, BorderLayout.NORTH);
-		mp.add(titre, BorderLayout.CENTER);
-		mp.add(buttonpan, BorderLayout.SOUTH);
+		//fenpanmain.add(barpan, BorderLayout.NORTH);
+		fenpanmain.add(titre, BorderLayout.CENTER);
+		fenpanmain.add(buttonpan, BorderLayout.SOUTH);
 	}
 	
-	
+	private void createFenPanOpt() {
+		fenpanopt = new MainPan();
+		fenpanopt.setPreferredSize(new Dimension(350,375));
+		fenpanopt.setLayout(new BorderLayout());
+		Icon icon = new ImageIcon(getClass().getResource("titre.png"));   
+		titre = new JLabel(" ", icon, JLabel.CENTER);
+		titre.setPreferredSize(new Dimension(30, 50));
+		//titre.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		fenpanopt.add(titre, BorderLayout.CENTER);
+		fenpanopt.add(buttonpan, BorderLayout.SOUTH);
+	}
 	
 	@Override
 	public void update(String str) {

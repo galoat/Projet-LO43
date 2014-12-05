@@ -9,9 +9,8 @@ import javax.swing.JPanel;
 public class MainPan extends JPanel{
 private String path;
 	private static final long serialVersionUID = 1L;
-	public MainPan(String s) {
+	public MainPan() {
 		super();
-		path=s;
 		//Setting the theme, based on the main frame's one
 	}
 	
