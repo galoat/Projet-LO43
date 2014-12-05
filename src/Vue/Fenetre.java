@@ -11,12 +11,13 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 
 import Controleur.Verificateur;
 import Modele.Observer;
@@ -82,10 +83,11 @@ public class Fenetre extends JFrame implements Observer {
 	}
 	 	
 	private void createCompos() {
-		mp = new MainPan();
+		mp = new MainPan("try1.jpg");
 		mp.setLayout(new BorderLayout());
 		secondpan = new JPanel();
-		titre = new JLabel("Road Simulator 2014");
+		Icon icon = new ImageIcon(getClass().getResource("titre.png"));   
+		titre = new JLabel(" ", icon, JLabel.CENTER);
 		Bmanu = new JButton("Mode Manuel");
 		Bauto = new JButton("Mode Automatique");
 		Bopt = new JButton("Options");

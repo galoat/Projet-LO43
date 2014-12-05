@@ -7,10 +7,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 /*A panel to display the images used as a border to the timer*/
 public class MainPan extends JPanel{
-
+private String path;
 	private static final long serialVersionUID = 1L;
-	public MainPan() {
+	public MainPan(String s) {
 		super();
+		path=s;
 		//Setting the theme, based on the main frame's one
 	}
 	
