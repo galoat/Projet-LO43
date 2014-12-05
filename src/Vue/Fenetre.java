@@ -48,10 +48,11 @@ public class Fenetre extends JFrame implements Observer {
 		createBarPanel();
 		this.getContentPane().add(barpan);
 		createFenPanMain();
+		createFenPanOpt();
 		actual = fenpanmain;
 		this.getContentPane().add(actual);
 		/*
-		 * createFenPanOpt(); createFenPanCredits(); createFenPanSimul();
+		 * createFenPanCredits(); createFenPanSimul();
 		 * createCompos();
 		 */
 
@@ -122,6 +123,7 @@ public class Fenetre extends JFrame implements Observer {
 		Bcredits.setMinimumSize(new Dimension(150, 30));
 		Bcredits.setPreferredSize(new Dimension(150, 30));
 		Bcredits.setAlignmentX(CENTER_ALIGNMENT);
+		Bopt.addActionListener(new changeButtonListener());
 		buttonpan.setPreferredSize(new Dimension(170, 200));
 		buttonpan.setLayout(new BoxLayout(buttonpan, BoxLayout.PAGE_AXIS));
 		buttonpan.setBackground(new Color(0, 0, 0, 0));
@@ -147,7 +149,7 @@ public class Fenetre extends JFrame implements Observer {
 		// titre.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		fenpanopt.add(titre, BorderLayout.CENTER);
-		fenpanopt.add(buttonpan, BorderLayout.SOUTH);
+		//fenpanopt.add(buttonpan, BorderLayout.SOUTH);
 	}
 
 	@Override
@@ -162,7 +164,9 @@ public class Fenetre extends JFrame implements Observer {
 			this.revalidate();
 			break;
 		case 1:
-			actual = fenpanopt;
+			this.getContentPane().remove(actual);
+			actual=fenpanopt;
+			this.getContentPane().add(actual);
 			this.repaint();
 			this.revalidate();
 			break;
@@ -179,18 +183,25 @@ public class Fenetre extends JFrame implements Observer {
 	}
 
 	class manageButtonListener implements ActionListener {
-
 		@Override
-		
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == close) {
 				System.exit(0);
 			} else {
 				setState(JFrame.ICONIFIED);
 			}
-
 		}
-
+	}
+	
+	class changeButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==Bopt){
+	            System.out.println("skjhgf");
+				changerPan(1);
+	        }
+	        
+		}
 	}
 	
 
