@@ -1,12 +1,12 @@
 package Vue;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 
@@ -40,7 +40,7 @@ public class Fenetre extends JFrame implements Observer {
 		this.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 		this.setSize(350, 400);
 		this.theme = "Dark";
-		this.sound=false;
+		this.sound = false;
 		this.setTitle("Road Simulator 2014");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -48,16 +48,17 @@ public class Fenetre extends JFrame implements Observer {
 		createBarPanel();
 		this.getContentPane().add(barpan);
 		createFenPanMain();
-		actual=fenpanmain;
+		actual = fenpanmain;
 		this.getContentPane().add(actual);
-		/*createFenPanOpt();
-		createFenPanCredits();
-		createFenPanSimul();
-		createCompos();*/
-		
+		/*
+		 * createFenPanOpt(); createFenPanCredits(); createFenPanSimul();
+		 * createCompos();
+		 */
+
 		this.setVisible(true);
 	}
-	private void createBarPanel(){
+
+	private void createBarPanel() {
 		barpan = new BarPanel(this);
 		barpan.setBackground(new Color(150, 50, 50));
 		barpan.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
@@ -74,30 +75,33 @@ public class Fenetre extends JFrame implements Observer {
 		reduce.setRolloverEnabled(false);
 		close.setIcon(icon);
 		reduce.setIcon(icon2);
+		close.addActionListener(new manageButtonListener());
+		reduce.addActionListener(new manageButtonListener());
 		barpan.add(reduce);
 		barpan.add(close);
+		barpan.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0,
+				Color.BLACK));
 	}
-	
 
 	protected ImageIcon createImageIcon(String path, String description) {
-	 	URL imgURL = getClass().getResource(path);
-	 	if (imgURL != null) {
+		URL imgURL = getClass().getResource(path);
+		if (imgURL != null) {
 			return new ImageIcon(imgURL, description);
 		} else {
-	 		System.err.println("Impossible de trouver: " + path);
+			System.err.println("Impossible de trouver: " + path);
 			return null;
-	 	}
+		}
 	}
-	 	
+
 	private void createFenPanMain() {
 		fenpanmain = new MainPan();
-		fenpanmain.setPreferredSize(new Dimension(350,375));
+		fenpanmain.setPreferredSize(new Dimension(350, 375));
 		fenpanmain.setLayout(new BorderLayout());
 		buttonpan = new JPanel();
-		Icon icon = new ImageIcon(getClass().getResource("titre.png"));   
+		Icon icon = new ImageIcon(getClass().getResource("titre.png"));
 		titre = new JLabel(" ", icon, JLabel.CENTER);
 		titre.setPreferredSize(new Dimension(30, 50));
-		//titre.setBorder(BorderFactory.createLineBorder(Color.black));
+		// titre.setBorder(BorderFactory.createLineBorder(Color.black));
 		Bmanu = new JButton("Mode Manuel");
 		Bmanu.setAlignmentX(CENTER_ALIGNMENT);
 		Bmanu.setMaximumSize(new Dimension(150, 30));
@@ -120,45 +124,74 @@ public class Fenetre extends JFrame implements Observer {
 		Bcredits.setAlignmentX(CENTER_ALIGNMENT);
 		buttonpan.setPreferredSize(new Dimension(170, 200));
 		buttonpan.setLayout(new BoxLayout(buttonpan, BoxLayout.PAGE_AXIS));
-		buttonpan.setBackground(new Color(0,0,0,0));
+		buttonpan.setBackground(new Color(0, 0, 0, 0));
 		buttonpan.add(Bmanu);
-		buttonpan.add(Box.createRigidArea(new Dimension(5,10)));
+		buttonpan.add(Box.createRigidArea(new Dimension(5, 10)));
 		buttonpan.add(Bauto);
-		buttonpan.add(Box.createRigidArea(new Dimension(5,10)));
+		buttonpan.add(Box.createRigidArea(new Dimension(5, 10)));
 		buttonpan.add(Bopt);
-		buttonpan.add(Box.createRigidArea(new Dimension(5,10)));
+		buttonpan.add(Box.createRigidArea(new Dimension(5, 10)));
 		buttonpan.add(Bcredits);
-		//fenpanmain.add(barpan, BorderLayout.NORTH);
+		// fenpanmain.add(barpan, BorderLayout.NORTH);
 		fenpanmain.add(titre, BorderLayout.CENTER);
 		fenpanmain.add(buttonpan, BorderLayout.SOUTH);
 	}
-	
+
 	private void createFenPanOpt() {
 		fenpanopt = new MainPan();
-		fenpanopt.setPreferredSize(new Dimension(350,375));
+		fenpanopt.setPreferredSize(new Dimension(350, 375));
 		fenpanopt.setLayout(new BorderLayout());
-		Icon icon = new ImageIcon(getClass().getResource("titre.png"));   
+		Icon icon = new ImageIcon(getClass().getResource("titre.png"));
 		titre = new JLabel(" ", icon, JLabel.CENTER);
 		titre.setPreferredSize(new Dimension(30, 50));
-		//titre.setBorder(BorderFactory.createLineBorder(Color.black));
-		
+		// titre.setBorder(BorderFactory.createLineBorder(Color.black));
+
 		fenpanopt.add(titre, BorderLayout.CENTER);
 		fenpanopt.add(buttonpan, BorderLayout.SOUTH);
 	}
-	
+
 	@Override
 	public void update(String str) {
 	}
-	
-	protected void paintComponent1(Graphics g) {
-		try {
-			//Painting the image
-			g.drawImage(ImageIO.read(this.getClass().getResource("theme"+theme+".png")),
-					0, 0, this.getWidth(), this.getHeight(), 0, 57,
-				this.getWidth(), this.getHeight()+57, null);
-		} catch (IOException e) {
-			e.printStackTrace();
+
+	public void changerPan(int menuSelectionne) {
+		switch (menuSelectionne) {
+		case 0:
+			actual = fenpanmain;
+			this.repaint();
+			this.revalidate();
+			break;
+		case 1:
+			actual = fenpanopt;
+			this.repaint();
+			this.revalidate();
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		default:
+			System.err.println("Menu selectionne non valide");
+			break;
 		}
 	}
+
+	class manageButtonListener implements ActionListener {
+
+		@Override
+		
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == close) {
+				System.exit(0);
+			} else {
+				setState(JFrame.ICONIFIED);
+			}
+
+		}
+
+	}
+	
 
 }
