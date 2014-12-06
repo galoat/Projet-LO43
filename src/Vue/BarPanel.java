@@ -19,102 +19,112 @@ import javax.swing.JPanel;
 /**
  * <b>Panel charge de remplacer le look&feel classique du système</b>
  * <p>
- * Il permet la fermeture et la reduction de la fenetre, et egalement son deplacement
+ * Il permet la fermeture et la reduction de la fenetre, et egalement son
+ * deplacement
  * </p>
+ * 
  * @author florian + theo
- *	@version 1.4
+ * @version 1.4
  */
-public class BarPanel extends JPanel{
-	
+public class BarPanel extends JPanel {
+
 	private static final long serialVersionUID = 1L;
 	private int x, y;
 	private Fenetre mere;
 	private JButton close, reduce;
 
 	/**
-	 * Constructeur du panel :
-	 * on y initialise les boutons de controle, ainsi que les listeners associes
-	 * @param mere La fenetre qui contient le panel
+	 * Constructeur du panel : on y initialise les boutons de controle, ainsi
+	 * que les listeners associes
+	 * 
+	 * @param mere
+	 *            La fenetre qui contient le panel
 	 */
-    public BarPanel(final Fenetre mere){
-    	//On stocke la fenetre-mere
-    	this.mere = mere;
-    	//On ajouteles mouse listeners
-	    addMouseListener(new Adapter());
-	    addMouseMotionListener(new MotionAdapter());
-	    
-	    //Puis on initialise le panel
-		this.setBackground(new Color(90, 150, 12));//150,50,50
+	public BarPanel(final Fenetre mere) {
+		// On stocke la fenetre-mere
+		this.mere = mere;
+		// On ajouteles mouse listeners
+		addMouseListener(new Adapter());
+		addMouseMotionListener(new MotionAdapter());
+
+		// Puis on initialise le panel
+		this.setBackground(new Color(90, 150, 12));// 150,50,50
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		this.setPreferredSize(new Dimension(350, 25));
-		//On cree ensuite les boutons de controle
+		// On cree ensuite les boutons de controle
 		ImageIcon icon = creerImage("close.png", "");
 		ImageIcon icon2 = creerImage("reduce.png", "");
 		close = new JButton("");
 		reduce = new JButton("");
-		//On les rend transparents
+		// On les rend transparents
 		close.setContentAreaFilled(false);
 		reduce.setContentAreaFilled(false);
 		close.setBorderPainted(false);
 		reduce.setBorderPainted(false);
 		close.setRolloverEnabled(false);
 		reduce.setRolloverEnabled(false);
-		//Et on leur attribue des images
+		// Et on leur attribue des images
 		close.setIcon(icon);
 		reduce.setIcon(icon2);
-		//Enfin, on ajoute les action listeners
+		// Enfin, on ajoute les action listeners
 		close.addActionListener(new manageButtonListener());
 		reduce.addActionListener(new manageButtonListener());
 		this.add(reduce);
 		this.add(close);
-		//Petite bordure esthétique
-		//this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0,Color.BLACK));
-    }
-    
-    /**
+		// Petite bordure esthétique
+		// this.setBorder(BorderFactory.createMatteBorder(0, 0, 1,
+		// 0,Color.BLACK));
+	}
+
+	/**
 	 * Creation d'une image (format Icon) a partir d'un fichier
-	 * @param path Le chemin de l'image par rapport à la classe
-	 * @param description Sa description
+	 * 
+	 * @param path
+	 *            Le chemin de l'image par rapport à la classe
+	 * @param description
+	 *            Sa description
 	 */
 	protected ImageIcon creerImage(String path, String description) {
-		//On convertit le chemin en URL
+		// On convertit le chemin en URL
 		URL imgURL = getClass().getResource(path);
 		if (imgURL != null) {
-			//Et on construit l'image
+			// Et on construit l'image
 			return new ImageIcon(imgURL, description);
 		} else {
 			System.err.println("Impossible de trouver: " + path);
 			return null;
 		}
 	}
-	
-    private class Adapter extends MouseAdapter{
-    	//Lors d'un clic sur le panel
-    	public void mousePressed(MouseEvent e) {
-        	//On recupere la position du curseur
-        	x = e.getX();
-            y = e.getY();
-        }
-    }
-    private class MotionAdapter extends MouseMotionAdapter{
-    	//Lors du deplacement de la souris, clic enfonce
-    	public void mouseDragged(MouseEvent e) {
 
-            //On recupere les coordonnees de la fenetre
-            int X = mere.getLocation().x;
-            int Y = mere.getLocation().y;
+	private class Adapter extends MouseAdapter {
+		// Lors d'un clic sur le panel
+		public void mousePressed(MouseEvent e) {
+			// On recupere la position du curseur
+			x = e.getX();
+			y = e.getY();
+		}
+	}
 
-            //On calcule la variation de positon
-            int deltaX = (X + e.getX()) - (X + x);
-            int deltaY = (Y + e.getY()) - (Y + y);
+	private class MotionAdapter extends MouseMotionAdapter {
+		// Lors du deplacement de la souris, clic enfonce
+		public void mouseDragged(MouseEvent e) {
 
-            //Et on deplace la fenetre a sa nouvelle place
-            X = X + deltaX;
-            Y = Y + deltaY;
-            mere.setLocation(X, Y);
-        }
-    }
-    private class manageButtonListener implements ActionListener {
+			// On recupere les coordonnees de la fenetre
+			int X = mere.getLocation().x;
+			int Y = mere.getLocation().y;
+
+			// On calcule la variation de positon
+			int deltaX = (X + e.getX()) - (X + x);
+			int deltaY = (Y + e.getY()) - (Y + y);
+
+			// Et on deplace la fenetre a sa nouvelle place
+			X = X + deltaX;
+			Y = Y + deltaY;
+			mere.setLocation(X, Y);
+		}
+	}
+
+	private class manageButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == close) {
@@ -125,4 +135,3 @@ public class BarPanel extends JPanel{
 		}
 	}
 }
-
