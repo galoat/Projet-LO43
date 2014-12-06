@@ -1,0 +1,4 @@
+\select@language {french}
+\contentsline {part}{I\hspace {1em} Description du sujet}{3}
+\contentsline {section}{\numberline {1}Objectif}{3}
+\contentsline {section}{\numberline {2}Reformulation du sujet}{3}
