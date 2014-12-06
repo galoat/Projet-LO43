@@ -23,76 +23,67 @@ import javax.swing.JPanel;
 
 import Controleur.Verificateur;
 import Modele.Observer;
-
+/**
+ * <b>Classe principale de la vue</b>
+ * <p>
+ * Cette classe est celle de la fenetre, chargee d'afficher la totalite du programme.
+ * Elle dispose elle meme de plusieurs interfaces :
+ * <ul>
+ * <li>La vue principale, affichee au lancement</li>
+ * <li>Les options</li>
+ * <li>Les credits</li>
+ * <li>La simulation en elle-meme</li>
+ * </ul>
+ * </p>
+ * @author florian + theo
+ * @version 2.5
+ */
 public class Fenetre extends JFrame implements Observer {
+
+	private static final long serialVersionUID = 1L;
 	private Verificateur verif;
 	private MainPan fenpanmain, fenpanopt, fenpancredits, fenpansimul, actual;
 	private JPanel buttonpan;
 	private JLabel titre;
-	private JButton Bcredits, Bmanu, Bauto, Bopt, close, reduce;
+	private JButton Bcredits, Bmanu, Bauto, Bopt;
 	private BarPanel barpan;
 	private String theme;
 	private boolean sound;
 
+	/**
+	 * Constructeur de la fenetre :
+	 * on y initialise les differents panels et comosants
+	 * @param v Le verificateur associe a la fenetre dans le cadre du pattern MVC
+	 * @see Verificateur
+	 */
 	public Fenetre(Verificateur v) {
 		this.verif = v;
+		//On retire le look&feel classique
 		this.setUndecorated(true);
 		this.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 		this.setSize(350, 400);
+		//++++++++++++++++++++++++++++++++++++++++++
+		//Pas encore implemente
+		//++++++++++++++++++++++++++++++++++++++++++
 		this.theme = "Dark";
 		this.sound = false;
 		this.setTitle("Road Simulator 2014");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		createBarPanel();
+		//On initialise le panel qui remplace le look&fell
+		barpan = new BarPanel(this);
 		this.getContentPane().add(barpan);
+		//On cree le panel principal
 		createFenPanMain();
+		//Puis celui des options
 		createFenPanOpt();
+		//On demarre sur le panel principal
 		actual = fenpanmain;
 		this.getContentPane().add(actual);
-		/*
-		 * createFenPanCredits(); createFenPanSimul();
-		 * createCompos();
-		 */
-
 		this.setVisible(true);
 	}
 
-	private void createBarPanel() {
-		barpan = new BarPanel(this);
-		barpan.setBackground(new Color(150, 50, 50));
-		barpan.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
-		barpan.setPreferredSize(new Dimension(350, 25));
-		ImageIcon icon = createImageIcon("close.png", "");
-		ImageIcon icon2 = createImageIcon("reduce.png", "");
-		close = new JButton("");
-		reduce = new JButton("");
-		close.setContentAreaFilled(false);
-		reduce.setContentAreaFilled(false);
-		close.setBorderPainted(false);
-		reduce.setBorderPainted(false);
-		close.setRolloverEnabled(false);
-		reduce.setRolloverEnabled(false);
-		close.setIcon(icon);
-		reduce.setIcon(icon2);
-		close.addActionListener(new manageButtonListener());
-		reduce.addActionListener(new manageButtonListener());
-		barpan.add(reduce);
-		barpan.add(close);
-		barpan.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0,
-				Color.BLACK));
-	}
-
-	protected ImageIcon createImageIcon(String path, String description) {
-		URL imgURL = getClass().getResource(path);
-		if (imgURL != null) {
-			return new ImageIcon(imgURL, description);
-		} else {
-			System.err.println("Impossible de trouver: " + path);
-			return null;
-		}
-	}
 
 	private void createFenPanMain() {
 		fenpanmain = new MainPan();
@@ -181,19 +172,8 @@ public class Fenetre extends JFrame implements Observer {
 			break;
 		}
 	}
-
-	class manageButtonListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == close) {
-				System.exit(0);
-			} else {
-				setState(JFrame.ICONIFIED);
-			}
-		}
-	}
 	
-	class changeButtonListener implements ActionListener {
+	private class changeButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource()==Bopt){

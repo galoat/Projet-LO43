@@ -30,17 +30,11 @@ public class BoiteAuxLettres {
 	 * Requete de depart.
 	 * <
 	 * @see BoiteAuxLettres#addRequete(RDepart)
-	 * @see getRequete
+	 * @see BoiteAuxLettres#getRequete
 	 */
 	private LinkedList<Requete> rDepart;
 	
-	/**
-	 * La liste des requete. Elle est modifier par le vehicule ou la vue.
-	 * Requete de  d'update de map.
-	 * 
-	 * @see BoiteAuxLettres#addRequete(RMap)
-	 * @see getRequete
-	 */
+
 	private LinkedList<Requete> rMap;
 	
 	/**

@@ -1,63 +1,129 @@
 package Vue;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.net.URL;
 
-
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-/*This Panel allows the user to move the main frame, even if it has no decoration*/
+
+/**
+ * <b>Panel charge de remplacer le look&feel classique du système</b>
+ * <p>
+ * Il permet la fermeture et la reduction de la fenetre, et egalement son deplacement
+ * </p>
+ * @author florian + theo
+ *	@version 1.4
+ */
 public class BarPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private int x, y;
-    //Storing mum
 	private Fenetre mere;
+	private JButton close, reduce;
 
-	/*The constructor of the class*/
+	/**
+	 * Constructeur du panel :
+	 * on y initialise les boutons de controle, ainsi que les listeners associes
+	 * @param mere La fenetre qui contient le panel
+	 */
     public BarPanel(final Fenetre mere){
-    	//Storing the frame to move
+    	//On stocke la fenetre-mere
     	this.mere = mere;
-    	//Adding the mouse listeners
+    	//On ajouteles mouse listeners
 	    addMouseListener(new Adapter());
 	    addMouseMotionListener(new MotionAdapter());
+	    
+	    //Puis on initialise le panel
+		this.setBackground(new Color(150, 50, 50));
+		this.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+		this.setPreferredSize(new Dimension(350, 25));
+		//On cree ensuite les boutons de controle
+		ImageIcon icon = creerImage("close.png", "");
+		ImageIcon icon2 = creerImage("reduce.png", "");
+		close = new JButton("");
+		reduce = new JButton("");
+		//On les rend transparents
+		close.setContentAreaFilled(false);
+		reduce.setContentAreaFilled(false);
+		close.setBorderPainted(false);
+		reduce.setBorderPainted(false);
+		close.setRolloverEnabled(false);
+		reduce.setRolloverEnabled(false);
+		//Et on leur attribue des images
+		close.setIcon(icon);
+		reduce.setIcon(icon2);
+		//Enfin, on ajoute les action listeners
+		close.addActionListener(new manageButtonListener());
+		reduce.addActionListener(new manageButtonListener());
+		this.add(reduce);
+		this.add(close);
+		//Petite bordure esthétique
+		this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0,
+				Color.BLACK));
     }
     
-    /*The listener looks for an action from the mouse*/
+    /**
+	 * Creation d'une image (format Icon) a partir d'un fichier
+	 * @param path Le chemin de l'image par rapport à la classe
+	 * @param description Sa description
+	 */
+	protected ImageIcon creerImage(String path, String description) {
+		//On convertit le chemin en URL
+		URL imgURL = getClass().getResource(path);
+		if (imgURL != null) {
+			//Et on construit l'image
+			return new ImageIcon(imgURL, description);
+		} else {
+			System.err.println("Impossible de trouver: " + path);
+			return null;
+		}
+	}
+	
     private class Adapter extends MouseAdapter{
-    	/*
-    	 * Called when : the user presses the panel
-    	 * By : the adapter
-    	 * Action : Stores the coords of the mouse
-    	 */
+    	//Lors d'un clic sur le panel
     	public void mousePressed(MouseEvent e) {
-        	//Getting the initial position of the mouse
+        	//On recupere la position du curseur
         	x = e.getX();
             y = e.getY();
         }
     }
-    /*This listener looks for a dragging movement of the mouse*/
     private class MotionAdapter extends MouseMotionAdapter{
-    	/*
-    	 * Called when : the user, after pressing the panel, moves the mouse
-    	 * By : the Motion Adapter
-    	 * Action : Moves the main frame with the mouse
-    	 */
+    	//Lors du deplacement de la souris, clic enfonce
     	public void mouseDragged(MouseEvent e) {
 
-            //Analyse the actual location of the main frame
+            //On recupere les coordonnees de la fenetre
             int X = mere.getLocation().x;
             int Y = mere.getLocation().y;
 
-            // Compute the position variation from the initial point
+            //On calcule la variation de positon
             int deltaX = (X + e.getX()) - (X + x);
             int deltaY = (Y + e.getY()) - (Y + y);
 
-            // And move the window to the new location
+            //Et on deplace la fenetre a sa nouvelle place
             X = X + deltaX;
             Y = Y + deltaY;
             mere.setLocation(X, Y);
         }
     }
+    private class manageButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == close) {
+				System.exit(0);
+			} else {
+				mere.setState(JFrame.ICONIFIED);
+			}
+		}
+	}
 }
 
