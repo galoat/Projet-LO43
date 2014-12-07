@@ -28,16 +28,4 @@ public class MainPan extends JPanel {
 		super();
 		this.setBackground(new Color(52, 52, 52));
 	}
-	/**
-	 * Surcharge de la fonction paintComponent pour dessiner l'image en fond
-	 */
-	/*
-	 * protected void paintComponent(Graphics g) { try { //On dessine l'image
-	 * (avec des couples de coordonnees pour chaque coin)
-	 * g.drawImage(ImageIO.read(this.getClass().getResource(path)), 0, 0,
-	 * this.getWidth(), this.getHeight(), 0, 0, this.getWidth(),
-	 * this.getHeight(), null);
-	 * 
-	 * } catch (IOException e) { e.printStackTrace(); } }
-	 */
 }
