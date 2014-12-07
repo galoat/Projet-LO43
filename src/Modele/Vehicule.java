@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @version 0.1
  */
 //ICI GESTION DE THREAD
-public class Vehicule {
+public class Vehicule implements Observable{
 	
 	/**
 	 * L'identifiant du v&eacute;hicule ne peut pas etre modifi&eacute; et est unique
@@ -112,6 +112,24 @@ public class Vehicule {
 			}
 		}
 		return rq;
+	}
+
+	@Override
+	public void addObserver(Observer obs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeObserver() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObserver(String str) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

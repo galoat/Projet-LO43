@@ -92,7 +92,9 @@ public class Controleur implements Observable {
 		
 	}
 
-
+	public void updateArriveeTemp(int iD){
+		//La partie graphique a fini son chemin
+	}
 	
 	/*
 	 * 

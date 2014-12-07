@@ -4,9 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -92,6 +94,16 @@ public class Simulation extends MainPan {
 		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.WEST);
 		this.add(map, BorderLayout.CENTER);
 		this.add(buttonpan, BorderLayout.SOUTH);
+		
+		//+ + + + + + + + + + + + + + + + + + + 
+		//TEST
+		//+ + + + + + + + + + + + + + + + + + + 
+		
+		Vehicule veh = new Simulation.Vehicule(0, 50, 400, 3, "toto");
+		veh.xdest=250;
+		veh.ydest=10;
+		vehicules.add(veh);
+		veh.start();
 	}
 
 	private void buildPlaces() {
@@ -144,8 +156,10 @@ public class Simulation extends MainPan {
 
 		protected void paintComponent(Graphics g) {
 			Image temp;
+			Graphics2D g2d = (Graphics2D)g;
 			g.setColor(new Color(52, 52, 52));
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			g.setColor(new Color(255, 255, 255));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0,
 					this.getWidth(), this.getHeight(), null);
 			for (Vehicule v : vehicules) {
@@ -166,7 +180,16 @@ public class Simulation extends MainPan {
 					temp=veh0;
 					break;
 				}
-				g.drawImage(temp, v.x, v.y, null);
+				AffineTransform rotation = new AffineTransform();
+				double angle = Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2)));
+				if(v.xdest<v.xi || v.ydest<v.yi){
+					angle = -angle;
+				}
+				//System.out.println(angle*57.295779513082);
+				rotation.translate(v.x - temp.getWidth(null)/2, v.y - temp.getHeight(null)/2);
+				rotation.rotate(angle,(int)(temp.getWidth(null)/2),(int)(temp.getHeight(null)/2));
+				g2d.drawImage(temp, rotation, null);
+				//g.drawImage(temp, v.x - temp.getWidth(null)/2, v.y - temp.getHeight(null)/2, null);
 			}
 		}
 	}
@@ -186,15 +209,38 @@ public class Simulation extends MainPan {
 
 	public class Vehicule extends Thread {
 
-		int iD, x, y, xdest, ydest, type;
+		int iD, x, y, xi, yi, xdest, ydest, type;
 
-		public Vehicule(int iD, int x, int y, int type) {
+		public Vehicule(int iD, int x, int y, int type, String name) {
+			super(name);
 			this.iD = iD;
 			this.x = x;
 			this.y = y;
 			this.type = type;
 			this.xdest = x;
 			this.ydest = y;
+			this.xi=x;
+			this.yi=y;
+		}
+		
+		public void run(){
+		    float dX = (xdest - x)/(float)200;
+		    float dY = (ydest - y)/(float)200;
+		    float xt = x, yt = y;
+			while(x != xdest || y != ydest){
+		    	try {
+					sleep(25);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    	xt += dX;
+		    	yt += dY;
+		    	x = Math.round(xt);
+		    	y = Math.round(yt);
+		    	map.repaint();
+		    }
+		    verif.notifArrivee(iD);
 		}
 	}
 }

@@ -8,5 +8,8 @@ public class Verificateur {
 	public Verificateur(Controleur c) {
 		model = c;
 	}
+	public void notifArrivee(int iD){
+		model.updateArriveeTemp(iD);
+	}
 
 }
