@@ -175,11 +175,11 @@ public class Fenetre extends JFrame implements Observer {
 				changerPan(1);
 			}
 			if (e.getSource() == Bauto) {
-				s = new Simulation(true, Fenetre.this);
+				s = new Simulation(true, Fenetre.this, verif);
 				changerPan(2);
 			}
 			if (e.getSource() == Bmanu) {
-				s = new Simulation(false, Fenetre.this);
+				s = new Simulation(false, Fenetre.this, verif);
 				changerPan(2);
 			}
 			if (e.getSource() == Bcredits) {

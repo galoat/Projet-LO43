@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -19,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controleur.Verificateur;
+
 public class Simulation extends MainPan {
 
 	private static final long serialVersionUID = 1L;
@@ -27,14 +30,16 @@ public class Simulation extends MainPan {
 	private JButton pause, reset, envoyer;
 	private JComboBox depart, arrivee;
 	private JLabel dep, ar;
-	private String[] tab = {"1", "2", "3", "4", "5", "6"};
+	private String[] tab = { "1", "2", "3", "4", "5", "6" };
 	private ArrayList<Place> places;
+	private ArrayList<Vehicule> vehicules;
 	private int centerx = 158, centery = 179, r = 25, dist = 132;
+	private Verificateur verif;
 
-	
-
-	public Simulation(boolean auto, Fenetre mere) {
+	public Simulation(boolean auto, Fenetre mere, Verificateur verif) {
 		super();
+		this.verif = verif;
+		vehicules = new ArrayList<Vehicule>();
 		buildPlaces();
 		mere.setSize(new Dimension(350, 475));
 		this.setPreferredSize(new Dimension(350, 450));
@@ -50,26 +55,26 @@ public class Simulation extends MainPan {
 		controlpan.setBackground(new Color(52, 52, 52));
 		buttonpan.setLayout(new BorderLayout());
 		buttonpan.setPreferredSize(new Dimension(350, 75));
-		
+
 		pause = new JButton("Pause");
-		reset = new JButton ("Reinitialiser");
-		
+		reset = new JButton("Reinitialiser");
+
 		depart = new JComboBox(tab);
 		arrivee = new JComboBox(tab);
-		
+
 		dep = new JLabel("Depart : ");
-		ar = new JLabel ("Arrivee : ");
+		ar = new JLabel("Arrivee : ");
 		dep.setForeground(new Color(90, 150, 12));
 		ar.setForeground(new Color(90, 150, 12));
-		
+
 		envoyer = new JButton("Envoyer");
-		
+
 		missionpan.add(dep);
 		missionpan.add(depart);
 		missionpan.add(ar);
 		missionpan.add(arrivee);
 		missionpan.add(envoyer);
-		if(auto){
+		if (auto) {
 			missionpan.setEnabled(false);
 			depart.setEnabled(false);
 			dep.setEnabled(false);
@@ -79,7 +84,7 @@ public class Simulation extends MainPan {
 		}
 		controlpan.add(pause);
 		controlpan.add(reset);
-		
+
 		buttonpan.add(missionpan, BorderLayout.NORTH);
 		buttonpan.add(controlpan, BorderLayout.SOUTH);
 		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.NORTH);
@@ -88,58 +93,108 @@ public class Simulation extends MainPan {
 		this.add(map, BorderLayout.CENTER);
 		this.add(buttonpan, BorderLayout.SOUTH);
 	}
-	
-	private void buildPlaces(){
+
+	private void buildPlaces() {
 		places = new ArrayList<Place>();
 		places.add(new Place(0, centerx, centery));
-		places.add(new Place(1, (int)(centerx - (dist/2)*Math.sqrt(3)), (centery - (dist/2))));
+		places.add(new Place(1, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+				(centery - (dist / 2))));
 		places.add(new Place(2, centerx, centery - dist));
-		places.add(new Place(3, (int) (centerx + (dist/2)*Math.sqrt(3)), centery - (dist/2)));
-		places.add(new Place(4, (int) (centerx + (dist/2)*Math.sqrt(3)), centery + (dist/2)));
+		places.add(new Place(3, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+				centery - (dist / 2)));
+		places.add(new Place(4, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+				centery + (dist / 2)));
 		places.add(new Place(5, centerx, centery + dist));
-		places.add(new Place(6, (int) (centerx - (dist/2)*Math.sqrt(3))-r, centery - (dist/2)));
+		places.add(new Place(6,
+				(int) (centerx - (dist / 2) * Math.sqrt(3)) - r, centery
+						- (dist / 2)));
 	}
 
+	public void updatePath(int ID, int dep, int ar) {
+		for (Vehicule v : vehicules) {
+			if (v.iD == ID) {
+				v.xdest = places.get(ID).x;
+				v.xdest = places.get(ID).y;
+			}
+		}
+	}
+
+	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	// Private classes
+	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	private class MapPan extends MainPan {
 		/**
 		 * Surcharge de la fonction paintComponent pour dessiner l'image en fond
 		 */
+		Image img, veh0, veh1, veh2, veh3, veh4;
 
-		protected void paintComponent(Graphics g) {
-			int centerx = 158;
-			int centery = 179;
-			int r = 25;
-			int dist = 132;
-			try { // On dessine l'image(avec des couples de coordonnees pour
-					// chaque coin)
-				g.drawImage(ImageIO.read(this.getClass().getResource("Map_proj2.png")), 0,
-						0, this.getWidth(), this.getHeight(), 0, 0,
-						this.getWidth(), this.getHeight(), null);
-				g.setColor(new Color(90, 150, 12));
-				//Le centre de l'image se trouve en 157, 177
-				g.fillOval(centerx-r, centery-r, r, r);//CENTRE
-				g.fillOval(centerx-r, (centery-dist)-r, r, r);//2
-				g.fillOval((int) (centerx + (dist/2)*Math.sqrt(3))-r, (centery - (dist/2))-r, r, r);//3
-				g.fillOval((int) (centerx + (dist/2)*Math.sqrt(3))-r, (centery + (dist/2))-r, r, r);//4
-				g.fillOval(centerx-r, centery+dist-r, r, r);//5
-				g.fillOval((int) (centerx - (dist/2)*Math.sqrt(3))-r, (centery + (dist/2))-r, r, r);//6
-				g.fillOval((int) (centerx - (dist/2)*Math.sqrt(3))-r, (centery - (dist/2))-r, r, r);//1
-
+		public MapPan() {
+			try {
+				img = ImageIO
+						.read(this.getClass().getResource("Map_proj2.png"));
+				veh0 = ImageIO.read(this.getClass().getResource("veh0.png"));
+				veh1 = ImageIO.read(this.getClass().getResource("veh1.png"));
+				veh2 = ImageIO.read(this.getClass().getResource("veh2.png"));
+				veh3 = ImageIO.read(this.getClass().getResource("veh3.png"));
+				veh4 = ImageIO.read(this.getClass().getResource("veh4.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+
+		protected void paintComponent(Graphics g) {
+			Image temp;
+			g.setColor(new Color(52, 52, 52));
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0,
+					this.getWidth(), this.getHeight(), null);
+			for (Vehicule v : vehicules) {
+				switch (v.type) {
+				case 1:
+					temp=veh1;
+					break;
+				case 2:
+					temp=veh2;
+					break;
+				case 3:
+					temp=veh3;
+					break;
+				case 4:
+					temp=veh4;
+					break;
+				default:
+					temp=veh0;
+					break;
+				}
+				g.drawImage(temp, v.x, v.y, null);
+			}
+		}
 	}
-	
-	public class Place{
-		
+
+	private class Place {
+
 		int iD;
 		int x;
 		int y;
+
 		public Place(int iD, int x, int y) {
 			this.iD = iD;
 			this.x = x;
 			this.y = y;
+		}
+	}
+
+	public class Vehicule extends Thread {
+
+		int iD, x, y, xdest, ydest, type;
+
+		public Vehicule(int iD, int x, int y, int type) {
+			this.iD = iD;
+			this.x = x;
+			this.y = y;
+			this.type = type;
+			this.xdest = x;
+			this.ydest = y;
 		}
 	}
 }
