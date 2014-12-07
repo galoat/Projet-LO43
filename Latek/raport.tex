@@ -1,4 +1,4 @@
-  \documentclass{article}
+  \documentclass[a4paper, titlepage]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
@@ -114,6 +114,8 @@ language=java
 Université de technologie de Belfort-Montbéliard
 }% 
 
+\usepackage{array}
+
 
 \begin{document}
 
@@ -121,9 +123,16 @@ Université de technologie de Belfort-Montbéliard
 \maketitle
 \tableofcontents
 \newpage
+\chapter*{Introduction}
+    \addcontentsline{toc}{chapter}{Introduction}
+Lors de  l'UV LO43 " Bases fondamentales de la programmation orientée objet", nous avons a réaliser un projet avons de mettre en pratique les connaissances acquise lors des cours et TD du semestre.
+\\
+\\
+\hspace{0.5cm} Plusieurs sujet nous on été présentés, nous avons donc choisie le sujet "Flotte de véhicules autonomes". Nous avons choisi ce sujet car ?????????????
+\\
+\\
+\hspace{0.5cm} Dans un premier temps, nous feront une présentation du sujet choisi, puis nous présenterons les diagramme UML, pour enfin vous presenter notre implémentation en JAVA.
 \part{ Description du sujet}
-
-\
 \section{Objectif}
  L'application a réaliser est la modélisation d'une flotte de véhicules évoluant dans une infrastructure de circulation partagé. Pour cela nous devont modéliser la parti modèle notre programme a l'aide d'UML qui est un  langage de modélisation graphique à base de pictogrammes. Puis nous implémenteront cette modélisation en JAVA.
  \\
@@ -132,6 +141,7 @@ Université de technologie de Belfort-Montbéliard
 Le plateau donné par le sujet et le suivant :
  \\
  \\
+
 \includegraphics[]{Images/Plateau}
 \\
 \\
@@ -141,6 +151,19 @@ De plus les voiture ne peuvent prendre la place central qu'a la seul condition q
 Cette requête est implémenter sous forme de bitmap.
 
 Par exemple pour une voiture qui désire aller de la place I1 a O2 la request map seras la suivante.
-I1 I2 I3 I4 I5 I6 R1 R2 R3 R4 R5 R6 O1 O2 O3 O4 O5 O6 C
- T  F  F  F  F  F  T  T  F  F  F  F  F  T  F  F  F  F  F
+
+
+
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+
+\hline
+  I1 & I2 & I3 & I4 & I5 & I6 & R1 & R2 & R3 & R4 & R5 & R6 & O1 & O2 & O3 & O4 & O5 & O6 & C \\
+  \hline
+   T & F & F & F & F & F & T & T & F & F & F & F & F & T & F & F & F & F & F\\
+ \hline
+
+\end{tabular}
+
+
 \end{document}

@@ -55,6 +55,7 @@ public class Fenetre extends JFrame implements Observer {
 	 * @see Verificateur
 	 */
 	public Fenetre(Verificateur v) {
+		//this.setIconImage(new ImageIcon("voiture.gif").getImage());
 		this.verif = v;
 		// On retire le look&feel classique
 		this.setUndecorated(true);

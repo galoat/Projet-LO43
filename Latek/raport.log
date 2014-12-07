@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.6)  6 DEC 2014 16:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.6)  7 DEC 2014 17:35
 entering extended mode
 **raport.tex
 (C:\Users\florian\Documents\GitHub\Projet-LO43\Latek\raport.tex
@@ -13,19 +13,20 @@ german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
 ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls"
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size10.clo"
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
-\c@section=\count80
-\c@subsection=\count81
-\c@subsubsection=\count82
-\c@paragraph=\count83
-\c@subparagraph=\count84
-\c@figure=\count85
-\c@table=\count86
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
@@ -268,7 +269,7 @@ Language: frenchb 2009/03/16 v2.3d French support from the babel system
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def"
 File: babel.def 2008/07/08 v3.8m Babel common definitions
-\babel@savecnt=\count87
+\babel@savecnt=\count88
 \U@D=\dimen103
 )
 Package babel Info: Making : an active character on input line 120.
@@ -276,8 +277,8 @@ Package babel Info: Making ; an active character on input line 121.
 Package babel Info: Making ! an active character on input line 122.
 Package babel Info: Making ? an active character on input line 123.
 \FB@Mht=\dimen104
-\std@mcc=\count88
-\dec@mcc=\count89
+\std@mcc=\count89
+\dec@mcc=\count90
 \parindentFFN=\dimen105
 
 *************************************
@@ -312,7 +313,7 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count90
+\Gread@gobject=\count91
 ))
 \Gin@req@height=\dimen106
 \Gin@req@width=\dimen107
@@ -354,7 +355,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithm2e\algorithm2e.sty"
 Package: algorithm2e 2013/01/06 v5.00 algorithms environments
-\c@AlgoLine=\count91
+\c@AlgoLine=\count92
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
@@ -400,21 +401,21 @@ subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 \algoheightrule=\skip56
 \algotitleheightruledefault=\skip57
 \algotitleheightrule=\skip58
-\c@algocfline=\count92
-\c@algocfproc=\count93
-\c@algocf=\count94
+\c@algocfline=\count93
+\c@algocfproc=\count94
+\c@algocf=\count95
 \algocf@algoframe=\box32
 \algocf@algobox=\box33
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\multicol.sty"
 Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
-\c@tracingmulticols=\count95
+\c@tracingmulticols=\count96
 \mult@box=\box34
 \multicol@leftmargin=\dimen114
-\c@unbalance=\count96
-\c@collectmore=\count97
-\doublecol@number=\count98
-\multicoltolerance=\count99
-\multicolpretolerance=\count100
+\c@unbalance=\count97
+\c@collectmore=\count98
+\doublecol@number=\count99
+\multicoltolerance=\count100
+\multicolpretolerance=\count101
 \full@width=\dimen115
 \page@free=\dimen116
 \premulticols=\dimen117
@@ -444,14 +445,14 @@ Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
 \@tempa=\box55
 \@tempa=\box56
 \@tempa=\box57
-\c@columnbadness=\count101
-\c@finalcolumnbadness=\count102
+\c@columnbadness=\count102
+\c@finalcolumnbadness=\count103
 \last@try=\dimen119
 \multicolovershoot=\dimen120
 \multicolundershoot=\dimen121
 \mult@nat@firstbox=\box58
 \colbreak@box=\box59
-\multicol@sort@counter=\count103
+\multicol@sort@counter=\count104
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
@@ -467,9 +468,9 @@ Package ifvtex Info: VTeX not detected.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count104
-\Gm@cntv=\count105
-\c@Gm@tempcnt=\count106
+\Gm@cnth=\count105
+\Gm@cntv=\count106
+\c@Gm@tempcnt=\count107
 \Gm@bindingoffset=\dimen122
 \Gm@wd@mp=\dimen123
 \Gm@odd@mp=\dimen124
@@ -484,29 +485,29 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty"
 \wrapoverhang=\dimen130
 \WF@size=\dimen131
-\c@WF@wrappedlines=\count107
+\c@WF@wrappedlines=\count108
 \WF@box=\box60
 \WF@everypar=\toks18
 Package: wrapfig 2003/01/31  v 3.6
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.sty"
-\lst@mode=\count108
+\lst@mode=\count109
 \lst@gtempboxa=\box61
 \lst@token=\toks19
-\lst@length=\count109
+\lst@length=\count110
 \lst@currlwidth=\dimen132
-\lst@column=\count110
-\lst@pos=\count111
+\lst@column=\count111
+\lst@pos=\count112
 \lst@lostspace=\dimen133
 \lst@width=\dimen134
-\lst@newlines=\count112
-\lst@lineno=\count113
+\lst@newlines=\count113
+\lst@lineno=\count114
 \lst@maxwidth=\dimen135
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
-\c@lstnumber=\count114
-\lst@skipnumbers=\count115
+\c@lstnumber=\count115
+\lst@skipnumbers=\count116
 \lst@framebox=\box62
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.cfg"
@@ -517,41 +518,49 @@ Package: listings 2014/09/06 1.5e (Carsten Heinz)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen136
+\extrarowheight=\dimen137
+\NC@list=\toks20
+\extratabsurround=\skip61
+\backup@length=\skip62
+)
 (C:\Users\florian\Documents\GitHub\Projet-LO43\Latek\raport.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 118.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
+LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 120.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \degres on input line 118.
-LaTeX Info: Redefining \dots on input line 118.
-LaTeX Info: Redefining \up on input line 118.
+LaTeX Info: Redefining \degres on input line 120.
+LaTeX Info: Redefining \dots on input line 120.
+LaTeX Info: Redefining \up on input line 120.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count116
-\scratchdimen=\dimen136
+\scratchcounter=\count117
+\scratchdimen=\dimen138
 \scratchbox=\box63
-\nofMPsegments=\count117
-\nofMParguments=\count118
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count119
-\MPscratchDim=\dimen137
-\MPnumerator=\count120
-\makeMPintoPDFobject=\count121
-\everyMPtoPDFconversion=\toks21
+\nofMPsegments=\count118
+\nofMParguments=\count119
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count120
+\MPscratchDim=\dimen139
+\MPnumerator=\count121
+\makeMPintoPDFobject=\count122
+\everyMPtoPDFconversion=\toks22
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -574,7 +583,7 @@ LaTeX Info: Redefining \up on input line 118.
 * \headsep=25.0pt
 * \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=65.0pt
+* \marginparwidth=57.0pt
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
@@ -587,13 +596,13 @@ LaTeX Info: Redefining \up on input line 118.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count122
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 121.
+\c@lstlisting=\count123
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 123.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 121.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 123.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
@@ -601,47 +610,94 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 ) [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(C:\Users\florian\Documents\GitHub\Projet-LO43\Latek\raport.toc)
+(C:\Users\florian\Documents\GitHub\Projet-LO43\Latek\raport.toc
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 4.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 4.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 4.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 4.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 4.
+)
 \tf@toc=\write3
  [2
 
+
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 128--130
+Underfull \hbox (badness 10000) in paragraph at lines 128--135
 
  []
 
-<Images/Plateau.png, id=13, 398.99063pt x 224.33812pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 128--135
+
+ []
+
+[3
+
+] [4
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 137--139
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--144
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--144
+
+ []
+
+<Images/Plateau.png, id=19, 398.99063pt x 224.33812pt>
 File: Images/Plateau.png Graphic file (type png)
 
 <use Images/Plateau.png>
-Package pdftex.def Info: Images/Plateau.png used on input line 135.
+Package pdftex.def Info: Images/Plateau.png used on input line 145.
 (pdftex.def)             Requested size: 398.98965pt x 224.33757pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--142
+Underfull \hbox (badness 10000) in paragraph at lines 145--152
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--142
-
- []
-
-
-Overfull \hbox (24.58456pt too wide) in paragraph at lines 132--142
+Overfull \hbox (24.58456pt too wide) in paragraph at lines 145--152
 \T1/lmr/m/n/10 nous avons dé-fini un ordre tel qui suit : I1<I2<I3<I4<I5<I6<R1<
 R2<R3<R4<R5<R6<O1<O2<O3<O4<O5<O6<
  []
 
-[3 <C:/Users/florian/Documents/GitHub/Projet-LO43/Latek/Images/Plateau.png>]
+[5 <C:/Users/florian/Documents/GitHub/Projet-LO43/Latek/Images/Plateau.png>]
 (C:\Users\florian\Documents\GitHub\Projet-LO43\Latek\raport.aux) ) 
 Here is how much of TeX's memory you used:
- 5792 strings out of 493921
- 79463 string characters out of 3144870
- 191078 words of memory out of 3000000
- 9020 multiletter control sequences out of 15000+200000
- 29838 words of font info for 28 fonts, out of 3000000 for 9000
+ 5923 strings out of 493921
+ 81871 string characters out of 3144870
+ 193403 words of memory out of 3000000
+ 9126 multiletter control sequences out of 15000+200000
+ 49876 words of font info for 41 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,4n,40p,362b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,6n,40p,362b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files (x86)/MiKT
 eX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts
@@ -649,9 +705,9 @@ eX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts
 ic/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10
 .pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:
 /Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on raport.pdf (3 pages, 135862 bytes).
+Output written on raport.pdf (5 pages, 136401 bytes).
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
+ 43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
