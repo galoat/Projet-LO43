@@ -35,7 +35,7 @@ public class Simulation extends MainPan {
 	private String[] tab = { "1", "2", "3", "4", "5", "6" };
 	private ArrayList<Place> places;
 	private ArrayList<Vehicule> vehicules;
-	private int centerx = 158, centery = 179, r = 25, dist = 132;
+	private int centerx = 145, centery = 166, r = 25, dist = 132;
 	private Verificateur verif;
 
 	public Simulation(boolean auto, Fenetre mere, Verificateur verif) {
@@ -99,9 +99,9 @@ public class Simulation extends MainPan {
 		//TEST
 		//+ + + + + + + + + + + + + + + + + + + 
 		
-		Vehicule veh = new Simulation.Vehicule(0, 50, 400, 3, "toto");
-		veh.xdest=250;
-		veh.ydest=10;
+		Vehicule veh = new Simulation.Vehicule(0, places.get(1).x, places.get(1).y, 3, "toto");
+		veh.xdest=places.get(2).x;
+		veh.ydest=places.get(2).y;
 		vehicules.add(veh);
 		veh.start();
 	}
@@ -185,8 +185,8 @@ public class Simulation extends MainPan {
 				if(v.xdest<v.xi || v.ydest<v.yi){
 					angle = -angle;
 				}
-				//System.out.println(angle*57.295779513082);
-				rotation.translate(v.x - temp.getWidth(null)/2, v.y - temp.getHeight(null)/2);
+				
+				rotation.translate(v.x-temp.getWidth(null)/2, v.y-temp.getHeight(null)/2);
 				rotation.rotate(angle,(int)(temp.getWidth(null)/2),(int)(temp.getHeight(null)/2));
 				g2d.drawImage(temp, rotation, null);
 				//g.drawImage(temp, v.x - temp.getWidth(null)/2, v.y - temp.getHeight(null)/2, null);
