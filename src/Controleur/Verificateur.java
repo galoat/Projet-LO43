@@ -1,5 +1,6 @@
 package Controleur;
 
+import Exception.RequeteException;
 import Modele.Controleur;
 
 public class Verificateur {
@@ -8,11 +9,18 @@ public class Verificateur {
 	public Verificateur(Controleur c) {
 		model = c;
 	}
-	public void notifArrivee(int iD){
+
+	public void notifArrivee(int iD) {
 		model.updateArriveeTemp(iD);
 	}
-	public void newRequest(int dep, int ar){
-		model.getBoite().newRequest(dep, ar);
-	}
 
+	public void newRequest(int dep, int ar) throws RequeteException{
+		if(dep != ar){
+			model.getBoite().newRequest(dep, ar);
+			System.out.println("sdgvfdgdg");
+		}else{
+			throw new RequeteException();
+		}
+		
+	}
 }
