@@ -38,44 +38,63 @@ public class Simulation extends MainPan {
 	private int centerx = 145, centery = 166, r = 25, dist = 132;
 	private Verificateur verif;
 
+	/**
+	 * Constructeur de la simulation : initialisation des composants
+	 * 
+	 * @param auto Indique si le mode automatique est actif
+	 * @param mere La fenetre contenant la simulation
+	 * @param verif Le Verificateur de la fenetre
+	 * @see Verificateur
+	 * @see	Fenetre
+	 */
 	public Simulation(boolean auto, Fenetre mere, Verificateur verif) {
 		super();
+		//On stocke le verificateur
 		this.verif = verif;
+		//On initialise la liste des vehicules affiches
 		vehicules = new ArrayList<Vehicule>();
+		//On initialise la liste des places et de leurs coordonnees
 		buildPlaces();
+		//On rediemnsionne la fenetre
 		mere.setSize(new Dimension(350, 475));
+		//Initialisaion de la simulation
 		this.setPreferredSize(new Dimension(350, 450));
 		this.setLayout(new BorderLayout());
-		Icon icon = new ImageIcon(getClass().getResource("Map_proj.png"));
 		map = new MapPan();
 		map.setPreferredSize(new Dimension(350, 350));
 		buttonpan = new JPanel();
+		//Panel permettant de generer des requetes
 		missionpan = new JPanel();
+		//Panel contenant pause et reset
 		controlpan = new JPanel();
-		buttonpan.setBackground(new Color(52, 52, 52));
-		missionpan.setBackground(new Color(52, 52, 52));
-		controlpan.setBackground(new Color(52, 52, 52));
-		buttonpan.setLayout(new BorderLayout());
-		buttonpan.setPreferredSize(new Dimension(350, 75));
-
+		
 		pause = new JButton("Pause");
 		reset = new JButton("Reinitialiser");
+		envoyer = new JButton("Envoyer");
 
 		depart = new JComboBox(tab);
 		arrivee = new JComboBox(tab);
 
 		dep = new JLabel("Depart : ");
 		ar = new JLabel("Arrivee : ");
+		
+		buttonpan.setBackground(new Color(52, 52, 52));
+		missionpan.setBackground(new Color(52, 52, 52));
+		controlpan.setBackground(new Color(52, 52, 52));
+		
+		buttonpan.setLayout(new BorderLayout());
+		buttonpan.setPreferredSize(new Dimension(350, 75));
+		
 		dep.setForeground(new Color(90, 150, 12));
 		ar.setForeground(new Color(90, 150, 12));
-
-		envoyer = new JButton("Envoyer");
-
+		//Finalisation du missionpan
 		missionpan.add(dep);
 		missionpan.add(depart);
 		missionpan.add(ar);
 		missionpan.add(arrivee);
 		missionpan.add(envoyer);
+		
+		//Le missionpan ne sera modifiable que si le mode manuel est actif
 		if (auto) {
 			missionpan.setEnabled(false);
 			depart.setEnabled(false);
@@ -84,11 +103,14 @@ public class Simulation extends MainPan {
 			arrivee.setEnabled(false);
 			envoyer.setEnabled(false);
 		}
+		
 		controlpan.add(pause);
 		controlpan.add(reset);
 
 		buttonpan.add(missionpan, BorderLayout.NORTH);
 		buttonpan.add(controlpan, BorderLayout.SOUTH);
+		
+		//On centre le panel de la map, puis on l'ajoute
 		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.NORTH);
 		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.EAST);
 		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.WEST);
@@ -99,29 +121,43 @@ public class Simulation extends MainPan {
 		//TEST
 		//+ + + + + + + + + + + + + + + + + + + 
 		
-		Vehicule veh = new Simulation.Vehicule(0, places.get(1).x, places.get(1).y, 3, "toto");
-		veh.xdest=places.get(2).x;
-		veh.ydest=places.get(2).y;
+		int DEPARTVEH = 5;
+		int ARRIVEEVEH = 6;
+		Vehicule veh = new Simulation.Vehicule(0, places.get(DEPARTVEH).x, places.get(DEPARTVEH).y, 3, "toto");
+		veh.xdest=places.get(ARRIVEEVEH).x;
+		veh.ydest=places.get(ARRIVEEVEH).y;
 		vehicules.add(veh);
 		veh.start();
 	}
-
+	/**
+	 * Fonction construisant la liste des differentes places de la map, ainsi que leurs coordonnees
+	 */
 	private void buildPlaces() {
+		/*
+		 * On calcule les coordonnees des places a l'aide de la trigonometrie
+		 * L'heaxagone de la map peut etre inscrit dans un cercle...
+		 * Ainsi, l'angle de C-3 est de PI/6 => Les coordonnees de 3 (par raport a C) sont (sqrt(3)/2, 1/2)
+		 * On effectue ensuite un changement de repere pour otenir les coordonnees absolues du point
+		 */
 		places = new ArrayList<Place>();
-		places.add(new Place(0, centerx, centery));
+		places.add(new Place(0, centerx, centery));//C
 		places.add(new Place(1, (int) (centerx - (dist / 2) * Math.sqrt(3)),
-				(centery - (dist / 2))));
-		places.add(new Place(2, centerx, centery - dist));
+				(centery - (dist / 2))));//1
+		places.add(new Place(2, centerx, centery - dist));//2
 		places.add(new Place(3, (int) (centerx + (dist / 2) * Math.sqrt(3)),
-				centery - (dist / 2)));
+				centery - (dist / 2)));//3
 		places.add(new Place(4, (int) (centerx + (dist / 2) * Math.sqrt(3)),
-				centery + (dist / 2)));
-		places.add(new Place(5, centerx, centery + dist));
-		places.add(new Place(6,
-				(int) (centerx - (dist / 2) * Math.sqrt(3)) - r, centery
-						- (dist / 2)));
+				centery + (dist / 2)));//4
+		places.add(new Place(5, centerx, centery + dist));//5
+		places.add(new Place(6, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+				centery + (dist / 2)));//6
 	}
-
+	/**
+	 * Fonction mettant a jour la destination d'un vehicule donne
+	 * @param ID L'identifiant du vehicule concerne
+	 * @param dep Son pointde depart
+	 * @param ar Son point d'arrivee
+	 */
 	public void updatePath(int ID, int dep, int ar) {
 		for (Vehicule v : vehicules) {
 			if (v.iD == ID) {
@@ -134,12 +170,31 @@ public class Simulation extends MainPan {
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// Private classes
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	/**
+	 * Listener du bouton d'envoi d'une nouvelle requete
+	 * @author Hellong
+	 */
+	private class sendListener implements ActionListener{
+		int dep, ar;
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			dep=Integer.parseInt((String) depart.getSelectedItem());
+			ar=Integer.parseInt((String) arrivee.getSelectedItem());
+			verif.newRequest(dep, ar);
+		}
+		
+	}
+	/**
+	 * Le MapPan contient la map, et donc les differents vehicules qui se deplacent
+	 * @author Hellong
+	 *
+	 */
 	private class MapPan extends MainPan {
-		/**
-		 * Surcharge de la fonction paintComponent pour dessiner l'image en fond
-		 */
 		Image img, veh0, veh1, veh2, veh3, veh4;
-
+		/**
+		 * Constructeur par defaut, qui charge les differentes images des vehicules
+		 */
 		public MapPan() {
 			try {
 				img = ImageIO
@@ -153,16 +208,21 @@ public class Simulation extends MainPan {
 				e.printStackTrace();
 			}
 		}
-
+		/**
+		 * Surcharge de la fonction paintComponent, pour peindre la map et les vehicules
+		 */
 		protected void paintComponent(Graphics g) {
 			Image temp;
 			Graphics2D g2d = (Graphics2D)g;
 			g.setColor(new Color(52, 52, 52));
+			//On redessine le fond
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());
-			g.setColor(new Color(255, 255, 255));
+			//On dessine la map
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0,
 					this.getWidth(), this.getHeight(), null);
+			//On dessine les vehicules
 			for (Vehicule v : vehicules) {
+				//A chaque type de vehicule correspond une image differente
 				switch (v.type) {
 				case 1:
 					temp=veh1;
@@ -180,37 +240,60 @@ public class Simulation extends MainPan {
 					temp=veh0;
 					break;
 				}
+				/*
+				 *On tourne l'image pour qu'elle s'aligne sur la trajectoire du vehicule
+				 *Ensuite on, ladeplace aux coordonnees voulues 
+				 */
 				AffineTransform rotation = new AffineTransform();
 				double angle = Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2)));
 				if(v.xdest<v.xi || v.ydest<v.yi){
 					angle = -angle;
 				}
-				
 				rotation.translate(v.x-temp.getWidth(null)/2, v.y-temp.getHeight(null)/2);
 				rotation.rotate(angle,(int)(temp.getWidth(null)/2),(int)(temp.getHeight(null)/2));
 				g2d.drawImage(temp, rotation, null);
-				//g.drawImage(temp, v.x - temp.getWidth(null)/2, v.y - temp.getHeight(null)/2, null);
 			}
 		}
 	}
-
+	/**
+	 * La classe Place est seulement destinee a stocker un identifiant et les coordonnees associees
+	 * @author Hellong
+	 *
+	 */
 	private class Place {
 
 		int iD;
 		int x;
 		int y;
-
+		/**
+		 * Constructeur par defaut de la classe
+		 * @param iD Son identifiant
+		 * @param x Abscisse de la place
+		 * @param y Ordonnee de la place
+		 */
 		public Place(int iD, int x, int y) {
 			this.iD = iD;
 			this.x = x;
 			this.y = y;
 		}
 	}
-
+	/**
+	 * Le vehicule est la version graphique de celui du modele : il est charge d'afficher le deplacement de celui-ci
+	 * @author Hellong
+	 *
+	 */
 	public class Vehicule extends Thread {
 
 		int iD, x, y, xi, yi, xdest, ydest, type;
-
+		/**
+		 * Constructeur du vehicule
+		 * @param iD Identifiant du vehicule
+		 * @param x Abscisse de depart
+		 * @param y Ordonnee de depart
+		 * @param type Type du vehicule (influe sur so apparence)
+		 * @param name Nom du thread
+		 * @see Thread
+		 */
 		public Vehicule(int iD, int x, int y, int type, String name) {
 			super(name);
 			this.iD = iD;
@@ -222,25 +305,45 @@ public class Simulation extends MainPan {
 			this.xi=x;
 			this.yi=y;
 		}
-		
+		/**
+		 * Fonction run() du thread
+		 */
 		public void run(){
-		    float dX = (xdest - x)/(float)200;
-		    float dY = (ydest - y)/(float)200;
-		    float xt = x, yt = y;
-			while(x != xdest || y != ydest){
-		    	try {
-					sleep(25);
+			//Si la destination a ete modifiee
+			if(x != xdest || y != ydest){
+				//On calcule les deltas necessaires aux deplacements
+				float dX = (xdest - x)/(float)200;
+			    float dY = (ydest - y)/(float)200;
+			    float xt = x, yt = y;
+				//Tant qu'on est pas arrive a la destination
+			    while(x != xdest || y != ydest){
+			    	try {
+						sleep(25);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			    	//on se deplace
+			    	xt += dX;
+			    	yt += dY;
+			    	x = Math.round(xt);
+			    	y = Math.round(yt);
+			    	//et on relance le paint
+			    	map.repaint();
+			    }
+			    //Lorsqu'on est arrive, on le notifie
+			    verif.notifArrivee(iD);
+			}
+			//Sinon on attend une modification
+			else{
+				try {
+					sleep(200);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		    	xt += dX;
-		    	yt += dY;
-		    	x = Math.round(xt);
-		    	y = Math.round(yt);
-		    	map.repaint();
-		    }
-		    verif.notifArrivee(iD);
+			}
+			
 		}
 	}
 }

@@ -96,6 +96,9 @@ public class Controleur implements Observable {
 		//La partie graphique a fini son chemin
 	}
 	
+	public BoiteAuxLettres getBoite() {
+		return boite;
+	}
 	/*
 	 * 
 	 * 

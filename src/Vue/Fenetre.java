@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -55,7 +58,13 @@ public class Fenetre extends JFrame implements Observer {
 	 * @see Verificateur
 	 */
 	public Fenetre(Verificateur v) {
-		//this.setIconImage(new ImageIcon("voiture.gif").getImage());
+		//On change l'icône du programme
+		try {
+			this.setIconImage(ImageIO.read(this.getClass().getResource(
+					"voiture.gif")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.verif = v;
 		// On retire le look&feel classique
 		this.setUndecorated(true);

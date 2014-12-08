@@ -11,5 +11,8 @@ public class Verificateur {
 	public void notifArrivee(int iD){
 		model.updateArriveeTemp(iD);
 	}
+	public void newRequest(int dep, int ar){
+		model.getBoite().newRequest(dep, ar);
+	}
 
 }
