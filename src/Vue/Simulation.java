@@ -121,8 +121,8 @@ public class Simulation extends MainPan {
 		//TEST
 		//+ + + + + + + + + + + + + + + + + + + 
 		
-		int DEPARTVEH = 5;
-		int ARRIVEEVEH = 6;
+		int DEPARTVEH = 6;
+		int ARRIVEEVEH = 0;
 		Vehicule veh = new Simulation.Vehicule(0, places.get(DEPARTVEH).x, places.get(DEPARTVEH).y, 3, "toto");
 		veh.xdest=places.get(ARRIVEEVEH).x;
 		veh.ydest=places.get(ARRIVEEVEH).y;
@@ -213,6 +213,7 @@ public class Simulation extends MainPan {
 		 */
 		protected void paintComponent(Graphics g) {
 			Image temp;
+			int decalx=0, decaly=0;
 			Graphics2D g2d = (Graphics2D)g;
 			g.setColor(new Color(52, 52, 52));
 			//On redessine le fond
@@ -246,11 +247,23 @@ public class Simulation extends MainPan {
 				 */
 				AffineTransform rotation = new AffineTransform();
 				double angle = Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2)));
-				if(v.xdest<v.xi || v.ydest<v.yi){
-					angle = -angle;
+				if(v.xdest<v.xi){
+					decalx=(int) (temp.getHeight(null)*Math.cos(1.57-angle));
+					decaly=(int) (temp.getHeight(null)*Math.sin(1.57-angle));
 				}
-				rotation.translate(v.x-temp.getWidth(null)/2, v.y-temp.getHeight(null)/2);
+				if(v.xdest<v.xi || v.ydest<v.yi){
+					if(v.xdest<v.xi && v.ydest>v.yi){
+						
+					}else{
+						angle = -angle;
+					}
+				}
+				
+				rotation.translate(v.x-temp.getWidth(null)/2 + decalx, v.y-temp.getHeight(null)/2  + decaly);
 				rotation.rotate(angle,(int)(temp.getWidth(null)/2),(int)(temp.getHeight(null)/2));
+				if(decalx != 0){
+					rotation.scale(1.0, -1.0);
+				}
 				g2d.drawImage(temp, rotation, null);
 			}
 		}
@@ -338,7 +351,7 @@ public class Simulation extends MainPan {
 			else{
 				try {
 					sleep(200);
-				} catch (InterruptedException e) {
+				} catch (InterruptedException e){
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
