@@ -337,41 +337,42 @@ public class Simulation extends MainPan {
 		 * Fonction run() du thread
 		 */
 		public void run(){
-			//Si la destination a ete modifiee
-			if(x != xdest || y != ydest){
-				//On calcule les deltas necessaires aux deplacements
-				float dX = (xdest - x)/(float)200;
-			    float dY = (ydest - y)/(float)200;
-			    float xt = x, yt = y;
-				//Tant qu'on est pas arrive a la destination
-			    while(x != xdest || y != ydest){
-			    	try {
-						sleep(25);
-					} catch (InterruptedException e) {
+			while(true){
+				//Si la destination a ete modifiee
+				if(x != xdest || y != ydest){
+					//On calcule les deltas necessaires aux deplacements
+					float dX = (xdest - x)/(float)200;
+				    float dY = (ydest - y)/(float)200;
+				    float xt = x, yt = y;
+					//Tant qu'on est pas arrive a la destination
+				    while(x != xdest || y != ydest){
+				    	try {
+							sleep(25);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				    	//on se deplace
+				    	xt += dX;
+				    	yt += dY;
+				    	x = Math.round(xt);
+				    	y = Math.round(yt);
+				    	//et on relance le paint
+				    	map.repaint();
+				    }
+				    //Lorsqu'on est arrive, on le notifie
+				    verif.notifArrivee(iD);
+				}
+				//Sinon on attend une modification
+				else{
+					try {
+						sleep(200);
+					} catch (InterruptedException e){
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-			    	//on se deplace
-			    	xt += dX;
-			    	yt += dY;
-			    	x = Math.round(xt);
-			    	y = Math.round(yt);
-			    	//et on relance le paint
-			    	map.repaint();
-			    }
-			    //Lorsqu'on est arrive, on le notifie
-			    verif.notifArrivee(iD);
-			}
-			//Sinon on attend une modification
-			else{
-				try {
-					sleep(200);
-				} catch (InterruptedException e){
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
-			
 		}
 	}
 }
