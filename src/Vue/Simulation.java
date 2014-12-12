@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -76,6 +77,12 @@ public class Simulation extends MainPan {
 
 		depart = new JComboBox(tab);
 		arrivee = new JComboBox(tab);
+		depart.setEditable(true);
+		depart.setRenderer(new CustomRend());
+		depart.setEditor(new CustomEditor());
+		arrivee.setEditable(true);
+		arrivee.setRenderer(new CustomRend());
+		arrivee.setEditor(new CustomEditor());
 
 		dep = new JLabel("Depart : ");
 		ar = new JLabel("Arrivee : ");
