@@ -18,10 +18,6 @@ import javax.swing.JPanel;
  * @version 0.1
  */
 public class MainPan extends JPanel {
-	/**
-	 * Nom de l'image de fond, ainsi que son format. Ex : monImage.jpg
-	 */
-	private String path = "try2.jpg";
 	private static final long serialVersionUID = 1L;
 
 	public MainPan() {

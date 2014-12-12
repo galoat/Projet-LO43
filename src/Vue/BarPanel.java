@@ -63,6 +63,8 @@ public class BarPanel extends JPanel {
 		reduce.setBorderPainted(false);
 		close.setRolloverEnabled(false);
 		reduce.setRolloverEnabled(false);
+		close.setFocusPainted(false);
+		reduce.setFocusPainted(false);
 		// Et on leur attribue des images
 		close.setIcon(icon);
 		reduce.setIcon(icon2);

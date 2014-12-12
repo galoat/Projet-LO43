@@ -69,9 +69,9 @@ public class Simulation extends MainPan {
 		//Panel contenant pause et reset
 		controlpan = new JPanel();
 		
-		pause = new JButton("Pause");
-		reset = new JButton("Reinitialiser");
-		envoyer = new JButton("Envoyer");
+		pause = mere.prepButton("Pause");
+		reset = mere.prepButton("Reinitialiser");
+		envoyer = mere.prepButton("Envoyer");
 		envoyer.addActionListener(new SendListener());
 
 		depart = new JComboBox(tab);
@@ -123,22 +123,12 @@ public class Simulation extends MainPan {
 		//TEST
 		//+ + + + + + + + + + + + + + + + + + + 
 		
-		int DEPARTVEH = 6, ARRIVEEVEH = 0, DEPARTVEH2 = 2, ARRIVEEVEH2 = 3, DEPARTVEH3 = 6, ARRIVEEVEH3 = 1;
+		int DEPARTVEH = 6, ARRIVEEVEH = 0;
 		Vehicule veh = new Simulation.Vehicule(0, places.get(DEPARTVEH).x, places.get(DEPARTVEH).y, 3, "toto");
-		Vehicule veh2 = new Simulation.Vehicule(0, places.get(DEPARTVEH2).x, places.get(DEPARTVEH2).y, 0, "toto");
-		Vehicule veh3 = new Simulation.Vehicule(0, places.get(DEPARTVEH3).x, places.get(DEPARTVEH3).y, 1, "toto");
 		veh.xdest=places.get(ARRIVEEVEH).x;
 		veh.ydest=places.get(ARRIVEEVEH).y;
-		veh2.xdest=places.get(ARRIVEEVEH2).x;
-		veh2.ydest=places.get(ARRIVEEVEH2).y;
-		veh3.xdest=places.get(ARRIVEEVEH3).x;
-		veh3.ydest=places.get(ARRIVEEVEH3).y;
 		vehicules.add(veh);
-		vehicules.add(veh2);
-		vehicules.add(veh3);
 		veh.start();
-		veh2.start();
-		veh3.start();
 	}
 	/**
 	 * Fonction construisant la liste des differentes places de la map, ainsi que leurs coordonnees

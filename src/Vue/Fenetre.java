@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Controleur.Verificateur;
 import Modele.Observer;
@@ -70,9 +71,6 @@ public class Fenetre extends JFrame implements Observer {
 		this.setUndecorated(true);
 		this.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 		this.setSize(350, 400);
-		// ++++++++++++++++++++++++++++++++++++++++++
-		// Pas encore implemente
-		// ++++++++++++++++++++++++++++++++++++++++++
 		this.setTitle("Road Simulator 2014");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -97,30 +95,17 @@ public class Fenetre extends JFrame implements Observer {
 		titre = new JLabel(" ", icon, JLabel.CENTER);
 		titre.setPreferredSize(new Dimension(30, 50));
 		// titre.setBorder(BorderFactory.createLineBorder(Color.black));
-		Bmanu = new JButton("Mode Manuel");
-		Bmanu.setAlignmentX(CENTER_ALIGNMENT);
-		Bmanu.setMaximumSize(new Dimension(150, 30));
-		Bmanu.setMinimumSize(new Dimension(150, 30));
-		Bmanu.setPreferredSize(new Dimension(150, 30));
-		Bauto = new JButton("Mode Automatique");
-		Bauto.setAlignmentX(CENTER_ALIGNMENT);
-		Bauto.setMaximumSize(new Dimension(150, 30));
-		Bauto.setMinimumSize(new Dimension(150, 30));
-		Bauto.setPreferredSize(new Dimension(150, 30));
-		Bopt = new JButton("Options");
-		Bopt.setAlignmentX(CENTER_ALIGNMENT);
-		Bopt.setMaximumSize(new Dimension(150, 30));
-		Bopt.setMinimumSize(new Dimension(150, 30));
-		Bopt.setPreferredSize(new Dimension(150, 30));
-		Bcredits = new JButton("Credits");
-		Bcredits.setMaximumSize(new Dimension(150, 30));
-		Bcredits.setMinimumSize(new Dimension(150, 30));
-		Bcredits.setPreferredSize(new Dimension(150, 30));
-		Bcredits.setAlignmentX(CENTER_ALIGNMENT);
-		Bopt.addActionListener(new changeButtonListener());
-		Bauto.addActionListener(new changeButtonListener());
+		
+		Bmanu = prepButton("Mode Manuel");
+		Bauto = prepButton("Mode Automatique");
+		Bopt = prepButton("Options");
+		Bcredits = prepButton("Credits");
+
 		Bmanu.addActionListener(new changeButtonListener());
+		Bauto.addActionListener(new changeButtonListener());
+		Bopt.addActionListener(new changeButtonListener());
 		Bcredits.addActionListener(new changeButtonListener());
+		
 		buttonpan.setPreferredSize(new Dimension(170, 200));
 		buttonpan.setLayout(new BoxLayout(buttonpan, BoxLayout.PAGE_AXIS));
 		buttonpan.setBackground(new Color(0, 0, 0, 0));
@@ -136,6 +121,22 @@ public class Fenetre extends JFrame implements Observer {
 		fenpanmain.add(buttonpan, BorderLayout.SOUTH);
 	}
 
+	
+	public JButton prepButton(String s){
+		JButton b = new JButton(s, new ImageIcon(getClass().getResource( "b1.png" )));
+		b.setHorizontalTextPosition(SwingConstants.CENTER);
+		b.setAlignmentX(CENTER_ALIGNMENT);
+		b.setMaximumSize(new Dimension(150, 30));
+		b.setMinimumSize(new Dimension(150, 30));
+		b.setPreferredSize(new Dimension(150, 30));
+		b.setPressedIcon( new ImageIcon( getClass().getResource( "b2.png" )));
+		b.setRolloverEnabled(false);
+		b.setFocusPainted( false );
+		b.setBorderPainted(false);
+		b.setOpaque( false );
+		b.setContentAreaFilled(false);
+		return b;
+	}
 	@Override
 	public void update(String str) {
 	}
