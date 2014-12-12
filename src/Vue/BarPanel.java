@@ -48,7 +48,7 @@ public class BarPanel extends JPanel {
 		addMouseMotionListener(new MotionAdapter());
 
 		// Puis on initialise le panel
-		this.setBackground(new Color(90, 150, 12));// 150,50,50
+		this.setBackground(new Color(98, 148, 49));// 150,50,50
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		this.setPreferredSize(new Dimension(350, 25));
 		// On cree ensuite les boutons de controle
