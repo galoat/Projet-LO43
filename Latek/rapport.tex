@@ -133,30 +133,30 @@ Trois sujet nous on été présentés. Nous avons fait le choix de traiter le su
   \item N'étant que deux, sur un maximum de quatre étudiants par groupe autorisés, les autres sujets ne nous ont pas parus réalisables en temps et en heures et sans bugs majeurs...
   \item (A TROUVER)
 \end{itemize}
-\end
-Dans un premier temps, nous feront une présentation du sujet choisi, puis nous présenterons les diagramme UML, pour enfin vous presenter notre implémentation en JAVA.
-\part{ Description du sujet}
+Nous présenterons tout d'abord le sujet, ses contraintes, et les libertés prises par rapport à celles-ci. Par la suite, nous parlerons des différents diagrammes UML, et les expliquerons. Enfin, nous terminerons par l'implémentation en Java et l'interface graphique.
+\part{ Présentation du sujet}
 \section{Objectif}
- L'application a réaliser est la modélisation d'une flotte de véhicules évoluant dans une infrastructure de circulation partagé. Pour cela nous devont modéliser la parti modèle notre programme a l'aide d'UML qui est un  langage de modélisation graphique à base de pictogrammes. Puis nous implémenteront cette modélisation en JAVA.
- \\
- 
+ Le programme à réaliser consistait en la modélisation d'une flotte de véhicules évoluant dans une infrastructure de circulation partagée. Pour cela, il a tout d'abord fallu modéliser la partie calculatoire à l'aide du langage UML, puis ensuite l'implémenter en Java et lui donner une interface graphique
 \section{Reformulation du sujet}
-Le plateau donné par le sujet et le suivant :
- \\
- \\
+\subsection{Plateau}
+Le plateau donné par le sujet est le suivant :
+\vspace{0.5cm}
 
 \includegraphics[]{Images/Plateau}
+\vspace{0.5cm}
 \\
-\\
-De plus ce sont les voitures qui doivent décide du moment ou elles partent, pour cella elle doivent envoyer une requête au contrôleur pour savoir si leur chemin est déjà réserver. Afin d'éviter toute erreur lors de la réservation nous avons défini un ordre tel qui suit: 
-			I1<I2<I3<I4<I5<I6<R1<R2<R3<R4<R5<R6<O1<O2<O3<O4<O5<O6< C
-De plus les voiture ne peuvent prendre la place central qu'a la seul condition quel doivent aller a la place en face de la leurs.
-Cette requête est implémenter sous forme de bitmap.
+Chaque place, exceptée celle du centre, est rattachée à une place de départ et une place de sortie. Les voitures disposant d'une mission partent depuis une place d'entrée et, à la fin de celle-ci, rejoingent une place de sortie.\\
+La place centrale n'est utilisée que lors d'un trajet reliant deux places opposées...
+\subsection{Missions et contrôleur}
+Chaque passager doit être transporté d'une place à une autre. Pour ce faire, ils envoient une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci
+
+De plus ce sont les voitures qui doivent décide du moment ou elles partent, pour cella elle doivent envoyer une requête au contrôleur pour savoir si leur chemin est déjà réserver. Afin d'éviter toute erreur lors de la réservation nous avons défini un ordre tel qui suit:
+\begin{center}
+I1<I2<I3<I4<I5<I6<R1<R2<R3<R4<R5<R6<O1<O2<O3<O4<O5<O6<C
+\end{center}
 
 Par exemple pour une voiture qui désire aller de la place I1 a O2 la request map seras la suivante.
-
-
-
+\vspace{0.5cm}
 
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
 
@@ -167,6 +167,13 @@ Par exemple pour une voiture qui désire aller de la place I1 a O2 la request ma
  \hline
 
 \end{tabular}
+\subsection{Contraintes et libertés prises sur le sujet}
+
+
+De plus les voiture ne peuvent prendre la place central qu'a la seul condition quel doivent aller a la place en face de la leurs.
+Cette requête est implémenter sous forme de bitmap.
+
+
 
 
 \end{document}
