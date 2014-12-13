@@ -62,7 +62,7 @@ public class Fenetre extends JFrame implements Observer {
 		//On change l'icône du programme
 		try {
 			this.setIconImage(ImageIO.read(this.getClass().getResource(
-					"hexa.png")));
+					"Hexa.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
