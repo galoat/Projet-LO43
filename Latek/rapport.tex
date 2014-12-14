@@ -148,14 +148,9 @@ Le plateau donné par le sujet est le suivant :
 Chaque place, exceptée celle du centre, est rattachée à une place de départ et une place de sortie. Les voitures disposant d'une mission partent depuis une place d'entrée et, à la fin de celle-ci, rejoingent une place de sortie.\\
 La place centrale n'est utilisée que lors d'un trajet reliant deux places opposées...
 \subsection{Missions et contrôleur}
-Chaque passager doit être transporté d'une place à une autre. Pour ce faire, ils envoient une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci
-
-De plus ce sont les voitures qui doivent décide du moment ou elles partent, pour cella elle doivent envoyer une requête au contrôleur pour savoir si leur chemin est déjà réserver. Afin d'éviter toute erreur lors de la réservation nous avons défini un ordre tel qui suit:
-\begin{center}
-I1<I2<I3<I4<I5<I6<R1<R2<R3<R4<R5<R6<O1<O2<O3<O4<O5<O6<C
-\end{center}
-
-Par exemple pour une voiture qui désire aller de la place I1 a O2 la request map seras la suivante.
+Chaque passager doit être transporté d'une place à une autre. Pour ce faire, ils envoient une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci assignera cette mission à un des véhicules de sa flotte. Celui-ci calculera ensuite le trajet qu'il suivra pour la mener à bien.\\
+C'est alors le véhicule qui décide de partir : pour cela il doit envoyer une requête au contrôleur pour savoir si son chemin est déjà réservé. Si ce n'est pas le cas, le contrôleur l'autorise, et le véhicule part. La requête se fait sous la forme d'une Request Map, constituée de booléens indiquant l'intention du véhicule de réserver une place ou non.\\
+Pour exemple, lorsqu'une voiture désire aller de la place I1 à O2, elle aura besoin de réserver I1, R1, R2 et O2. La Request Map seras alors la suivante :
 \vspace{0.5cm}
 
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
@@ -166,12 +161,31 @@ Par exemple pour une voiture qui désire aller de la place I1 a O2 la request ma
    T & F & F & F & F & F & T & T & F & F & F & F & F & T & F & F & F & F & F\\
  \hline
 
-\end{tabular}
+\end{tabular}\\
+\vspace{0.25cm}\\
+Afin d'éviter toute erreur lors de la réservation, nous avons défini la priorité des places qui suit:
+\begin{center}
+I1<I2<I3<I4<I5<I6<R1<R2<R3<R4<R5<R6<O1<O2<O3<O4<O5<O6<C
+\end{center}
+Ceci permettra d'éviter que deux véhicules tentent de réserver la même place à deux moments différents, et que le contrôleur les valide...
+
 \subsection{Contraintes et libertés prises sur le sujet}
 
 
-De plus les voiture ne peuvent prendre la place central qu'a la seul condition quel doivent aller a la place en face de la leurs.
-Cette requête est implémenter sous forme de bitmap.
+S'ajoutent alors quelques contraintes, qui régissent le programme :
+\begin{itemize}
+  \item Les véhicules ne peuvent utiliser la place centrale qu'à la seule condition qu'ils doivent se rendre à la place en face de la leur.
+  \item Une place ou une route (reliant deux places) ne peut être utilisée que par un seul et unique véhicule.
+  \item Un véhicule qui souhaite emprunter un chemin occupé doit attendre que celui-ci se libère.
+\end{itemize}
+\vspace{0.25cm}
+Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre certaines libertés :
+\vspace{0.25cm}
+\begin{itemize}
+  \item Un véhicule ne peut pas contourner une place occupée pour mener sa mission à bien.
+  \item 
+\end{itemize}
+
 
 
 
