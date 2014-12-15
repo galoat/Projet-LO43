@@ -28,13 +28,13 @@ public class Vehicule implements Observable{
 	 * une Request_Map, afin de demander au Controleur l'autorisation de
 	 * l'emprunter.
 	 */
-	private ArrayList<Integer> trajet;
+	protected ArrayList<Integer> trajet;
 
 	/**
 	 * Passager permettant de conna&icirc;tre le point de depart et d'arriv&eacute;e du
 	 * v&eacute;hicule
 	 */
-	private Passager passager;
+	protected Passager passager;
 
 	/**
 	 * Constructeur permettant de cr&eacute;er un v&eacute;hicule et de lui assigner une
@@ -109,9 +109,9 @@ public class Vehicule implements Observable{
 	/**
 	 * Fonction permettant de convertir un trajet en une RMap
 	 */
-	public RMap trajetToMap(ArrayList<Integer> l){
+	public RMap trajetToMap(ArrayList<Integer> trajet){
 		RMap rq = new RMap(ID);
-		for(int i : l){
+		for(int i : trajet){
 			if(i-30>=0){
 				rq.getRequest_map().set(18, true);
 			}else{
@@ -127,6 +127,10 @@ public class Vehicule implements Observable{
 			}
 		}
 		return rq;
+	}
+	//Fonction pour envoyer la requestmap a la boite aux lettres
+	public void sendRMap(RMap rmap){
+		
 	}
 
 	@Override

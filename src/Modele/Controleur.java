@@ -27,12 +27,12 @@ public class Controleur implements Observable {
 	/**
 	 * La liste des points atteignables sou forme d'int comme suivant
 	 * <ul>
-	 * <li>les clées de 1 a 6 sont les clées des place d'entrées</li>
-	 * <li>les clées de 11 a 16 sont les clées des routes</li>
-	 * <li>les clées de 21 a 16 sont les clées des places de sorties</li>
-	 * <li>La clée 30 est une clée en reference vers le centre.
+	 * <li>les clees de 1 a 6 sont les clees des place d'entrees</li>
+	 * <li>les clees de 11 a 16 sont les clees des routes</li>
+	 * <li>les clees de 21 a 16 sont les clees des places de sorties</li>
+	 * <li>La clee 30 est une clee en reference vers le centre.
 	 * </ul>
-	 * Le segond parametre et la disponibilité de la map: true si la cette
+	 * Le second parametre et la disponibilité de la map: true si la cette
 	 * portion de map est libre false si elle est deja reserver.
 	 * 
 	 */
@@ -64,7 +64,7 @@ public class Controleur implements Observable {
 		for (int j = 11; j < 17; j++) {
 			general.put(j, true);
 		}
-		for (int j = 17; j < 27; j++) {
+		for (int j = 21; j < 27; j++) {
 			general.put(j, true);
 		}
 		general.put(30, true);
@@ -86,7 +86,7 @@ public class Controleur implements Observable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if(boite.getSizerLib()!=0){
+		} else if(boite.getSizeRLib()!=0){
 			traiteRequete(boite.getRLib());
 			try {
 				wait(10);
@@ -137,7 +137,7 @@ public class Controleur implements Observable {
 	 */
 	private void traiteRequete(RDepart r) {
 		
-			Passager p =new Passager(r.getDebut(),r.getFin());
+			Passager p = new Passager(r.getDebut(),r.getFin());
 			try {
 				maFlotte.donnerPassager(p);
 			} catch (FlotteException e) {

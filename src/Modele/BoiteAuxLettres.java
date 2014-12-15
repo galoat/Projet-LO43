@@ -179,7 +179,7 @@ public class BoiteAuxLettres {
 	 * fonction premertant de savoir la taille de la liste de requete de liberation de ressource
 	 * 
 	 **/
-	public int getSizerLib(){
+	public int getSizeRLib(){
 		return rLib.size();
 	}
 }
