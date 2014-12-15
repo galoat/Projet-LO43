@@ -54,40 +54,55 @@ public class Vehicule implements Observable{
 	 * @param p Un passager, indiquant les places de d&eacute;part et d'arriv&eacute;e
 	 */
 	public void findPath(Passager p){
+		//On vide la liste
 		trajet.clear();
+		//On stocke les places de depart et de fin (on parle ici des places R, pas des places d'entree ou de sortie)
 		int dep = p.getDebut();
 		int fin = p.getFin();
 		int a, b;
 		int count = -1;
+		//On cree deux tableaux pour parcourir la carte dans les deux sens
 		int[] l1 = new int[3];
 		int[] l2 = new int[3];
-		
+		//On commence par la place de depart (son identifiant est egal a la place R - 10)
 		trajet.add(dep-10);
+		//Si la place d'arrivee est en face, on passe par le centre
 		if(Math.abs(dep-fin)==3){
 			trajet.add(dep);
 			trajet.add(30);
 		}else{
+			//On commence a la place R de depart
 			a=dep;
 			b=dep;
+			//Ensuite, on parcoure la carte dans les deux sens pour determiner le chemin le plus rapide
 			while(a!=fin && b!=fin){
 				count++;
+				//On stocke le trajet
 				l1[count]=a;
 				l2[count]=b;
+				//On se charge de faire un cycle (le 6 est suivi du 1)
+				//S'agissant des places R, leur identifiant est décalé de 10
 				if(a==16){
 					a=10;
 				}if(b==11){
 					b=17;
 				}
+				//On se decale dans les deux sens
 				a++;
 				b--;
-			}if(b==fin){
+			}//Si le trajet b est le plus court
+			if(b==fin){
+				//On le stocke dans le premier tableau
 				l1=l2;
-			}for(int i=0; i<l1.length; i++){
+			}//Enfin, on stocke le trajet dans la liste
+			for(int i=0; i<l1.length; i++){
 				if(l1[i]!=0){
 					trajet.add(l1[i]);
 				}
 			}
-		}trajet.add(fin);
+		}
+		//On termine par la place R finale, puis la place d'arrivee (R + 10)
+		trajet.add(fin);
 		trajet.add(fin+10);
 	}
 	

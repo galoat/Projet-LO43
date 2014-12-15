@@ -51,7 +51,7 @@ public class Fenetre extends JFrame implements Observer {
 
 	/**
 	 * Constructeur de la fenetre : on y initialise les differents panels et
-	 * comosants
+	 * composants
 	 * 
 	 * @param v
 	 *            Le verificateur associe a la fenetre dans le cadre du pattern
