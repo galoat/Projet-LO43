@@ -149,10 +149,10 @@ Le plateau donné par le sujet est le suivant :
 \includegraphics[]{Images/Plateau}
 \vspace{0.5cm}
 \\
-Chaque place, exceptée celle du centre, est rattachée à une place de départ et une place de sortie. Les voitures disposant d'une mission partent depuis une place d'entrée et, à la fin de celle-ci, rejoingent une place de sortie.\\
+Chaque place, exceptée celle du centre, est rattachée à une place de départ et une place de sortie. Les voitures disposant d'un passager partent depuis une place d'entrée (que celui-ci leur donne) et, à la fin de celle-ci, rejoignent une place de sortie (même chose).\\
 La place centrale n'est utilisée que lors d'un trajet reliant deux places opposées...
-\subsection{Missions et contrôleur}
-Chaque passager doit être transporté d'une place à une autre. Pour ce faire, ils envoient une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci assignera cette mission à un des véhicules de sa flotte. Celui-ci calculera ensuite le trajet qu'il suivra pour la mener à bien.\\
+\subsection{Passagerss et contrôleur}
+Chaque passager doit être transporté d'une place à une autre. Pour ce faire, ils envoient une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci assignera cette mission à un des véhicules de sa flotte (sous la forme d'un passager, ayant un départ et une arrivée). Celui-ci calculera ensuite le trajet qu'il suivra pour la mener à bien.\\
 C'est alors le véhicule qui décide de partir : pour cela il doit envoyer une requête au contrôleur pour savoir si son chemin est déjà réservé. Si ce n'est pas le cas, le contrôleur l'autorise, et le véhicule part. La requête se fait sous la forme d'une Request Map, constituée de booléens indiquant l'intention du véhicule de réserver une place ou non.\\
 Pour exemple, lorsqu'une voiture désire aller de la place I1 à O2, elle aura besoin de réserver I1, R1, R2 et O2. La Request Map seras alors la suivante :
 \vspace{0.5cm}
@@ -189,41 +189,62 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
   \item Un véhicule ne peut pas contourner une place occupée pour mener sa mission à bien.
   \item 
 \end{itemize}
+\setcounter{chapter}{1}
+\setcounter{section}{1}
 \part{Conception UML}
 %non de chapitre a changer
+
 \chapter{Les Diagramme UML}
 \section{Diagramme des cas d'utilisation (annexe A)}
-\hspace{0.5cm} Le diagramme des cas d'utilisation permet de représenté les action que l'utilisateur peut faire. Dans notre projet, en lançant le jeux l'utilisateur a plusieurs solution:
+\hspace{0.5cm} Le diagramme des cas d'utilisation permet de représenter les actions que l'utilisateur peut faire. Dans notre projet, en lançant le programme, l'utilisateur a plusieurs solutions :
 \begin{itemize}
-\item voir les crédit.
-\item Choisir de jouer en mode manuel, dans ce cas il devras après choisir le chemin de la voiture
-\item Jouer en simulation, dans ce mode toute les requête sont générer par le programme
-\item axé aux option, une fois dans ce menus, il peut choisir de changer les graphique du jeu, il peut aussi changer la rapidité des voitures.
+\item Voir les crédits (c'est à dire les auteurs du programme, nous)
+\item Choisir de jouer en mode manuel, dans ce cas il devras par la suite choisir lui-même les missions attribuées aux véhicules.
+\item Jouer en simulation, dans ce mode toutes les requête sont générées par le programme : l'utilisateur se contente de regarde la simulation s'opérer.
+\item Avoir accès aux options : une fois dans ce menu, il peut choisir de changer la rapidité des voitures.
 \end{itemize}
-\section{Diagramme de sequence(annexe B)}
-\hspace{0.5cm} Le diagramme de séquence permet de représenté les interaction entre les différentes classes selon un ordre chronologique.
+Nous avons choisi de diviser l'utilisateur principal en deux autres : un utilisateur qui utiliserait le mode manuel, et un autre qui utiliserait le mode automatique. Ceci étant dû au fait que l'utilisateur en mode manuel pourra accéder à des fonctions interdites au mode automatique (la création d'un passager).\\
+En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'utilisateur (et quel que soit son mode) pourra mettre la simulation en pause et, si nécessaire, réinitialiser celle-ci. 
+\section{Diagramme de séquence(annexe B)}
+\hspace{0.5cm} Le diagramme de séquence permet de représenter les interactions entre les différentes classes selon un ordre chronologique.
 \section{Diagramme de classes(annexe C)}
 \hspace{0.5cm} Nous verrons en détail, une description de chaque classe.
 \chapter{Description des classes}
 \section{Classe BoiteAuxLettre}
-   \begin{minipage}{0.49\textwidth}
-       \includegraphics[scale=1]{Images/BoiteAuxLettre.PNG}
-    \end{minipage}
-    \begin{minipage}{0.49\textwidth}
-      Il s'agit de la classe recevant toute les requêtes, qu'elle soit envoyer de la partie graphique, ou du modèle. Il y a 3 requête:
+     
+      Il s'agit de la classe recevant toute les requêtes, qu'elles soient envoyées depuis la partie graphique (c'est à dire des requêtes pour la création d'une nouvelle mission, et donc d'un nouveau passager), ou du modèle. Il y a 4 requêtes différentes, stockées chacunes dans une liste différente:
+      \begin{wrapfigure}[15]{l}{5.5cm}
+\includegraphics[scale=1]{Images/BoiteAuxLettre.PNG}
+\end{wrapfigure}   
       \begin{itemize}
-      \item Une liste de requête de départ cette liste contient toute les demande de trajet. Ces trajet peuvent être demander soit par l'utilisateur, soit générer par le modèle.
-      \item une liste nommé rMap, ce sont les requête qu'envoies chacun de véhicule pour demander si leurs route sont libre ou non.
-      \item rFin, ce sont les requête qu'envoies touts les véhicules lorsqu'ils ont terminer leurs trajets. Elle permettent de libérer toutes les routes 
+      \item Une liste de requêtes de départ : cette liste contient toutes les demandes de trajet. Ces trajet peuvent être demandés soit par l'utilisateur, soit générés par le modèle.
+      \item Une liste de requêtes de trajet : ce sont les requêtes qu'envoient chacun des véhicules ayant un passager pour demander au contrôleur la permission d'utiliser un chemin (la réponse n'est positive que si le chemin concerné est libre)...
+      \item Une liste de requêtes de fin de trajet : ce sont les requête qu'envoient les véhicules lorsqu'ils ont mené leur mission à bien (et donc qu'ils sont arrivés à leur place d'arrivée). Elles permettent alors de libérer le véhicule.
+      \item Enfin, une liste de requêtes de libération de ressources : ces requêtes sont envoyées par les véhicules lorsqu'il n'ont plus besoin d'une place (lorsqu'ils sont déjà passés de dessus). Le contrôleur peut alors considérer ces places comme disponibles.
       \end{itemize}
-      La méthode getFirst() renvoi une requête celons un ordre de priorité. En effet dans un premier temps elle renverras une requête de fin de trajet afin que les trajet soit libérer le plus vite possible. Puis nous regardons si il y a une requête de Depart, afin que la liste de véhicule désirant partir soit le plus complet possible
-    \end{minipage}
-    
+
+\section{Les classes Requêtes}
+
+Etant donné que le but de chaque requête a été explicité ci-dessus, et que la structure de celles-ci ne présente pas d'intérêt particulier, nous nous intéresserons à leurs caractéristiques générales. \\
+Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres. Un requête, une fois traitée, est immédiatement détruite. Enfin,à chaque liste de requêtes est attribuée une priorité, afin que le contrôleur traite les requêtes les plus importantes en premier.
+\section{La classes Contrôleur}
+
+Il s'agit de la classe principale : c'est elle qui s'occupe de gérer les déplacements des différents véhicules sur la carte. Le contrôleur a directement accès à la boîte aux lettres, et donc aux requêtes qu'elle contient.\\
+C'est également lui qui possède la "carte" (ici, une HashMap) des différentes places du réseau routier : il est le seul à agir dessus.
+La méthode traiteRequete() se charge de traiter les requêtes selon leur priorité :\\
+ \begin{itemize}
+      \item Les requêtes de fin de trajet sont prioritaires sur toutes les autres : rendre un véhicule à nouveau disponible signifie le débarquement d'un passager, et donc la capacité d'en accepter de nouveaux.
+      \item Les requêtes de libération de ressources arrivent en second. En effet, rendre une place disponible le plus vite possible est prioritaire pour pouvoir valider les trajets d'autres véhicules.
+      \item Viennent ensuite les requêtes de départ, permettant aux passagers d'être pris en charge plus vite que les requêtes de trajet, bien plus nombreuses.
+      \item Les requêtes de trajet sont les moins prioritaires, notamment en raison de le nombre : en effet, elles sont générées à intervalle régulier par les véhicules, jusqu'à ce qu'ils aient pu emprunter le chemin qu'ils désirent.
+      \end{itemize}
+
+Par la suite, et en fonction des requêtes qu'il reçoit, le contrôleur a plusieurs tâches. Il peut libérer un véhicule en fin de trajet, en réserver un autre et lui attribuer un passager. Enfin, il valide (ou non) les chemins demandés par les véhicules, et se charge ensuite de réserver les ressources correspondantes.
 %  les annexes
 \appendix
 %diagrame cas d'utilisation
 \chapter*{Annexe A}
-\includegraphics[width=20cm, height=15cm]{Images/CasUtilisation.PNG}
+\includegraphics[width=455px, height=190px]{Images/CasUtilisation.PNG}
 %diagrame de sequence
 \chapter*{Annexe B}
 \end{document}
