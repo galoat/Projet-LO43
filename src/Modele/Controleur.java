@@ -198,4 +198,10 @@ public class Controleur implements Observable {
 	public void removeObserver() {
 		listObserver = new ArrayList<Observer>();
 	}
+
+	@Override
+	public void notifyCoords(int iD, int dep, int ar) {
+		// TODO Auto-generated method stub
+		
+	}
 }

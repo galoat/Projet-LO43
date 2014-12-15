@@ -26,8 +26,9 @@ import javax.swing.JTextField;
 import Controleur.Verificateur;
 import Exception.RDepartException;
 import Exception.RequeteException;
+import Modele.Observer;
 
-public class Simulation extends MainPan {
+public class Simulation extends MainPan implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel buttonpan, missionpan, controlpan;
@@ -167,7 +168,7 @@ public class Simulation extends MainPan {
 	 * @param dep Son pointde depart
 	 * @param ar Son point d'arrivee
 	 */
-	public void updatePath(int ID, int dep, int ar) {
+	public void updateCoords(int ID, int dep, int ar) {
 		for (Vehicule v : vehicules) {
 			if (v.iD == ID) {
 				v.xdest = places.get(ID).x;
@@ -372,5 +373,10 @@ public class Simulation extends MainPan {
 				}
 			}
 		}
+	}
+	@Override
+	public void update(String str) {
+		// TODO Auto-generated method stub
+		
 	}
 }

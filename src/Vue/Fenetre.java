@@ -198,4 +198,10 @@ public class Fenetre extends JFrame implements Observer {
 			}
 		}
 	}
+
+	@Override
+	public void updateCoords(int iD, int dep, int ar) {
+		// TODO Auto-generated method stub
+		
+	}
 }
