@@ -1,5 +1,6 @@
 package Modele;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import Exception.FlotteException;
@@ -27,7 +28,8 @@ public class FlotteVehicules {
 	 *</ul>
 	 *
 	 */
-	private HashMap<Integer, Boolean> vehicule;
+	//private HashMap<Integer, Boolean> vehicule;
+	private ArrayList<Vehicule> vehicules;
 	
 	
 	
@@ -37,11 +39,13 @@ public class FlotteVehicules {
 	 * 		Entier contenant la capaciter en voiture du plateau
 	 */
 	
-	FlotteVehicules(int c){
+	FlotteVehicules(int c, BoiteAuxLettres boite){
 		capaciter=c;
-		vehicule=new HashMap<Integer, Boolean>();
+		//vehicule=new HashMap<Integer, Boolean>();
+		vehicules = new ArrayList<Vehicule>();
 		for(int i =0;i<c;i++){
-			vehicule.put(i,true);
+			//vehicule.put(i,true);
+			vehicules.add(new Vehicule(c, boite));
 		}
 	}
 	

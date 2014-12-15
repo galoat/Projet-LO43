@@ -37,6 +37,7 @@ public class Vehicule implements Observable {
 	protected ArrayList<Integer> trajet;
 	private Observer obs;
 	private BoiteAuxLettres boite;
+	public boolean dispo;
 	/**
 	 * Passager permettant de conna&icirc;tre le point de depart et
 	 * d'arriv&eacute;e du v&eacute;hicule
@@ -52,6 +53,7 @@ public class Vehicule implements Observable {
 	 */
 	Vehicule(int ID, BoiteAuxLettres boite) {
 		this.ID = ID;
+		this.dispo = true;
 		this.trajet = new ArrayList<Integer>();
 		// this.passager = p;
 		this.boite = boite;

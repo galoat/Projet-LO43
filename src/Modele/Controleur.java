@@ -48,7 +48,7 @@ public class Controleur implements Observable {
 	public Controleur() {
 		createHashMap();
 		boite = new BoiteAuxLettres();
-		maFlotte = new FlotteVehicules(3);
+		maFlotte = new FlotteVehicules(3, boite);
 	}
 
 	/**
