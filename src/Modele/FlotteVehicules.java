@@ -1,6 +1,8 @@
 package Modele;
 
 import java.util.HashMap;
+
+import Exception.FlotteException;
 /**
  * <b>FlotteVehicules est la classe representant tous les vehicules sur la plateau</b>
  * <p>
@@ -51,8 +53,7 @@ public class FlotteVehicules {
 	 *		Un passager
 	 */
 	//exception si la liste des vehicule est compléte ?
-	private void donnerPassager(Passager m){
-		
+	public void donnerPassager(Passager m)throws FlotteException {
 		
 		
 	}

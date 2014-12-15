@@ -3,6 +3,8 @@ package Modele;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Exception.FlotteException;
+
 /**
  * <b> La classe qui regit toute la partie Objet </b>
  * <p>
@@ -134,9 +136,21 @@ public class Controleur implements Observable {
 	 * @param r une requete de depart
 	 */
 	private void traiteRequete(RDepart r) {
-		if(maFlotte.getCapaciter()!=0){
-			
-		}
+		
+			Passager p =new Passager(r.getDebut(),r.getFin());
+			try {
+				maFlotte.donnerPassager(p);
+			} catch (FlotteException e) {
+				//si il n'y a plus de place pour les vehicule
+				// TODO Auto-generated catch block
+				try {
+					wait(1000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		
 	}
 	/**
 	 * fonction utiliser pour traiter une requete de fin de trajet
