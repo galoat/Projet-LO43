@@ -2,8 +2,6 @@ package Modele;
 
 import java.util.LinkedList;
 
-import Exception.BoiteAuxLettresException;
-
 /**
  * <b>BoiteAuxLettres est la classe contenant toutes les requ&ecirc;tes
  * adress&eacute;es au contr&ocirc;leur</b>
@@ -28,7 +26,7 @@ public class BoiteAuxLettres {
 	 * @see BoiteAuxLettres#addRequete(RFin)
 	 * @see getRequete
 	 */
-	private LinkedList<Requete> rFin;
+	private LinkedList<RFinTrajet> rFin;
 	/**
 	 * La liste des requete. Elle est modifier par le vehicule ou la vue.
 	 * Requete de depart. <
@@ -36,9 +34,13 @@ public class BoiteAuxLettres {
 	 * @see BoiteAuxLettres#addRequete(RDepart)
 	 * @see BoiteAuxLettres#getRequete
 	 */
-	private LinkedList<Requete> rDepart;
+	private LinkedList<RDepart> rDepart;
 
-	private LinkedList<Requete> rMap;
+	private LinkedList<RMap> rMap;
+	/**
+	 * liste contenant toute les requetes qui sont utiliser pour librere les ressource
+	 */
+	private LinkedList<RLib> rLib;
 
 	/**
 	 * Contructeur par default de BoiteAuxLettres
@@ -46,13 +48,24 @@ public class BoiteAuxLettres {
 	 * Lors de la construction la boite aux lettre ne possede aucune requete.
 	 * 
 	 */
-	BoiteAuxLettres(){
-
-		rFin = new LinkedList<Requete>();
-		rDepart = new LinkedList<Requete>();
-		rMap = new LinkedList<Requete>();
+	BoiteAuxLettres() {
+		rLib=new LinkedList<RLib>();
+		rFin = new LinkedList<RFinTrajet>();
+		rDepart = new LinkedList<RDepart>();
+		rMap = new LinkedList<RMap>();
 	}
-
+	/**
+	 * *
+	 * fonction servant a ajouter une requete de liberation  On ajoute cette requete
+	 * a la suite des autre requete de liberation.
+	 * 
+	 * @param req
+	 *            La requete de liberation.
+	 * 
+	 */
+	 public void addRequete(RLib req){
+		 rLib.add(req);
+	 }
 	/**
 	 * fonction servant a ajouter une requete de depart On ajoute cette requete
 	 * a la suite des autre requete de depart.
@@ -87,39 +100,86 @@ public class BoiteAuxLettres {
 	}
 
 	/**
-	 * Fonction permettant de recuperer le premier contenant de la boite au
-	 * lettre
+	 * Fonction permettant de recuperer les Requete de fin de trajet contenant
+	 * de la boite au lettre
 	 * 
-	 * @return requete La premiére requete de la liste.
-	 * @throws BoiteAuxLettresException
-	 *             if the boite is empty
+	 *
 	 */
 
-	public Requete getFirst() throws BoiteAuxLettresException{
-		if(rFin.size()==0&& rDepart.size()==0&&rMap.size()==0){
-			throw new BoiteAuxLettresException();
-		}
-		else{
-			Requete sortie;
-			if(rFin.size()!=0){
-				
-				sortie =rFin.get(0);
-				rFin.removeFirst();
-				return sortie;
-			}
-			else if(rDepart.size()!=0){
-				sortie =rDepart.get(0);
-				rDepart.removeFirst();
-				return sortie;
-			}
-			else{
-				sortie =rMap.get(0);
-				rMap.removeFirst();
-				return sortie;
-			}
-		}
+	public RFinTrajet getRFinTrajet() {
+		RFinTrajet r = new RFinTrajet();
+		// on recupere le sernier element
+		r.clone(rFin.get(rFin.size() - 1));
+		rFin.remove(getSizeRFintrajet() - 1);
+		return r;
+
 	}
-	public void newRequest(int dep, int ar){
-		//CREER UNE NOUVELLE REQUETE
+
+	/**
+	 * Fonction permettant de recuperer les Requete de fin de trajet contenant
+	 * de la boite au lettre
+	 * 
+	 */
+
+	public RDepart getDepart() {
+		RDepart r = new RDepart();
+		// on recupere le sernier element
+		r.clone(rDepart.get(rDepart.size() - 1));
+		rDepart.remove(getSizeRDepart() - 1);
+		return r;
+
+	}
+	/**
+	 * fonction permettant de recuperer la requete de liberation dees ressource
+	 */
+	public RLib getRLib(){
+		RLib r= new RLib();
+		r.clone(rLib.get(rLib.size()-1));
+		rLib.remove(rLib.size()-1);
+		return r;
+	}
+	/**
+	 * Fonction premetant de recuperer les requete d'update de map
+	 */
+	public RMap getRMap() {
+		RMap r = new RMap();
+		r.clone(rMap.get(rMap.size() - 1));
+		rMap.remove(getSizeRMap() - 1);
+		return r;
+	}
+
+	/**
+	 * 
+	 * fonction premertant de savoir la taille de la liste de requete de fin de
+	 * trajet
+	 */
+	public int getSizeRFintrajet() {
+		return rFin.size();
+	}
+
+	/**
+	 * 
+	 * fonction premertant de savoir la taille de la liste de requete de debut
+	 * de trajet
+	 */
+	public int getSizeRDepart() {
+		return rDepart.size();
+	}
+
+	/**
+	 * 
+	 * fonction premertant de savoir la taille de la liste de requete de mise a
+	 * jour de la carte d'une voiture
+	 */
+	public int getSizeRMap() {
+		return rMap.size();
+	}
+	/**
+	 * 
+	 * fonction premertant de savoir la taille de la liste de requete de liberation de ressource
+	 * 
+	 **/
+	public int getSizerLib(){
+		return rLib.size();
 	}
 }

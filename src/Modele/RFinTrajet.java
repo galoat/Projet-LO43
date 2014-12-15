@@ -10,12 +10,19 @@ package Modele;
  * @author florian + theo
  *	@version 0.1
  */
-public class RFinTrajet extends Requete {
+public class RFinTrajet {
 	/**
 	 * Un entier permetant d'identifier la voiture fesant la demande
 	 * Il n'est pas modifiable mais on peut le lire
 	 */
  private int identifiant;
+ /**
+  * constructeur par default
+  * l'identifiant est donc egal a 0
+  */
+ RFinTrajet(){
+	 
+ }
  RFinTrajet(int idendifiant){
 	 this.identifiant=idendifiant;
  }
@@ -27,6 +34,9 @@ public class RFinTrajet extends Requete {
   */
 public int getIdentifiant() {
 	return identifiant;
+}
+public void clone(RFinTrajet n){
+	this.identifiant=n.identifiant;
 }
 
 }

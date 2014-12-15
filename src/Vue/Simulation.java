@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controleur.Verificateur;
+import Exception.RDepartException;
 import Exception.RequeteException;
 
 public class Simulation extends MainPan {
@@ -191,7 +192,7 @@ public class Simulation extends MainPan {
 			ar=Integer.parseInt((String) arrivee.getSelectedItem());
 			try {
 				verif.newRequest(dep, ar);
-			} catch (RequeteException e1) {
+			} catch (RequeteException | RDepartException e1) {
 
 			}
 		}
