@@ -13,23 +13,29 @@ import Exception.RDepartException;
  * @author florian + theo
  *	@version 0.1
  */
-public class RDepart extends Requete {
+public class RDepart {
 	/**
-	 * Un entier representant la place d'entré du vehicule
+	 * Un entier representant la place d'entrï¿½ du vehicule
 	 */
  private int debut;
  /**
   * un entier representant la place de sortie du vehicule
   */
  private int fin;
-
+/**
+ * Constructeur par default
+ * 
+ */
+ RDepart(){
+	 
+ }
  /**
   * Constructeur avec parmaametre de RDepart
   * @param d le point de depart de la voiture
   * @param f Le point d'arriver de la voiture
-  * @throws RDepartException si l'entier f ou d est superieur a 6 ou inferieur a 1 ou encore si on commence a la méme place
+  * @throws RDepartException si l'entier f ou d est superieur a 6 ou inferieur a 1 ou encore si on commence a la mï¿½me place
   */
- RDepart(int d, int f) throws RDepartException{
+ public RDepart(int d, int f) throws RDepartException{
 	 if(d>6||f>6||f<1||d<1||f==d){
 		 new RDepartException();
 	 }
@@ -52,6 +58,10 @@ public int getFin() {
 	return fin;
 }
 
+public void clone(RDepart r){
+	this.debut=r.debut;
+	this.fin=r.fin;
+}
 
  
 }
