@@ -134,6 +134,10 @@ Trois sujet nous on été présentés. Nous avons fait le choix de traiter le su
   \item (A TROUVER)
 \end{itemize}
 Nous présenterons tout d'abord le sujet, ses contraintes, et les libertés prises par rapport à celles-ci. Par la suite, nous parlerons des différents diagrammes UML, et les expliquerons. Enfin, nous terminerons par l'implémentation en Java et l'interface graphique.
+
+
+\setcounter{chapter}{1}
+\setcounter{section}{1}
 \part{ Présentation du sujet}
 \section{Objectif}
  Le programme à réaliser consistait en la modélisation d'une flotte de véhicules évoluant dans une infrastructure de circulation partagée. Pour cela, il a tout d'abord fallu modéliser la partie calculatoire à l'aide du langage UML, puis ensuite l'implémenter en Java et lui donner une interface graphique
@@ -185,9 +189,41 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
   \item Un véhicule ne peut pas contourner une place occupée pour mener sa mission à bien.
   \item 
 \end{itemize}
-
-
-
-
-
+\part{Conception UML}
+%non de chapitre a changer
+\chapter{Les Diagramme UML}
+\section{Diagramme des cas d'utilisation (annexe A)}
+\hspace{0.5cm} Le diagramme des cas d'utilisation permet de représenté les action que l'utilisateur peut faire. Dans notre projet, en lançant le jeux l'utilisateur a plusieurs solution:
+\begin{itemize}
+\item voir les crédit.
+\item Choisir de jouer en mode manuel, dans ce cas il devras après choisir le chemin de la voiture
+\item Jouer en simulation, dans ce mode toute les requête sont générer par le programme
+\item axé aux option, une fois dans ce menus, il peut choisir de changer les graphique du jeu, il peut aussi changer la rapidité des voitures.
+\end{itemize}
+\section{Diagramme de sequence(annexe B)}
+\hspace{0.5cm} Le diagramme de séquence permet de représenté les interaction entre les différentes classes selon un ordre chronologique.
+\section{Diagramme de classes(annexe C)}
+\hspace{0.5cm} Nous verrons en détail, une description de chaque classe.
+\chapter{Description des classes}
+\section{Classe BoiteAuxLettre}
+   \begin{minipage}{0.49\textwidth}
+       \includegraphics[scale=1]{Images/BoiteAuxLettre.PNG}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+      Il s'agit de la classe recevant toute les requêtes, qu'elle soit envoyer de la partie graphique, ou du modèle. Il y a 3 requête:
+      \begin{itemize}
+      \item Une liste de requête de départ cette liste contient toute les demande de trajet. Ces trajet peuvent être demander soit par l'utilisateur, soit générer par le modèle.
+      \item une liste nommé rMap, ce sont les requête qu'envoies chacun de véhicule pour demander si leurs route sont libre ou non.
+      \item rFin, ce sont les requête qu'envoies touts les véhicules lorsqu'ils ont terminer leurs trajets. Elle permettent de libérer toutes les routes 
+      \end{itemize}
+      La méthode getFirst() renvoi une requête celons un ordre de priorité. En effet dans un premier temps elle renverras une requête de fin de trajet afin que les trajet soit libérer le plus vite possible. Puis nous regardons si il y a une requête de Depart, afin que la liste de véhicule désirant partir soit le plus complet possible
+    \end{minipage}
+    
+%  les annexes
+\appendix
+%diagrame cas d'utilisation
+\chapter*{Annexe A}
+\includegraphics[width=20cm, height=15cm]{Images/CasUtilisation.PNG}
+%diagrame de sequence
+\chapter*{Annexe B}
 \end{document}

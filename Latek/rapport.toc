@@ -1,8 +1,15 @@
 \select@language {french}
 \contentsline {chapter}{Introduction}{3}
 \contentsline {part}{I\hspace {1em} Pr\IeC {\'e}sentation du sujet}{4}
-\contentsline {section}{\numberline {0.1}Objectif}{5}
-\contentsline {section}{\numberline {0.2}Reformulation du sujet}{5}
-\contentsline {subsection}{\numberline {0.2.1}Plateau}{5}
-\contentsline {subsection}{\numberline {0.2.2}Missions et contr\IeC {\^o}leur}{5}
-\contentsline {subsection}{\numberline {0.2.3}Contraintes et libert\IeC {\'e}s prises sur le sujet}{5}
+\contentsline {section}{\numberline {1.2}Objectif}{5}
+\contentsline {section}{\numberline {1.3}Reformulation du sujet}{5}
+\contentsline {subsection}{\numberline {1.3.1}Plateau}{5}
+\contentsline {subsection}{\numberline {1.3.2}Missions et contr\IeC {\^o}leur}{5}
+\contentsline {subsection}{\numberline {1.3.3}Contraintes et libert\IeC {\'e}s prises sur le sujet}{5}
+\contentsline {part}{II\hspace {1em}Conception UML}{7}
+\contentsline {chapter}{\numberline {2}Les Diagramme UML}{8}
+\contentsline {section}{\numberline {2.1}Diagramme des cas d'utilisation (annexe A)}{8}
+\contentsline {section}{\numberline {2.2}Diagramme de sequence(annexe B)}{8}
+\contentsline {section}{\numberline {2.3}Diagramme de classes(annexe C)}{8}
+\contentsline {chapter}{\numberline {3}Description des classes}{9}
+\contentsline {section}{\numberline {3.1}Classe BoiteAuxLettre}{9}
