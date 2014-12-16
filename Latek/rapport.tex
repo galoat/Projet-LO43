@@ -189,8 +189,8 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
   \item Un véhicule ne peut pas contourner une place occupée pour mener sa mission à bien.
   \item 
 \end{itemize}
-\setcounter{chapter}{1}
-\setcounter{section}{1}
+\setcounter{chapter}{0}
+\setcounter{section}{0}
 \part{Conception UML}
 %non de chapitre a changer
 
@@ -209,6 +209,7 @@ En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'u
 \hspace{0.5cm} Le diagramme de séquence permet de représenter les interactions entre les différentes classes selon un ordre chronologique.
 \section{Diagramme de classes(annexe C)}
 \hspace{0.5cm} Nous verrons en détail, une description de chaque classe.
+
 \chapter{Description des classes}
 \section{Classe BoiteAuxLettre}
      
@@ -240,6 +241,17 @@ La méthode traiteRequete() se charge de traiter les requêtes selon leur priori
       \end{itemize}
 
 Par la suite, et en fonction des requêtes qu'il reçoit, le contrôleur a plusieurs tâches. Il peut libérer un véhicule en fin de trajet, en réserver un autre et lui attribuer un passager. Enfin, il valide (ou non) les chemins demandés par les véhicules, et se charge ensuite de réserver les ressources correspondantes.
+
+
+\section{La Classe Véhicule}
+
+Il s'agit d'un thread qui possédé un trajet, chaque voiture possède un identifiant unique donner par la classe "flotte de véhicule" et stoker  dans un integer "identifiant", de plus lors de l'instanciation de cette classe on lui assigne le trajet donner par le passager.
+\\ Cette classe possède aussi la liste des routes possible trier par priorité. A l'aide de la liste des priorité et de sa route chaque voiture vas pouvoir générer une hasmap (décrite dans la partie 1.3.2) et l'envoyer dans la boite au lettre.
+\\
+ Après traitement par le contrôleur, si les routes sont libre la voiture recevras une autorisation de la partir de la pars du contrôleur. Cette autorisation est visible dans la classe voiture grâce au boolean autoriser.
+\\
+Lorsque le thread reviendras vérifier que la possibilité de départ de la voiture il constateras que le boolean est true et ainsi commencera le trajet.
+De plus lorsque la voiture avance dans sont trajet elle libère au fur et a mesure les chemins déjà utilisé  a l'aide de la fonction free.
 %  les annexes
 \appendix
 %diagrame cas d'utilisation
