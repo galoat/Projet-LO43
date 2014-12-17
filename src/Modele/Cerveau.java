@@ -14,8 +14,8 @@ public class Cerveau extends Thread {
 	}
 
 	/**
-	 * Run du thread, qui permet de gérer les requêtes du véhicule et son
-	 * déplacement
+	 * Run du thread, qui permet de gerer les requetes du vehicule et son
+	 * deplacement
 	 * 
 	 * @param p
 	 *            Un passager, indiquant les places de d&eacute;part et
@@ -58,7 +58,7 @@ public class Cerveau extends Thread {
 				}
 			}
 		}//Le trajet est termine
-		corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond à la fin du trajet
+		corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond e la fin du trajet
 		corps.sendRFinTrajet();
 	}
 

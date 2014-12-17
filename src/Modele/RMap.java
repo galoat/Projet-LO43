@@ -51,6 +51,7 @@ public class RMap {
 	 */
 	public RMap(int id) {
 		identifiant = id;
+		 request_map=new ArrayList<Boolean>();
 		for (int i = 0; i < 19; i++) {
 			request_map.add(false);
 		}

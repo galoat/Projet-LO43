@@ -69,7 +69,7 @@ public class FlotteVehicules {
 	/**
 	 * Retourn la capaciter en nombre de vehicule du plateau
 	 * @return la capaciter en nombre de vehicule du plateau
-	 *@see capaciter
+	 * @see capaciter
 	 */
 
 	public int getCapaciter() {

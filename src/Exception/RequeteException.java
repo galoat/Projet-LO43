@@ -7,8 +7,8 @@ public class RequeteException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public RequeteException() {
-		JOptionPane.showMessageDialog(null, "Désolé, \n"
-				+ "le passager est déjà arrivé !\n", "Hint",
+		JOptionPane.showMessageDialog(null, "Desole, \n"
+				+ "le passager est deje arrive !\n", "Hint",
 				JOptionPane.INFORMATION_MESSAGE);
 
 	}

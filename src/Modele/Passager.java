@@ -1,7 +1,7 @@
 package Modele;
 /**
  * <b> Passager est la classe qui donne les point oiu doit aller el vehicule
- * <p> Les paramétre sont les suivant
+ * <p> Les parametre sont les suivant
  * <ul>
  * <li>un interger indiquant le point de depart de la course</li>
  * <li> un integer indiquant le point d'arriver de la course </li>

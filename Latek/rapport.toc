@@ -16,3 +16,4 @@
 \contentsline {section}{\numberline {2.2}Les classes Requ\IeC {\^e}tes}{9}
 \contentsline {section}{\numberline {2.3}La classes Contr\IeC {\^o}leur}{9}
 \contentsline {section}{\numberline {2.4}La Classe V\IeC {\'e}hicule}{10}
+\contentsline {section}{\numberline {2.5}La classe Cerveau}{10}

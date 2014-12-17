@@ -106,7 +106,7 @@ public class Vehicule implements Observable {
 				l1[count] = a;
 				l2[count] = b;
 				// On se charge de faire un cycle (le 6 est suivi du 1)
-				// S'agissant des places R, leur identifiant est décalé de 10
+				// S'agissant des places R, leur identifiant est decale de 10
 				if (a == 16) {
 					a = 10;
 				}

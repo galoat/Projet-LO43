@@ -1,6 +1,6 @@
 package Exception;
 /**
- * classe permetant de gerer les exception causé par la classe RMap
+ * classe permetant de gerer les exception cause par la classe RMap
  * @author florian
  *
  */
