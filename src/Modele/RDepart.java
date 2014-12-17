@@ -15,11 +15,11 @@ import Exception.RDepartException;
  */
 public class RDepart {
 	/**
-	 * Un entier representant la place d'entr� du vehicule
+	 * Un entier representant la place d'entree du vehicule (tel qu'affichee pour l'utilisateur, c'est a dire 1 a 6)
 	 */
  private int debut;
  /**
-  * un entier representant la place de sortie du vehicule
+  * un entier representant la place de sortie du vehicule (tel qu'affichee pour l'utilisateur, c'est a dire 1 a 6)
   */
  private int fin;
 /**

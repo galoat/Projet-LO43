@@ -62,10 +62,33 @@ public class FlotteVehicules {
 	 */
 	//exception si la liste des vehicule est compléte ?
 	public void donnerPassager(Passager m)throws FlotteException {
-		
-		
+		int i=0;
+		while(!vehicules.get(i).isDispo()){
+			i++;
+		}
+		vehicules.get(i).setDispo(false);
+		vehicules.get(i).setPassager(m);
+		vehicules.get(i).setCerveau(new Cerveau(vehicules.get(i)));
+		vehicules.get(i).getCerveau().start();
 	}
 
+	public void liberer(int iD){
+		int i=0;
+		while(vehicules.get(i).getID() != iD){
+			i++;
+		}
+		vehicules.get(i).setDispo(true);
+	}
+	
+	public void lancerVehicule(int iD,boolean start){
+		int i=0;
+		while(vehicules.get(i).getID() != iD){
+			i++;
+		}
+		vehicules.get(i).getCerveau().setMaj(true);
+		vehicules.get(i).getCerveau().setStart(start);
+	}
+	
 	/**
 	 * Retourn la capaciter en nombre de vehicule du plateau
 	 * @return la capaciter en nombre de vehicule du plateau

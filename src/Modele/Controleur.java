@@ -140,7 +140,8 @@ public class Controleur implements Observable {
 	 * @param r
 	 *            une requete de depart
 	 */
-	private void traiteRequete(RDepart r) {
+	//A CHANGER EN PRIVATE
+	public void traiteRequete(RDepart r) {
 
 		Passager p = new Passager(r.getDebut(), r.getFin());
 		try {
@@ -165,7 +166,7 @@ public class Controleur implements Observable {
 	 *            une requete de fin de trajet
 	 */
 	private void traiteRequete(RFinTrajet r) {
-		
+		maFlotte.liberer(r.getIdentifiant());
 	}
 
 	/**
@@ -178,11 +179,11 @@ public class Controleur implements Observable {
 	 */
 	private void traiteRequete(RMap r) {
 		ArrayList<Boolean> m = r.getRequest_map();
-		// conteur pour savoir ou on en est dans les boucles
+		// compteur pour savoir ou on en est dans les boucles
 		int i = 0;
-		// il y auras au maximum 8 route de reserver+ l'ietreateur sur ce
+		// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
 		// tableau
-		int[] tab = new int[8];
+		int[] tab = new int[5];
 		int iterateurTab = 0;
 		// entier pour savoir combien de true il y a dans la requestMapr e
 		// general
@@ -209,7 +210,9 @@ public class Controleur implements Observable {
 			for(int j=0;j<i;j++){
 				general.put(tab[i], false);
 			}
-			//ajout au cerveaux !!
+			maFlotte.lancerVehicule(r.getIdentifiant(), true);
+		}else{
+			maFlotte.lancerVehicule(r.getIdentifiant(), true);
 		}
 	}
 

@@ -128,16 +128,6 @@ public class Simulation extends MainPan implements Observer{
 		this.add(map, BorderLayout.CENTER);
 		this.add(buttonpan, BorderLayout.SOUTH);
 		
-		//+ + + + + + + + + + + + + + + + + + + 
-		//TEST
-		//+ + + + + + + + + + + + + + + + + + + 
-		
-		int DEPARTVEH = 6, ARRIVEEVEH = 0;
-		Vehicule veh = new Simulation.Vehicule(0, places.get(DEPARTVEH).x, places.get(DEPARTVEH).y, 3, "toto");
-		veh.xdest=places.get(ARRIVEEVEH).x;
-		veh.ydest=places.get(ARRIVEEVEH).y;
-		vehicules.add(veh);
-		veh.start();
 	}
 	/**
 	 * Fonction construisant la liste des differentes places de la map, ainsi que leurs coordonnees

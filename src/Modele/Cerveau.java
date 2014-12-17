@@ -16,10 +16,6 @@ public class Cerveau extends Thread {
 	/**
 	 * Run du thread, qui permet de gerer les requetes du vehicule et son
 	 * deplacement
-	 * 
-	 * @param p
-	 *            Un passager, indiquant les places de d&eacute;part et
-	 *            d'arriv&eacute;e
 	 */
 	public void run() {
 		int i=0;
@@ -46,6 +42,7 @@ public class Cerveau extends Thread {
 			//Si la voiture graphique a termine de bouger
 			if(graphtop){
 				graphtop=false;
+				corps.sendRLib(i);
 				i++;
 				//Nouvelles coordonnees
 				corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i));

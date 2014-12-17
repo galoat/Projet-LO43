@@ -80,8 +80,8 @@ public class Vehicule implements Observable {
 		trajet.clear();
 		// On stocke les places de depart et de fin (on parle ici des places R,
 		// pas des places d'entree ou de sortie)
-		int dep = p.getDebut();
-		int fin = p.getFin();
+		int dep = p.getDebut() + 10;
+		int fin = p.getFin() + 10;
 		int a, b;
 		int count = -1;
 		// On cree deux tableaux pour parcourir la carte dans les deux sens
@@ -130,6 +130,7 @@ public class Vehicule implements Observable {
 		// On termine par la place R finale, puis la place d'arrivee (R + 10)
 		trajet.add(fin);
 		trajet.add(fin + 10);
+		
 	}
 
 	/**
@@ -160,6 +161,12 @@ public class Vehicule implements Observable {
 		boite.addRequete(rmap);
 	}
 	
+	// Fonction pour liberer une place devenue inutile
+	public void sendRLib(int place) {
+		RLib rlib = new RLib(place);
+		boite.addRequete(rlib);
+	}
+		
 	public void sendRFinTrajet() {
 		RFinTrajet rfin = new RFinTrajet(ID);
 		boite.addRequete(rfin);
@@ -192,6 +199,26 @@ public class Vehicule implements Observable {
 	@Override
 	public int notifyDebutMission(int dep) {
 		return obs.updateDebutMission(dep);
+	}
+
+	public boolean isDispo() {
+		return dispo;
+	}
+
+	public void setDispo(boolean dispo) {
+		this.dispo = dispo;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public Passager getPassager() {
+		return passager;
+	}
+
+	public void setPassager(Passager passager) {
+		this.passager = passager;
 	}
 
 }
