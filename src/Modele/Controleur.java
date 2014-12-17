@@ -168,7 +168,12 @@ public class Controleur implements Observable {
 	}
 
 	public void updateArriveeTemp(int iD) {
-		// La partie graphique a fini son chemin
+		for(Vehicule v : maFlotte.getVehicules()){
+			//On se place sur le vehicule auquel est lie le vehicule graphique
+			if(v.getCerveau().getiDVehiculeGraphique()==iD){
+				v.getCerveau().setGraphtop(true);
+			}
+		}
 	}
 
 	public BoiteAuxLettres getBoite() {
@@ -199,9 +204,15 @@ public class Controleur implements Observable {
 		listObserver = new ArrayList<Observer>();
 	}
 
+
 	@Override
-	public void notifyCoords(int iD, int dep, int ar) {
+	public void notifyCoords(int iD, int suivant) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int notifyDebutMission(int dep) {
+		return 0;
 	}
 }

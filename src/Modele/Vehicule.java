@@ -26,7 +26,6 @@ public class Vehicule implements Observable {
 	 * unique
 	 */
 	int ID;
-	int graphID;
 
 	/**
 	 * Tableau d'Integer contenant le trajet que le v&eacute;hicule souhaite
@@ -38,6 +37,15 @@ public class Vehicule implements Observable {
 	private Observer obs;
 	private BoiteAuxLettres boite;
 	public boolean dispo;
+	private Cerveau cerveau;
+	public Cerveau getCerveau() {
+		return cerveau;
+	}
+
+	public void setCerveau(Cerveau cerveau) {
+		this.cerveau = cerveau;
+	}
+
 	/**
 	 * Passager permettant de conna&icirc;tre le point de depart et
 	 * d'arriv&eacute;e du v&eacute;hicule
@@ -151,6 +159,11 @@ public class Vehicule implements Observable {
 	public void sendRMap(RMap rmap) {
 		boite.addRequete(rmap);
 	}
+	
+	public void sendRFinTrajet() {
+		RFinTrajet rfin = new RFinTrajet(ID);
+		boite.addRequete(rfin);
+	}
 
 	@Override
 	public void addObserver(Observer obs) {
@@ -165,14 +178,20 @@ public class Vehicule implements Observable {
 	}
 
 	@Override
-	public void notifyCoords(int iD, int dep, int ar) {
-		obs.updateCoords(iD, dep, ar);
-	}
-
-	@Override
 	public void notifyObserver(String str) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void notifyCoords(int iD, int suivant) {
+		obs.updateCoords(iD, suivant);
+		
+	}
+
+	@Override
+	public int notifyDebutMission(int dep) {
+		return obs.updateDebutMission(dep);
 	}
 
 }

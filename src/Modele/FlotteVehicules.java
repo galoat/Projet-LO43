@@ -33,6 +33,10 @@ public class FlotteVehicules {
 	
 	
 	
+	public ArrayList<Vehicule> getVehicules() {
+		return vehicules;
+	}
+
 	/**
 	 * Constructeur de FlotteVehicules
 	 * @param c

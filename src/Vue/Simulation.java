@@ -39,7 +39,7 @@ public class Simulation extends MainPan implements Observer{
 	private String[] tab = { "1", "2", "3", "4", "5", "6" };
 	private ArrayList<Place> places;
 	private ArrayList<Vehicule> vehicules;
-	private int centerx = 145, centery = 166, r = 25, dist = 132;
+	private int centerx = 145, centery = 166, r = 25, dist = 132, iD = 0;
 	private Verificateur verif;
 
 	/**
@@ -149,8 +149,11 @@ public class Simulation extends MainPan implements Observer{
 		 * Ainsi, l'angle de C-3 est de PI/6 => Les coordonnees de 3 (par raport a C) sont (sqrt(3)/2, 1/2)
 		 * On effectue ensuite un changement de repere pour otenir les coordonnees absolues du point
 		 */
+		
+		//PENSER A AJOUTER LES AUTRES PLACES
 		places = new ArrayList<Place>();
-		places.add(new Place(0, centerx, centery));//C
+		
+		//A REMPLACER PAR LES VRAIES COORDONNEES
 		places.add(new Place(1, (int) (centerx - (dist / 2) * Math.sqrt(3)),
 				(centery - (dist / 2))));//1
 		places.add(new Place(2, centerx, centery - dist));//2
@@ -161,6 +164,31 @@ public class Simulation extends MainPan implements Observer{
 		places.add(new Place(5, centerx, centery + dist));//5
 		places.add(new Place(6, (int) (centerx - (dist / 2) * Math.sqrt(3)),
 				centery + (dist / 2)));//6
+		
+		//CES PLACES SONT JUSTES
+		places.add(new Place(11, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+				(centery - (dist / 2))));//1
+		places.add(new Place(12, centerx, centery - dist));//2
+		places.add(new Place(13, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+				centery - (dist / 2)));//3
+		places.add(new Place(14, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+				centery + (dist / 2)));//4
+		places.add(new Place(15, centerx, centery + dist));//5
+		places.add(new Place(16, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+				centery + (dist / 2)));//6
+		
+		//A REMPLACER PAR LES VRAIES COORDONNEES
+		places.add(new Place(21, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+				(centery - (dist / 2))));//1
+		places.add(new Place(22, centerx, centery - dist));//2
+		places.add(new Place(23, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+				centery - (dist / 2)));//3
+		places.add(new Place(24, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+				centery + (dist / 2)));//4
+		places.add(new Place(25, centerx, centery + dist));//5
+		places.add(new Place(26, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+				centery + (dist / 2)));//6
+		places.add(new Place(30, centerx, centery));//C
 	}
 	/**
 	 * Fonction mettant a jour la destination d'un vehicule donne
@@ -168,11 +196,22 @@ public class Simulation extends MainPan implements Observer{
 	 * @param dep Son pointde depart
 	 * @param ar Son point d'arrivee
 	 */
-	public void updateCoords(int ID, int dep, int ar) {
-		for (Vehicule v : vehicules) {
-			if (v.iD == ID) {
-				v.xdest = places.get(ID).x;
-				v.xdest = places.get(ID).y;
+	public void updateCoords(int ID, int suivant) {
+		//Si c'est la fin du trajet
+		if(suivant == 99){
+			for (Vehicule v : vehicules) {
+				//On enleve le vehicule graphique
+				if (v.iD == ID) {
+					vehicules.remove(v);
+				}
+			}
+		}else{
+			for (Vehicule v : vehicules) {
+				if (v.iD == ID) {
+					//ATTENTION ! FAUX ! Il faut readapter avec les bons identifiants
+					v.xdest = places.get(suivant).x;
+					v.xdest = places.get(suivant).y;
+				}
 			}
 		}
 	}
@@ -378,5 +417,17 @@ public class Simulation extends MainPan implements Observer{
 	public void update(String str) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	
+	//appellee lorsqu'un nouveau vehicule graphique doit etre cree (debut d'un trajet)
+	@Override
+	public int updateDebutMission(int dep) {
+		//ATTENTION ! FAUX ! IL FAUT READAPTER L'IDENTIFIANT DU DEPART AVEC LES PLACES D'ENTREE
+		Vehicule veh = new Simulation.Vehicule(iD, places.get(dep).x, places.get(dep).y, 3, "toto");
+		iD++;
+		vehicules.add(veh);
+		veh.start();
+		return iD-1;
 	}
 }
