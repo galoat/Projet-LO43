@@ -210,7 +210,6 @@ public class Simulation extends MainPan implements Observer{
 				if (v.iD == ID) {
 					v.xdest = places.get(i).x;
 					v.ydest = places.get(i).y;
-					System.out.println("X : " + places.get(i).x + " Y : " + places.get(i).y);
 				}
 			}
 		}
@@ -252,11 +251,6 @@ public class Simulation extends MainPan implements Observer{
 			try {
 				img = ImageIO
 						.read(this.getClass().getResource("Map_proj2.png"));
-				veh0 = ImageIO.read(this.getClass().getResource("veh0.png"));
-				veh1 = ImageIO.read(this.getClass().getResource("veh1.png"));
-				veh2 = ImageIO.read(this.getClass().getResource("veh2.png"));
-				veh3 = ImageIO.read(this.getClass().getResource("veh3.png"));
-				veh4 = ImageIO.read(this.getClass().getResource("veh4.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -265,8 +259,6 @@ public class Simulation extends MainPan implements Observer{
 		 * Surcharge de la fonction paintComponent, pour peindre la map et les vehicules
 		 */
 		protected void paintComponent(Graphics g) {
-			Image temp;
-			int decalx=0, decaly=0;
 			Graphics2D g2d = (Graphics2D)g;
 			g.setColor(new Color(52, 52, 52));
 			//On redessine le fond
@@ -277,23 +269,6 @@ public class Simulation extends MainPan implements Observer{
 			//On dessine les vehicules
 			for (Vehicule v : vehicules) {
 				//A chaque type de vehicule correspond une image differente
-				switch (v.type) {
-				case 1:
-					temp=veh1;
-					break;
-				case 2:
-					temp=veh2;
-					break;
-				case 3:
-					temp=veh3;
-					break;
-				case 4:
-					temp=veh4;
-					break;
-				default:
-					temp=veh0;
-					break;
-				}
 				/*
 				 *On tourne l'image pour qu'elle s'aligne sur la trajectoire du vehicule
 				 *Ensuite on la deplace aux coordonnees voulues 
@@ -301,35 +276,12 @@ public class Simulation extends MainPan implements Observer{
 				AffineTransform rotation = new AffineTransform();
 				int coef = 1;
 				
-				System.out.println("Trans X : " + (v.x-temp.getWidth(null)/2 - decalx) + " Trans Y : " + (v.y-temp.getHeight(null)/2  + decaly));
-				System.out.println("xd-xi : " + (v.xdest-v.xi) + "yd-yi : " + (v.ydest-v.yi));
-				double angle = Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2)));
-				System.out.println(Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2))));
-				/*if(Double.isNaN(angle)){
-					angle=0.0;
-				}*/
-				if(v.xdest<v.xi || v.ydest<v.yi){
-					if(v.xdest<v.xi && v.ydest>v.yi){
-						decalx=(int) (temp.getHeight(null)*Math.cos(1.57-angle));
-						decaly=(int) (temp.getHeight(null)*Math.sin(1.57-angle));
-					}else{
-						if(v.xdest<v.xi){
-							decalx=(int) -(temp.getHeight(null)*Math.cos(1.57-angle));
-							decaly=(int) (temp.getHeight(null)*Math.sin(1.57-angle));
-						}
-						coef = -coef;
-					}
-				}
-				System.out.println(Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2))));
-				System.out.println("Trans X : " + (v.x-temp.getWidth(null)/2 - decalx) + " Trans Y : " + (v.y-temp.getHeight(null)/2  + decaly) + " Angle : " + angle);
-				
-				System.out.println("xd-xi : " + (v.xdest-v.xi) + "yd-yi : " + (v.ydest-v.yi));
-				rotation.translate(v.x-temp.getWidth(null)/2 - decalx, v.y-temp.getHeight(null)/2  + decaly);
-				rotation.rotate(angle,(int)(temp.getWidth(null)/2),(int)(temp.getHeight(null)/2));
-				if(decalx != 0){
+				rotation.translate(v.x-v.apparence.getWidth(null)/2 - v.decalx, v.y-v.apparence.getHeight(null)/2  + v.decaly);
+				rotation.rotate(v.angle,(int)(v.apparence.getWidth(null)/2),(int)(v.apparence.getHeight(null)/2));
+				if(v.decalx != 0){
 					rotation.scale(1.0, -1.0);
 				}
-				g2d.drawImage(temp, rotation, null);
+				g2d.drawImage(v.apparence, rotation, null);
 			}
 		}
 	}
@@ -363,7 +315,9 @@ public class Simulation extends MainPan implements Observer{
 	 */
 	public class Vehicule extends Thread {
 
-		int iD, x, y, xi, yi, xdest, ydest, type;
+		int iD, x, y, xi, yi, xdest, ydest, type, coef, decalx, decaly;
+		double angle;
+		Image apparence;
 		/**
 		 * Constructeur du vehicule
 		 * @param iD Identifiant du vehicule
@@ -383,18 +337,39 @@ public class Simulation extends MainPan implements Observer{
 			this.ydest = y;
 			this.xi=x;
 			this.yi=x;
+			try {
+				apparence = ImageIO.read(this.getClass().getResource("veh"+type+".png"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		/**
 		 * Fonction run() du thread
 		 */
 		public void run(){
 			//map.repaint();
-			System.out.println("LANCEE");
 			while(true){
 				//Si la destination a ete modifiee
 				if(x != xdest || y != ydest){
 					this.xi = x;
 					this.yi = y;
+					decalx = 0;
+					decaly = 0;
+					coef = 1;
+					angle = Math.acos((xdest-xi)/Math.sqrt(Math.pow(xdest-xi,2)+Math.pow(ydest-yi,2)));
+					if(xdest<xi || ydest<yi){
+						if(xdest<xi && ydest>yi){
+							decalx=(int) (apparence.getHeight(null)*Math.cos(1.57-angle));
+							decaly=(int) (apparence.getHeight(null)*Math.sin(1.57-angle));
+						}else{
+							if(xdest<xi){
+								decalx=(int) -(apparence.getHeight(null)*Math.cos(1.57-angle));
+								decaly=(int) (apparence.getHeight(null)*Math.sin(1.57-angle));
+							}
+							coef = -coef;
+						}
+					}angle = angle * coef;
 					//On calcule les deltas necessaires aux deplacements
 					float dX = (xdest - x)/(float)200;
 				    float dY = (ydest - y)/(float)200;
@@ -413,12 +388,9 @@ public class Simulation extends MainPan implements Observer{
 				    	x = Math.round(xt);
 				    	y = Math.round(yt);
 				    	//et on relance le paint
-				    	System.out.println("LANCEE2");
 				    	map.repaint();
 				    }
 				    //Lorsqu'on est arrive, on le notifie
-				    xi=xdest;
-				    yi=ydest;
 				    verif.notifArrivee(iD);
 				}
 				//Sinon on attend une modification
