@@ -18,7 +18,7 @@ public class Cerveau extends Thread {
 	 * deplacement
 	 */
 	public void run() {
-		int i=0;
+		int i=1;
 		corps.findPath(corps.passager);
 		System.out.println("Trajet trouve");
 		requestmap = corps.trajetToMap(corps.trajet);
@@ -40,16 +40,15 @@ public class Cerveau extends Thread {
 		//On se positionne au depart
 		iDVehiculeGraphique = corps.notifyDebutMission(corps.trajet.get(0));
 		System.out.println("Depart : " + corps.trajet.get(0));
-		
 		//Et on va de points en points
-		while (i < corps.trajet.size()-1) {
+		while (i < corps.trajet.size()) {
 			//Si la voiture graphique a termine de bouger
 			if(graphtop){
 				graphtop=false;
-				corps.sendRLib(i);
+				corps.sendRLib(corps.trajet.get(i-1));
 				i++;
 				//Nouvelles coordonnees
-				corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i));
+				corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i-1));
 			}else{
 				try {
 					sleep(100);
@@ -59,6 +58,7 @@ public class Cerveau extends Thread {
 				}
 			}
 		}//Le trajet est termine
+		corps.sendRLib(corps.trajet.get(i-1));
 		corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond e la fin du trajet
 		corps.sendRFinTrajet();
 	}

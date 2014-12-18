@@ -25,7 +25,7 @@ public class Main {
 			e1.printStackTrace();
 		}
 		try {
-			r = new RDepart(1, 4);
+			r = new RDepart(1, 5);
 			c.traiteRequete(r);
 		} catch (RDepartException e) {
 			// TODO Auto-generated catch block

@@ -150,15 +150,15 @@ public class Simulation extends MainPan implements Observer{
 		places = new ArrayList<Place>();
 		
 		//A REMPLACER PAR LES VRAIES COORDONNEES
-		places.add(new Place(1, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+		places.add(new Place(1, (int) (centerx - (dist / 2) * Math.sqrt(3))-1,
 				(centery - (dist / 2))));//1
-		places.add(new Place(2, centerx, centery - dist));//2
-		places.add(new Place(3, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+		places.add(new Place(2, centerx-1, centery - dist));//2
+		places.add(new Place(3, (int) (centerx + (dist / 2) * Math.sqrt(3))-1,
 				centery - (dist / 2)));//3
-		places.add(new Place(4, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+		places.add(new Place(4, (int) (centerx + (dist / 2) * Math.sqrt(3))-1,
 				centery + (dist / 2)));//4
-		places.add(new Place(5, centerx, centery + dist));//5
-		places.add(new Place(6, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+		places.add(new Place(5, centerx-1, centery + dist));//5
+		places.add(new Place(6, (int) (centerx - (dist / 2) * Math.sqrt(3))-1,
 				centery + (dist / 2)));//6
 		
 		//CES PLACES SONT JUSTES
@@ -174,15 +174,15 @@ public class Simulation extends MainPan implements Observer{
 				centery + (dist / 2)));//6
 		
 		//A REMPLACER PAR LES VRAIES COORDONNEES
-		places.add(new Place(21, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+		places.add(new Place(21, (int) (centerx - (dist / 2) * Math.sqrt(3))-1,
 				(centery - (dist / 2))));//1
-		places.add(new Place(22, centerx, centery - dist));//2
-		places.add(new Place(23, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+		places.add(new Place(22, centerx-1, centery - dist));//2
+		places.add(new Place(23, (int) (centerx + (dist / 2) * Math.sqrt(3))-1,
 				centery - (dist / 2)));//3
-		places.add(new Place(24, (int) (centerx + (dist / 2) * Math.sqrt(3)),
+		places.add(new Place(24, (int) (centerx + (dist / 2) * Math.sqrt(3))-1,
 				centery + (dist / 2)));//4
-		places.add(new Place(25, centerx, centery + dist));//5
-		places.add(new Place(26, (int) (centerx - (dist / 2) * Math.sqrt(3)),
+		places.add(new Place(25, centerx-1, centery + dist));//5
+		places.add(new Place(26, (int) (centerx - (dist / 2) * Math.sqrt(3))-1,
 				centery + (dist / 2)));//6
 		places.add(new Place(30, centerx, centery));//C
 	}
@@ -349,9 +349,11 @@ public class Simulation extends MainPan implements Observer{
 		 */
 		public void run(){
 			//map.repaint();
+			System.out.println("Da");
 			while(true){
 				//Si la destination a ete modifiee
 				if(x != xdest || y != ydest){
+					System.out.println("Da2");
 					this.xi = x;
 					this.yi = y;
 					decalx = 0;
@@ -420,9 +422,7 @@ public class Simulation extends MainPan implements Observer{
 		while(places.get(i).iD != dep){
 			i++;
 		}
-		System.out.println("Depart : " + i + " Place : " + dep);
-		System.out.println("X depart : " + places.get(dep).x + " Y depart : " + places.get(dep).y);
-		Vehicule veh = new Simulation.Vehicule(iD, places.get(dep).x, places.get(dep).y, 3, "toto");
+		Vehicule veh = new Simulation.Vehicule(iD, places.get(i).x, places.get(i).y, 3, "toto");
 		iD++;
 		vehicules.add(veh);
 		veh.start();
