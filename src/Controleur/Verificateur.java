@@ -3,6 +3,7 @@ package Controleur;
 import Exception.RDepartException;
 import Exception.RequeteException;
 import Modele.Controleur;
+import Modele.Observer;
 import Modele.RDepart;
 
 public class Verificateur {
@@ -16,6 +17,9 @@ public class Verificateur {
 		model.updateArriveeTemp(iD);
 	}
 
+	public void obsVehicules(Observer obs){
+		model.updateObsVehicules(obs);
+	}
 	public void newRequest(int dep, int ar) throws RequeteException, RDepartException{
 		if(dep != ar){
 			RDepart m =new RDepart(dep, ar);

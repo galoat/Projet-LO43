@@ -127,7 +127,13 @@ public class Simulation extends MainPan implements Observer{
 		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.WEST);
 		this.add(map, BorderLayout.CENTER);
 		this.add(buttonpan, BorderLayout.SOUTH);
-		
+		verif.obsVehicules(this);
+		/*//TEST ++++++++++++++++++++++++++++++++++++++++++
+		Vehicule veh = new Vehicule(0, places.get(18).x, places.get(18).y, 3, "nunu");
+		veh.xdest=places.get(9).x;
+		veh.ydest=places.get(9).y;
+		vehicules.add(veh);
+		veh.start();*/
 	}
 	/**
 	 * Fonction construisant la liste des differentes places de la map, ainsi que leurs coordonnees
@@ -187,6 +193,7 @@ public class Simulation extends MainPan implements Observer{
 	 * @param ar Son point d'arrivee
 	 */
 	public void updateCoords(int ID, int suivant) {
+		int i = 0;
 		//Si c'est la fin du trajet
 		if(suivant == 99){
 			for (Vehicule v : vehicules) {
@@ -196,11 +203,14 @@ public class Simulation extends MainPan implements Observer{
 				}
 			}
 		}else{
+			while(places.get(i).iD != suivant){
+				i++;
+			}
 			for (Vehicule v : vehicules) {
 				if (v.iD == ID) {
-					//ATTENTION ! FAUX ! Il faut readapter avec les bons identifiants
-					v.xdest = places.get(suivant).x;
-					v.xdest = places.get(suivant).y;
+					v.xdest = places.get(i).x;
+					v.ydest = places.get(i).y;
+					System.out.println("X : " + places.get(i).x + " Y : " + places.get(i).y);
 				}
 			}
 		}
@@ -289,20 +299,32 @@ public class Simulation extends MainPan implements Observer{
 				 *Ensuite on la deplace aux coordonnees voulues 
 				 */
 				AffineTransform rotation = new AffineTransform();
+				int coef = 1;
+				
+				System.out.println("Trans X : " + (v.x-temp.getWidth(null)/2 - decalx) + " Trans Y : " + (v.y-temp.getHeight(null)/2  + decaly));
+				System.out.println("xd-xi : " + (v.xdest-v.xi) + "yd-yi : " + (v.ydest-v.yi));
 				double angle = Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2)));
-				if(v.xdest<v.xi){
-					decalx=(int) (temp.getHeight(null)*Math.cos(1.57-angle));
-					decaly=(int) (temp.getHeight(null)*Math.sin(1.57-angle));
-				}
+				System.out.println(Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2))));
+				/*if(Double.isNaN(angle)){
+					angle=0.0;
+				}*/
 				if(v.xdest<v.xi || v.ydest<v.yi){
 					if(v.xdest<v.xi && v.ydest>v.yi){
-						
+						decalx=(int) (temp.getHeight(null)*Math.cos(1.57-angle));
+						decaly=(int) (temp.getHeight(null)*Math.sin(1.57-angle));
 					}else{
-						angle = -angle;
+						if(v.xdest<v.xi){
+							decalx=(int) -(temp.getHeight(null)*Math.cos(1.57-angle));
+							decaly=(int) (temp.getHeight(null)*Math.sin(1.57-angle));
+						}
+						coef = -coef;
 					}
 				}
+				System.out.println(Math.acos((v.xdest-v.xi)/Math.sqrt(Math.pow(v.xdest-v.xi,2)+Math.pow(v.ydest-v.yi,2))));
+				System.out.println("Trans X : " + (v.x-temp.getWidth(null)/2 - decalx) + " Trans Y : " + (v.y-temp.getHeight(null)/2  + decaly) + " Angle : " + angle);
 				
-				rotation.translate(v.x-temp.getWidth(null)/2 + decalx, v.y-temp.getHeight(null)/2  + decaly);
+				System.out.println("xd-xi : " + (v.xdest-v.xi) + "yd-yi : " + (v.ydest-v.yi));
+				rotation.translate(v.x-temp.getWidth(null)/2 - decalx, v.y-temp.getHeight(null)/2  + decaly);
 				rotation.rotate(angle,(int)(temp.getWidth(null)/2),(int)(temp.getHeight(null)/2));
 				if(decalx != 0){
 					rotation.scale(1.0, -1.0);
@@ -332,6 +354,7 @@ public class Simulation extends MainPan implements Observer{
 			this.x = x;
 			this.y = y;
 		}
+		
 	}
 	/**
 	 * Le vehicule est la version graphique de celui du modele : il est charge d'afficher le deplacement de celui-ci
@@ -359,15 +382,19 @@ public class Simulation extends MainPan implements Observer{
 			this.xdest = x;
 			this.ydest = y;
 			this.xi=x;
-			this.yi=y;
+			this.yi=x;
 		}
 		/**
 		 * Fonction run() du thread
 		 */
 		public void run(){
+			//map.repaint();
+			System.out.println("LANCEE");
 			while(true){
 				//Si la destination a ete modifiee
 				if(x != xdest || y != ydest){
+					this.xi = x;
+					this.yi = y;
 					//On calcule les deltas necessaires aux deplacements
 					float dX = (xdest - x)/(float)200;
 				    float dY = (ydest - y)/(float)200;
@@ -386,9 +413,12 @@ public class Simulation extends MainPan implements Observer{
 				    	x = Math.round(xt);
 				    	y = Math.round(yt);
 				    	//et on relance le paint
+				    	System.out.println("LANCEE2");
 				    	map.repaint();
 				    }
 				    //Lorsqu'on est arrive, on le notifie
+				    xi=xdest;
+				    yi=ydest;
 				    verif.notifArrivee(iD);
 				}
 				//Sinon on attend une modification
@@ -414,6 +444,12 @@ public class Simulation extends MainPan implements Observer{
 	@Override
 	public int updateDebutMission(int dep) {
 		//ATTENTION ! FAUX ! IL FAUT READAPTER L'IDENTIFIANT DU DEPART AVEC LES PLACES D'ENTREE
+		int i = 0;
+		while(places.get(i).iD != dep){
+			i++;
+		}
+		System.out.println("Depart : " + i + " Place : " + dep);
+		System.out.println("X depart : " + places.get(dep).x + " Y depart : " + places.get(dep).y);
 		Vehicule veh = new Simulation.Vehicule(iD, places.get(dep).x, places.get(dep).y, 3, "toto");
 		iD++;
 		vehicules.add(veh);

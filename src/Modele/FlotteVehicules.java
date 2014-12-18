@@ -89,6 +89,11 @@ public class FlotteVehicules {
 		vehicules.get(i).getCerveau().setStart(start);
 	}
 	
+	public void setObsVehicules(Observer obs){
+		for(Vehicule v : vehicules){
+			v.addObserver(obs);
+		}
+	}
 	/**
 	 * Retourn la capaciter en nombre de vehicule du plateau
 	 * @return la capaciter en nombre de vehicule du plateau

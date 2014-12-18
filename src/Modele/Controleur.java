@@ -219,7 +219,7 @@ public class Controleur implements Observable {
 	public void updateArriveeTemp(int iD) {
 		for (Vehicule v : maFlotte.getVehicules()) {
 			// On se place sur le vehicule auquel est lie le vehicule graphique
-			if (v.getCerveau().getiDVehiculeGraphique() == iD) {
+			if (v.getCerveau() != null && v.getCerveau().getiDVehiculeGraphique() == iD) {
 				v.getCerveau().setGraphtop(true);
 			}
 		}
@@ -251,6 +251,10 @@ public class Controleur implements Observable {
 
 	public void removeObserver() {
 		listObserver = new ArrayList<Observer>();
+	}
+	
+	public void updateObsVehicules(Observer obs){
+		maFlotte.setObsVehicules(obs);
 	}
 
 	@Override

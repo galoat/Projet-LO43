@@ -20,22 +20,26 @@ public class Cerveau extends Thread {
 	public void run() {
 		int i=0;
 		corps.findPath(corps.passager);
+		System.out.println("Trajet trouve");
 		requestmap = corps.trajetToMap(corps.trajet);
-		while (start != true) {
+		System.out.println("Request Map fabriquee");
+		//A REMETTRE
+		/*while (start != true) {
 			if (maj) {
 				corps.sendRMap(requestmap);
 				maj = false;
 			} else {
 				try {
-					wait(300);
+					sleep(300);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-		}
+		}*/System.out.println("Autorisation accordee");
 		//On se positionne au depart
 		iDVehiculeGraphique = corps.notifyDebutMission(corps.trajet.get(0));
+		System.out.println("Depart : " + corps.trajet.get(0));
 		
 		//Et on va de points en points
 		while (i < corps.trajet.size()-1) {
@@ -48,7 +52,7 @@ public class Cerveau extends Thread {
 				corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i));
 			}else{
 				try {
-					wait(100);
+					sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
