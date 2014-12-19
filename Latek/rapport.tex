@@ -114,7 +114,7 @@ Université de technologie de Belfort-Montbéliard
 
 \usepackage{array}
 \usepackage[T1]{fontenc}
-
+\usepackage[export]{adjustbox}
 \usepackage{color}
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
@@ -162,12 +162,12 @@ Nous présenterons tout d'abord le sujet, ses contraintes, et les libertés pris
 Le plateau donné par le sujet est le suivant :
 \vspace{0.5cm}
 
-\includegraphics[]{Images/Plateau}
+\includegraphics[frame]{Images/Plateau}
 \vspace{0.5cm}
 \\
 Chaque place, exceptée celle du centre, est rattachée à une place de départ et une place de sortie. Les voitures disposant d'un passager partent depuis une place d'entrée (que celui-ci leur donne) et, à la fin de celle-ci, rejoignent une place de sortie (même chose).\\
 La place centrale n'est utilisée que lors d'un trajet reliant deux places opposées...
-\subsection{Passagerss et contrôleur}
+\subsection{Passagers et contrôleur}
 Chaque passager doit être transporté d'une place à une autre. Pour ce faire, ils envoient une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci assignera cette mission à un des véhicules de sa flotte (sous la forme d'un passager, ayant un départ et une arrivée). Celui-ci calculera ensuite le trajet qu'il suivra pour la mener à bien.\\
 C'est alors le véhicule qui décide de partir : pour cela il doit envoyer une requête au contrôleur pour savoir si son chemin est déjà réservé. Si ce n'est pas le cas, le contrôleur l'autorise, et le véhicule part. La requête se fait sous la forme d'une Request Map, constituée de booléens indiquant l'intention du véhicule de réserver une place ou non.\\
 Pour exemple, lorsqu'une voiture désire aller de la place I1 à O2, elle aura besoin de réserver I1, R1, R2 et O2. La Request Map seras alors la suivante :

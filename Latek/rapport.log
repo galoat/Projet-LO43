@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 18:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 18:10
 entering extended mode
 **rapport.tex
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.tex
@@ -532,6 +532,54 @@ Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\adjustbox.sty"
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+\XKV@toks=\toks21
+\XKV@tempa@toks=\toks22
+\XKV@depth=\count117
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\adjcalc.sty"
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\trimclip.sty"
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\collectbox\collectbox.sty"
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box63
+)
+\tc@llx=\dimen138
+\tc@lly=\dimen139
+\tc@urx=\dimen140
+\tc@ury=\dimen141
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\tc-pdftex.def"
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen142
+\adjbox@Height=\dimen143
+\adjbox@Depth=\dimen144
+\adjbox@Totalheight=\dimen145
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ifoddpage\ifoddpage.sty"
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count118
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\varwidth.sty"
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box64
+\sift@deathcycles=\count119
+\@vwid@loff=\dimen146
+\@vwid@roff=\dimen147
+))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
@@ -567,17 +615,17 @@ LaTeX Info: Redefining \up on input line 137.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count117
-\scratchdimen=\dimen138
-\scratchbox=\box63
-\nofMPsegments=\count118
-\nofMParguments=\count119
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count120
-\MPscratchDim=\dimen139
-\MPnumerator=\count121
-\makeMPintoPDFobject=\count122
-\everyMPtoPDFconversion=\toks22
+\scratchcounter=\count120
+\scratchdimen=\dimen148
+\scratchbox=\box65
+\nofMPsegments=\count121
+\nofMParguments=\count122
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count123
+\MPscratchDim=\dimen149
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
+\everyMPtoPDFconversion=\toks24
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -613,7 +661,7 @@ LaTeX Info: Redefining \up on input line 137.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count123
+\c@lstlisting=\count126
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 139.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
@@ -664,13 +712,18 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ] [4
 
 ]
-<Images/Plateau.png, id=19, 398.99063pt x 224.33812pt>
+<Images/Plateau.png, id=19, 469.755pt x 259.7203pt>
 File: Images/Plateau.png Graphic file (type png)
-
-<use Images/Plateau.png>
+ <use Images/Plateau.png>
 Package pdftex.def Info: Images/Plateau.png used on input line 165.
-(pdftex.def)             Requested size: 398.98965pt x 224.33757pt.
- [5 <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/Plateau.png>] [6] [7
+(pdftex.def)             Requested size: 469.75386pt x 259.71967pt.
+
+Overfull \hbox (1.85698pt too wide) in paragraph at lines 165--170
+[][]
+ []
+
+[5 <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/Plateau.png>] [6]
+[7
 
 ]
 Chapitre 1.
@@ -763,13 +816,13 @@ Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 478.
 ]
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 6391 strings out of 493921
- 86125 string characters out of 3147257
- 266760 words of memory out of 3000000
- 9578 multiletter control sequences out of 15000+200000
+ 7124 strings out of 493921
+ 97552 string characters out of 3147257
+ 281080 words of memory out of 3000000
+ 10280 multiletter control sequences out of 15000+200000
  49876 words of font info for 41 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,7n,40p,891b,1635s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 35i,7n,72p,891b,1635s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.
@@ -778,7 +831,7 @@ iles/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on rapport.pdf (19 pages, 204237 bytes).
+Output written on rapport.pdf (19 pages, 223839 bytes).
 PDF statistics:
  102 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

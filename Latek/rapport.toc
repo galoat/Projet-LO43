@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {1.2}Objectif}{5}
 \contentsline {section}{\numberline {1.3}Reformulation du sujet}{5}
 \contentsline {subsection}{\numberline {1.3.1}Plateau}{5}
-\contentsline {subsection}{\numberline {1.3.2}Passagerss et contr\IeC {\^o}leur}{5}
+\contentsline {subsection}{\numberline {1.3.2}Passagers et contr\IeC {\^o}leur}{5}
 \contentsline {subsection}{\numberline {1.3.3}Contraintes et libert\IeC {\'e}s prises sur le sujet}{6}
 \contentsline {part}{II\hspace {1em}Conception UML}{7}
 \contentsline {chapter}{\numberline {1}Les Diagramme UML}{8}
