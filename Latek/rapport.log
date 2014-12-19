@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 14:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 16:42
 entering extended mode
 **rapport.tex
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.tex
@@ -515,9 +515,6 @@ File: listings.cfg 2014/09/06 1.5e listings configuration
 ))
 Package: listings 2014/09/06 1.5e (Carsten Heinz)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
-File: lstlang1.sty 2014/09/06 1.5e listings language file
-)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen136
@@ -526,27 +523,45 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \extratabsurround=\skip61
 \backup@length=\skip62
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+File: lstlang1.sty 2014/09/06 1.5e listings language file
+)
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 120.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 137.
+LaTeX Font Info:    ... okay on input line 137.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 137.
+LaTeX Font Info:    ... okay on input line 137.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 137.
+LaTeX Font Info:    ... okay on input line 137.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 137.
+LaTeX Font Info:    ... okay on input line 137.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 137.
+LaTeX Font Info:    ... okay on input line 137.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 137.
+LaTeX Font Info:    ... okay on input line 137.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 137.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \degres on input line 120.
-LaTeX Info: Redefining \dots on input line 120.
-LaTeX Info: Redefining \up on input line 120.
+LaTeX Info: Redefining \degres on input line 137.
+LaTeX Info: Redefining \dots on input line 137.
+LaTeX Info: Redefining \up on input line 137.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -597,12 +612,12 @@ LaTeX Info: Redefining \up on input line 120.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count123
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 123.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 139.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 123.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 139.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
@@ -651,7 +666,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 File: Images/Plateau.png Graphic file (type png)
 
 <use Images/Plateau.png>
-Package pdftex.def Info: Images/Plateau.png used on input line 149.
+Package pdftex.def Info: Images/Plateau.png used on input line 165.
 (pdftex.def)             Requested size: 398.98965pt x 224.33757pt.
  [5 <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/Plateau.png>] [6] [7
 
@@ -664,21 +679,21 @@ Chapitre 2.
 <Images/boite.png, id=35, 158.84344pt x 185.19188pt>
 File: Images/boite.png Graphic file (type png)
  <use Images/boite.png>
-Package pdftex.def Info: Images/boite.png used on input line 218.
+Package pdftex.def Info: Images/boite.png used on input line 234.
 (pdftex.def)             Requested size: 158.84305pt x 185.1914pt.
 
-Overfull \hbox (2.3529pt too wide) in paragraph at lines 218--219
+Overfull \hbox (2.3529pt too wide) in paragraph at lines 234--235
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--219
+Underfull \hbox (badness 10000) in paragraph at lines 232--235
 \T1/lmr/m/n/10 qu�tes dif-f�-rentes, sto-ck�es cha-cunes dans une liste dif-f�-
 rente :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 235--236
 
  []
 
@@ -686,10 +701,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 219--220
 File: Images/controleur.png Graphic file (type png)
 
 <use Images/controleur.png>
-Package pdftex.def Info: Images/controleur.png used on input line 236.
+Package pdftex.def Info: Images/controleur.png used on input line 252.
 (pdftex.def)             Requested size: 146.79807pt x 161.10147pt.
 
-Overfull \hbox (4.53429pt too wide) in paragraph at lines 236--237
+Overfull \hbox (4.53429pt too wide) in paragraph at lines 252--253
 [][] 
  []
 
@@ -701,14 +716,14 @@ riétaire/git/Projet-LO43/Latek/Images/controleur.png>]
 File: Images/cerveau.png Graphic file (type png)
 
 <use Images/cerveau.png>
-Package pdftex.def Info: Images/cerveau.png used on input line 254.
+Package pdftex.def Info: Images/cerveau.png used on input line 270.
 (pdftex.def)             Requested size: 125.71936pt x 121.20251pt.
  [10 <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/cerveau.png>] [11
 
 ]
 Chapitre 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--273
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
 
  []
 
@@ -721,125 +736,53 @@ Chapitre 4.
 ]
 Chapitre 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
+Underfull \hbox (badness 10000) in paragraph at lines 303--304
 
  []
 
 [14
 
-]
-Overfull \hbox (2.30807pt too wide) in paragraph at lines 341--342
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (8.30814pt too wide) in paragraph at lines 345--346
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (38.30844pt too wide) in paragraph at lines 363--364
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (230.3104pt too wide) in paragraph at lines 364--365
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][] 
- []
-
-
-Overfull \hbox (56.30862pt too wide) in paragraph at lines 366--367
-[][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (38.30844pt too wide) in paragraph at lines 381--382
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[15]
-Overfull \hbox (14.3082pt too wide) in paragraph at lines 387--388
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (20.30826pt too wide) in paragraph at lines 390--391
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (62.30869pt too wide) in paragraph at lines 401--402
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (38.30844pt too wide) in paragraph at lines 408--409
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (74.3088pt too wide) in paragraph at lines 409--410
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (26.30832pt too wide) in paragraph at lines 430--431
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[16]
-Overfull \hbox (26.30832pt too wide) in paragraph at lines 452--453
-[][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (26.30832pt too wide) in paragraph at lines 454--455
-[][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (72.49991pt too wide) in paragraph at lines 468--474
+] [15] [16] [17]
+Overfull \hbox (72.49991pt too wide) in paragraph at lines 485--491
 []\T1/lmr/m/n/10 public RDe-part get-De-part()  RDe-part r = new RDe-part(); //
  on re-cu-pere le ser-nier ele-ment r.clone(rDepart.get(rDepart.size()
  []
 
-[17
+[18
 
-] [18
+] [19
 
-] <Images/CasUtilisation.PNG, id=74, 685.8122pt x 291.33844pt>
+] <Images/CasUtilisation.PNG, id=77, 685.8122pt x 291.33844pt>
 File: Images/CasUtilisation.PNG Graphic file (type png)
 
 <use Images/CasUtilisation.PNG>
-Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 484.
+Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 501.
 (pdftex.def)             Requested size: 456.71866pt x 190.71915pt.
- [19
+ [20
 
- <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/CasUtilisation.PNG>] [20
+ <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/CasUtilisation.PNG>] [21
 
 ]
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 6321 strings out of 493921
- 84858 string characters out of 3147257
- 224403 words of memory out of 3000000
- 9518 multiletter control sequences out of 15000+200000
- 54139 words of font info for 42 fonts, out of 3000000 for 9000
+ 6370 strings out of 493921
+ 85774 string characters out of 3147257
+ 282603 words of memory out of 3000000
+ 9560 multiletter control sequences out of 15000+200000
+ 49876 words of font info for 41 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,7n,40p,792b,1613s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,7n,40p,792b,1635s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.
 enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-lm/lmri10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on rapport.pdf (20 pages, 225733 bytes).
+lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on rapport.pdf (21 pages, 204419 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
+ 108 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -46,9 +46,7 @@
 \newenvironment{algo}{\noindent \hspace{1.2em} {\bf \underline{Algorithm}} \\~\\ \begin{algorithm}[H] \SetAlgoLined }{\end{algorithm}  ~\\}
 
 \usepackage{listings}
-\lstset{ 
-language=java
-}
+
 
 \title{LO43 
      Flotte de véhicules autonomes}
@@ -115,10 +113,28 @@ Université de technologie de Belfort-Montbéliard
 }% 
 
 \usepackage{array}
+\usepackage[T1]{fontenc}
+
+\usepackage{color}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\usepackage{listings}
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+}
 
 
 \begin{document}
-
 
 \maketitle
 \tableofcontents
@@ -285,6 +301,7 @@ Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicu
 \chapter{Implementation en java}
 \section{Classe controleur}
 La fonction principal de cette classe et la methode traiteRequete, en effet il s'agit de la methode qui doit se charger de verifiersi il y a des requete dans la boite au lettre et si c'est le cas aors elle feras un type de traitement different celon le type de requete. De plus afin de correspondre avec les thread il faut que cette fonction attende le temps	que la liste soit mise a jour par les voitures.\\
+
 \begin{lstlisting}
 public void traiteRequete() {
 		if (boite.getSizeRFintrajet() != 0) {
@@ -433,10 +450,6 @@ public void findPath(Passager p) {
 		
 	}
 \end{lstlisting}
-
-\chapter*{Conclusion}
-
-
 Grace a cette liste de point la classe vas pouvoir generer une Request Map qui seras apres envoyer a la boite au lettre, formater comme indiquer  dans la partie requete.Voici sont implementation en JAVA:
 \begin{lstlisting}
 public RMap trajetToMap(ArrayList<Integer> trajet) {
@@ -459,6 +472,10 @@ public RMap trajetToMap(ArrayList<Integer> trajet) {
 		return rq;
 	}
 \end{lstlisting}
+\chapter*{Conclusion}
+
+
+
 \section{Classe Boite au lettres}
 Cette classe possede 4 listes, chacune de ces liste a le méme logique: dans un premier temps le controleur doit pouvoir acceder a la taille de cette liste afin de savoir si elle est vide ou non.
 \\
