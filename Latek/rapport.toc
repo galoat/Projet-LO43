@@ -18,11 +18,11 @@
 \contentsline {section}{\numberline {2.4}La classe Cerveau}{10}
 \contentsline {section}{\numberline {2.5}La Classe V\IeC {\'e}hicule}{10}
 \contentsline {part}{III\hspace {1em}Impl\IeC {\'e}mentation Java}{11}
-\contentsline {chapter}{\numberline {3}Choix d'architecture}{12}
-\contentsline {section}{\numberline {3.1}Le pattern MVC}{12}
-\contentsline {section}{\numberline {3.2}Des threads pour r\IeC {\'e}gir les d\IeC {\'e}placements}{12}
-\contentsline {chapter}{\numberline {4}Fonctions importantes}{13}
-\contentsline {section}{\numberline {4.1}Classe Controleur}{13}
-\contentsline {section}{\numberline {4.2}Classe Vehicule}{14}
-\contentsline {section}{\numberline {4.3}Classe Boite au lettres}{15}
-\contentsline {section}{\numberline {4.4}Classe Cerveau}{15}
+\contentsline {chapter}{\numberline {1}Choix d'architecture}{12}
+\contentsline {section}{\numberline {1.1}Le pattern MVC}{12}
+\contentsline {section}{\numberline {1.2}Des threads pour r\IeC {\'e}gir les d\IeC {\'e}placements}{12}
+\contentsline {chapter}{\numberline {2}Fonctions importantes}{13}
+\contentsline {section}{\numberline {2.1}Classe Controleur}{13}
+\contentsline {section}{\numberline {2.2}Classe Vehicule}{14}
+\contentsline {section}{\numberline {2.3}Classe Boite au lettres}{15}
+\contentsline {section}{\numberline {2.4}Classe Cerveau}{15}

@@ -280,7 +280,7 @@ En parallèle, le cerveau se charge également de synchroniser l'avancée du tra
 %\end{wrapfigure}
 Chaque véhicule possède un identifiant unique donné par la classe "Flotte de Véhicules" et stocké  dans un Integer "identifiant". Les véhicules sont instanciés sans trajet ni cerveau. Ceux-ci lui seront attribués plus tard, la de l'embarquement d'un passager. Le Cerveau se charge alors d'appeler les fonctions du véhicule pour calculer le trajet, envoyer des requêtes...
 A la fin de son trajet, seul le cerveau est détruit. Le véhicule  redevient alors libre, dans l'attente d'un nouveau passager.
-
+\setcounter{chapter}{0}
 \part{Implémentation Java}
 \chapter{Choix d'architecture}
 \section{Le pattern MVC}
@@ -468,15 +468,25 @@ public void run() {
 }
 \end{lstlisting}
 \chapter*{Conclusion}
+\vspace{7cm}
 Grâce à ce projet, vous avons pu faire une modélisation de notre projet a l'aide du langage UML. Ceci nous a permit d'en découvrir l'utilité et la practicité, ainsi que d'engager un travail de réflexion sur notre projet en amont... Nous avons alors pu économiser du temps sur un éventuel défaut d'architecture que l'on aurait pu commettre sans l'aide de ce langage. De plus, ce projet nous a fait découvrir de nouvelles fonctionnalités de Java, à savoir les Threads et les exception. Enfin, nous avons implémenté dans ce projet une Javadoc, afin que la communication entre les différents développeurs (notamment les futurs) soit plus simple. L'outil Git nous a également été d'une grande aide, pour stocker notre projet, gérer les différents bugs et simplifier la gestion d'un code à deux (versionnage, travail simultané sur un fichier, etc...).
 %  les annexesra
 \appendix
 %diagrame cas d'utilisation
 \begin{landscape}
-
 \chapter*{Annexe A}
-\includegraphics[width=455px, height=190px]{Images/CasUtilisation.PNG}
+\includegraphics[width=684px, height=290px]{Images/CasUtilisation.PNG}
 \end{landscape}
+\setcounter{page}{18}
+\begin{landscape}
 %diagrame de sequence
+\vspace{-5cm}
 \chapter*{Annexe B}
+\includegraphics[width=745px, height=354px]{Images/SequenceDiagram1.png}
+\end{landscape}
+\setcounter{page}{19}
+%diagrame de sequence
+\chapter*{Annexe C}
+\hspace{-2cm}\includegraphics[width=569px, height=632px]{Images/Diagrammedeclasses.png}
+
 \end{document}
