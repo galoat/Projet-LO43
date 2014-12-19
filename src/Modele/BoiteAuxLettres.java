@@ -38,7 +38,8 @@ public class BoiteAuxLettres {
 
 	private LinkedList<RMap> rMap;
 	/**
-	 * liste contenant toute les requetes qui sont utiliser pour librere les ressource
+	 * liste contenant toute les requetes qui sont utiliser pour librere les
+	 * ressource
 	 */
 	private LinkedList<RLib> rLib;
 
@@ -49,23 +50,24 @@ public class BoiteAuxLettres {
 	 * 
 	 */
 	BoiteAuxLettres() {
-		rLib=new LinkedList<RLib>();
+		rLib = new LinkedList<RLib>();
 		rFin = new LinkedList<RFinTrajet>();
 		rDepart = new LinkedList<RDepart>();
 		rMap = new LinkedList<RMap>();
 	}
+
 	/**
-	 * *
-	 * fonction servant a ajouter une requete de liberation  On ajoute cette requete
-	 * a la suite des autre requete de liberation.
+	 * * fonction servant a ajouter une requete de liberation On ajoute cette
+	 * requete a la suite des autre requete de liberation.
 	 * 
 	 * @param req
 	 *            La requete de liberation.
 	 * 
 	 */
-	 public void addRequete(RLib req){
-		 rLib.add(req);
-	 }
+	public void addRequete(RLib req) {
+		rLib.add(req);
+	}
+
 	/**
 	 * fonction servant a ajouter une requete de depart On ajoute cette requete
 	 * a la suite des autre requete de depart.
@@ -87,6 +89,21 @@ public class BoiteAuxLettres {
 	 */
 	public void addRequete(RFinTrajet req) {
 		rFin.add(req);
+	}
+
+	/**
+	 * fonction servant a suprimer le requete multiple presente dans rLib
+	 * lorsque on trouber le bon chemin
+	 * @param Id : un entier etant l'identifiant du vehicule
+	 */
+	public void supressionDoublon(int Id) {
+		int i=0;
+		for(RMap r : rMap){
+			if(r.getIdentifiant()==Id){
+				rMap.remove(i);
+			}
+		}
+		i++;
 	}
 
 	/**
@@ -129,15 +146,17 @@ public class BoiteAuxLettres {
 		return r;
 
 	}
+
 	/**
 	 * fonction permettant de recuperer la requete de liberation dees ressource
 	 */
-	public RLib getRLib(){
-		RLib r= new RLib();
-		r.clone(rLib.get(rLib.size()-1));
-		rLib.remove(rLib.size()-1);
+	public RLib getRLib() {
+		RLib r = new RLib();
+		r.clone(rLib.get(rLib.size() - 1));
+		rLib.remove(rLib.size() - 1);
 		return r;
 	}
+
 	/**
 	 * Fonction premetant de recuperer les requete d'update de map
 	 */
@@ -174,12 +193,14 @@ public class BoiteAuxLettres {
 	public int getSizeRMap() {
 		return rMap.size();
 	}
+
 	/**
 	 * 
-	 * fonction premertant de savoir la taille de la liste de requete de liberation de ressource
+	 * fonction premertant de savoir la taille de la liste de requete de
+	 * liberation de ressource
 	 * 
 	 **/
-	public int getSizeRLib(){
+	public int getSizeRLib() {
 		return rLib.size();
 	}
 }

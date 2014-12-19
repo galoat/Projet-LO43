@@ -1,3 +1,4 @@
+
 package Modele;
 
 import java.util.ArrayList;
@@ -104,7 +105,7 @@ public class Vehicule implements Observable {
 				count++;
 				// On stocke le trajet
 				l1[count] = a;
-				l2[count] = b;
+	passager			l2[count] = b;
 				// On se charge de faire un cycle (le 6 est suivi du 1)
 				// S'agissant des places R, leur identifiant est decale de 10
 				if (a == 16) {

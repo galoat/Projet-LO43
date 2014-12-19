@@ -2,6 +2,7 @@ package Modele;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import Exception.FlotteException;
 /**
@@ -20,6 +21,8 @@ public class FlotteVehicules {
 	 * Le nombre de vehicule libre sur la map, cette entier n'est pas modifiable par une autre classe
 	 */
 	private int capaciter;
+	LinkedList<Passager> listeAttente;
+	
 	/**
 	 * Une Hashmap contenant :
 	 *<ul>
@@ -36,7 +39,12 @@ public class FlotteVehicules {
 	public ArrayList<Vehicule> getVehicules() {
 		return vehicules;
 	}
-
+	/**
+	 * 
+	 */
+	public void ajoutListeAttente(Passager m){
+		listeAttente.add(m);
+	}
 	/**
 	 * Constructeur de FlotteVehicules
 	 * @param c
@@ -51,6 +59,7 @@ public class FlotteVehicules {
 			//vehicule.put(i,true);
 			vehicules.add(new Vehicule(c, boite));
 		}
+		listeAttente=new LinkedList<Passager>();
 	}
 	
 	

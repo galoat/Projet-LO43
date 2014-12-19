@@ -210,10 +210,9 @@ public class Controleur implements Observable {
 			for(int j=0;j<i;j++){
 				general.put(tab[i], false);
 			}
-			maFlotte.lancerVehicule(r.getIdentifiant(), true);
-		}else{
-			maFlotte.lancerVehicule(r.getIdentifiant(), true);
+			maFlotte.lancerVehicule(r.getIdentifiant(), true);	
 		}
+
 	}
 
 	public void updateArriveeTemp(int iD) {
