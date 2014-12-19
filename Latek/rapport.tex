@@ -298,180 +298,116 @@ Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicu
 
 \chapter{Difficultés rencontrées}
 
-\chapter{Implementation en java}
-\section{Classe controleur}
-La fonction principal de cette classe et la methode traiteRequete, en effet il s'agit de la methode qui doit se charger de verifiersi il y a des requete dans la boite au lettre et si c'est le cas aors elle feras un type de traitement different celon le type de requete. De plus afin de correspondre avec les thread il faut que cette fonction attende le temps	que la liste soit mise a jour par les voitures.\\
+\chapter{Fonctions importantes}
+Ce chapitre est destiné à mettre plus en lumières certaines fonctions que nous avons jugé assez importantes pour nous y attarder. Nous en donnerons le code, puis expliciterons sa fonction et son fonctionnement.
+\section{Classe Controleur}
+La fonction principale de cette classe et la méthode traiteRequete : en effet il s'agit de la méthode qui doit se charger de vérifier si il y a des requêtes dans la boîte aux lettres et, si c'est le cas, effectuer un traitement différent selon la nature de la requête. De plus, les requêtes n'étant pas toutes envoyées en même temps, il est possible que le contrôleur aie à attendre l'arrivée d'une requête...\\
 
-\begin{lstlisting}
-public void traiteRequete() {
-		if (boite.getSizeRFintrajet() != 0) {
-			traiteRequete(boite.getRFinTrajet());
-			try {
-				wait(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (boite.getSizeRLib() != 0) {
-			traiteRequete(boite.getRLib());
-			try {
-				wait(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (boite.getSizeRDepart() != 0) {
-			traiteRequete(boite.getDepart());
-			try {
-				wait(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (boite.getSizeRMap() != 0) {
-			traiteRequete(boite.getRMap());
-			try {
-				wait(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		} else {
-			try {
-				wait(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	}
-\end{lstlisting}
-
-Nous pouvont par ailleur nous attarder sur l'implementation en java de la methode traiteRequete(RMap), en effet cette methode doit dans un premier temp verifier que toute les route demander sont libre, puis elle doit reserver ces routes dans la haspmap géneral, de plus cette fonction doit demander a la boite de lettre de suprimer toute le requete de verification de hasmap de cette voiture puisqu'elle n'ont plus de raison d'etre et enfin elle doit avertir la voiture qu'elle peut partir.	
+Nous pouvont alors nous attarder sur la méthode traiteRequete(RMap). Cette méthode doit, dans un premier temps vérifier que toutes les places demandées sont libres, puis elle doit les réserver dans la hashmap génerale. Elle se charge également de signaler à la voiture qu'elle peut (ou non) partir...
 \begin{lstlisting}
 private void traiteRequete(RMap r) {
-		ArrayList<Boolean> m = r.getRequest_map();
-		// compteur pour savoir ou on en est dans les boucles
-		int i = 0;
-		// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
-		// tableau
-		int[] tab = new int[5];
-		int iterateurTab = 0;
-		// entier pour savoir combien de true il y a dans la requestMapr e
-		// general
-
-		int trueInRequete = 0;
-		// entie pour connaitre le nombre de true dans la liste general;
-		int trueInGeneral = 0;
-		for (Boolean b : m) {
-			if (b == true) {
-				trueInRequete++;
-				// si la place est libre
-				if (general.get(i)) {
-					trueInGeneral++;
-					tab[iterateurTab] = i;
-					iterateurTab++;
-				}
+	ArrayList<Boolean> m = r.getRequest_map();
+	// compteur pour savoir ou on en est dans les boucles
+	int i = 0;
+	// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
+	// tableau
+	int[] tab = new int[5];
+	int iterateurTab = 0;
+	// entier pour savoir combien de true il y a dans la requestMapr e
+	// general
+	int trueInRequete = 0;
+	// entie pour connaitre le nombre de true dans la liste general;
+	int trueInGeneral = 0;
+	for (Boolean b : m) {
+		if (b == true) {
+			trueInRequete++;
+			// si la place est libre
+			if (general.get(i)) {
+				trueInGeneral++;
+				tab[iterateurTab] = i;
+				iterateurTab++;
 			}
-			i++;
 		}
-		// si le nombre true dans la request map et dans la hasmap general sont
-		// egaux alors les ressource sont libre et on peut les reserver+passer le boolean de la voiture en true
-		if(trueInRequete==trueInGeneral){
-			//fonction permettant de de metre les ressource en indisponibilite
-			for(int j=0;j<i;j++){
-				general.put(tab[i], false);
-			}
-			maFlotte.lancerVehicule(r.getIdentifiant(), true);	
-		}
-
+		i++;
 	}
+	// si le nombre true dans la request map et dans la hasmap general sont
+	// egaux alors les ressource sont libre et on peut les reserver+passer le boolean de la voiture en true
+	if(trueInRequete==trueInGeneral){
+		//fonction permettant de de metre les ressource en indisponibilite
+		for(int j=0;j<i;j++){
+			general.put(tab[i], false);
+		}
+		maFlotte.lancerVehicule(r.getIdentifiant(), true);	
+	}
+}
 \end{lstlisting}
 \section{Classe Vehicule}
-Une des methode les plus importante de cette classe est la methode finPath qui a partir d'un passager creer une liste de point qui sont les differente ressource a reserver. Voici le code en JAVA:
+Une des méthodes les plus importantes de cette classe est la méthode findPath qui, à partir d'un passager et des informations qu'il contient, crée une liste de places qui qui constitueront le trajet à suivre par le véhicule. 
+Pour cela, il faut tout d'abord faire la différence entre deux cas possibles :\\
+\begin{itemize}
+\item La place d'arrivée est située en face de la place de départ, auquel cas le trajet passe obligatoirement par le centre.
+\item La place d'arrivée est située autre part. En ce cas, il faut alors calculer le chemin le plus rapide pour s'y rendre.
+\end{itemize}
 \begin{lstlisting}
 public void findPath(Passager p) {
-		// On vide la liste
-		trajet.clear();
-		// On stocke les places de depart et de fin (on parle ici des places R,
-		// pas des places d'entree ou de sortie)
-		int dep = p.getDebut() + 10;
-		int fin = p.getFin() + 10;
-		int a, b;
-		int count = -1;
-		// On cree deux tableaux pour parcourir la carte dans les deux sens
-		int[] l1 = new int[3];
-		int[] l2 = new int[3];
-		// On commence par la place de depart (son identifiant est egal a la
-		// place R - 10)
-		trajet.add(dep - 10);
-		// Si la place d'arrivee est en face, on passe par le centre
-		if (Math.abs(dep - fin) == 3) {
-			trajet.add(dep);
-			trajet.add(30);
-		} else {
-			// On commence a la place R de depart
-			a = dep;
-			b = dep;
-			// Ensuite, on parcoure la carte dans les deux sens pour determiner
-			// le chemin le plus rapide
-			while (a != fin && b != fin) {
-				count++;
-				// On stocke le trajet
-				l1[count] = a;
-	passager			l2[count] = b;
-				// On se charge de faire un cycle (le 6 est suivi du 1)
-				// S'agissant des places R, leur identifiant est decale de 10
-				if (a == 16) {
-					a = 10;
-				}
-				if (b == 11) {
-					b = 17;
-				}
-				// On se decale dans les deux sens
-				a++;
-				b--;
-			}// Si le trajet b est le plus court
-			if (b == fin) {
-				// On le stocke dans le premier tableau
-				l1 = l2;
-			}// Enfin, on stocke le trajet dans la liste
-			for (int i = 0; i < l1.length; i++) {
-				if (l1[i] != 0) {
-					trajet.add(l1[i]);
-				}
+	// On vide la liste
+	trajet.clear();
+	// On stocke les places de depart et de fin (on parle ici des places R,
+	// pas des places d'entree ou de sortie)
+	int dep = p.getDebut() + 10;
+	int fin = p.getFin() + 10;
+	int a, b;
+	int count = -1;
+	// On cree deux tableaux pour parcourir la carte dans les deux sens
+	int[] l1 = new int[3];
+	int[] l2 = new int[3];
+	// On commence par la place de depart (son identifiant est egal a la
+	// place R - 10)
+	trajet.add(dep - 10);
+	// Si la place d'arrivee est en face, on passe par le centre
+	if (Math.abs(dep - fin) == 3) {
+		trajet.add(dep);
+		trajet.add(30);
+	} else {
+		// On commence a la place R de depart
+		a = dep;
+		b = dep;
+		// Ensuite, on parcoure la carte dans les deux sens pour determiner
+		// le chemin le plus rapide
+		while (a != fin && b != fin) {
+			count++;
+			// On stocke le trajet
+			l1[count] = a;
+			l2[count] = b;
+			// On se charge de faire un cycle (le 6 est suivi du 1)
+			// S'agissant des places R, leur identifiant est decale de 10
+			if (a == 16) {
+				a = 10;
+			}
+			if (b == 11) {
+				b = 17;
+			}
+			// On se decale dans les deux sens
+			a++;
+			b--;
+		}// Si le trajet b est le plus court
+		if (b == fin) {
+			// On le stocke dans le premier tableau
+			l1 = l2;
+		}// Enfin, on stocke le trajet dans la liste
+		for (int i = 0; i < l1.length; i++) {
+			if (l1[i] != 0) {
+				trajet.add(l1[i]);
 			}
 		}
-		// On termine par la place R finale, puis la place d'arrivee (R + 10)
-		trajet.add(fin);
-		trajet.add(fin + 10);
-		
 	}
+	// On termine par la place R finale, puis la place d'arrivee (R + 10)
+	trajet.add(fin);
+	trajet.add(fin + 10);
+}
 \end{lstlisting}
-Grace a cette liste de point la classe vas pouvoir generer une Request Map qui seras apres envoyer a la boite au lettre, formater comme indiquer  dans la partie requete.Voici sont implementation en JAVA:
-\begin{lstlisting}
-public RMap trajetToMap(ArrayList<Integer> trajet) {
-		RMap rq = new RMap(ID);
-		for (int i : trajet) {
-			if (i - 30 >= 0) {
-				rq.getRequest_map().set(18, true);
-			} else {
-				if (i - 20 >= 0) {
-					rq.getRequest_map().set(i - 9, true);
-				} else {
-					if (i - 10 >= 0) {
-						rq.getRequest_map().set(i - 5, true);
-					} else {
-						rq.getRequest_map().set(i - 1, true);
-					}
-				}
-			}
-		}
-		return rq;
-	}
-\end{lstlisting}
+Grace à cette liste de points,  la classe va pouvoir générer une RMap qui seras par la suite envoyée à la boîte aux lettres, formatée comme indiqué  dans la partie Requête.
+
 \chapter*{Conclusion}
 
 
@@ -481,19 +417,18 @@ Cette classe possede 4 listes, chacune de ces liste a le méme logique: dans un 
 \\
 De plus  lorsque le controleur veut une requete il faut lui envoyer puis suprimer cette requete de la liste. Voici un exemple d'implementatio pour la methode getDepart
 
-
+\begin{lstlisting}
 public RDepart getDepart() {
-		RDepart r = new RDepart();
-		// on recupere le sernier element
-		r.clone(rDepart.get(rDepart.size() - 1));
-		rDepart.remove(getSizeRDepart() - 1);
-		return r;
-
-	}
-
+	RDepart r = new RDepart();
+	// on recupere le sernier element
+	r.clone(rDepart.get(rDepart.size() - 1));
+	rDepart.remove(getSizeRDepart() - 1);
+	return r;
+}
+\end{lstlisting}
 
 \chapter*{Conclusion}
-Grace a ce projet vous avont pus nous faire une modelisation de notre projet a l'aide de l'UML, ceci nous a permit d'engager un travail de reflexion de notre projet en amont, et donc nous economiser du temps sur une eventuel faute d'architecture que l'on aurait pus commetre sans ce langage. De plus grace a ce projet nous avont pus voir de nouvelle fonctionlaiter de JAVA qui sont les Thread et les exception. Enfin nous avont implementer dans ce projet la javadoc afin que la communication entre les différents devellopeur soit plus simple. Nous avont aussi utiliser git pour stocker notre projet, nous avont choisi cette outil car il permet une gestion simple des différente version, ainsi qu la possibilité de travailler en méme temps sur le projet sans conflit.
+Grace a ce projet vous avont pus nous faire une modélisation de notre projet a l'aide de l'UML, ceci nous a permit d'engager un travail de reflexion de notre projet en amont, et donc nous economiser du temps sur une eventuel faute d'architecture que l'on aurait pus commetre sans ce langage. De plus grace a ce projet nous avont pus voir de nouvelle fonctionlaiter de JAVA qui sont les Thread et les exception. Enfin nous avont implementer dans ce projet la javadoc afin que la communication entre les différents devellopeur soit plus simple. Nous avont aussi utiliser git pour stocker notre projet, nous avont choisi cette outil car il permet une gestion simple des différente version, ainsi qu la possibilité de travailler en méme temps sur le projet sans conflit.
 %  les annexesra
 \appendix
 %diagrame cas d'utilisation

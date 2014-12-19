@@ -22,7 +22,7 @@
 \contentsline {section}{\numberline {3.1}Le pattern MVC}{12}
 \contentsline {section}{\numberline {3.2}Des threads pour r\IeC {\'e}gir les d\IeC {\'e}placements}{12}
 \contentsline {chapter}{\numberline {4}Difficult\IeC {\'e}s rencontr\IeC {\'e}es}{13}
-\contentsline {chapter}{\numberline {5}Implementation en java}{14}
-\contentsline {section}{\numberline {5.1}Classe controleur}{14}
+\contentsline {chapter}{\numberline {5}Fonctions importantes}{14}
+\contentsline {section}{\numberline {5.1}Classe Controleur}{14}
 \contentsline {section}{\numberline {5.2}Classe Vehicule}{15}
-\contentsline {section}{\numberline {5.3}Classe Boite au lettres}{18}
+\contentsline {section}{\numberline {5.3}Classe Boite au lettres}{17}
