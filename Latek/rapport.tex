@@ -225,20 +225,6 @@ En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'u
       \end{itemize}
 
 
-<<<<<<< HEAD
-Etant donné que le but de chaque requête a été explicité ci-dessus, et que la structure de celles-ci ne présente pas d'intérêt particulier, nous nous intéresserons à leurs caractéristiques générales. \\
-Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres. Un requête, une fois traitée, est immédiatement détruite. Enfin,à chaque liste de requêtes est attribuée une priorité, afin que le contrôleur traite les requêtes les plus importantes en premier.
-\\ De plsu la classe requetMap possede un formatage particulier. Ce Formatage correspond a ce qui suit:
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
-
-\hline
- & I1 & I2 & I3 & I4 & I5 & I6 & R1 & R2 & R3 & R4 & R5 & R6 & O1 & O2 & O3 & O4 & O5 & O6 & C \\
-  \hline
-  index dans l'array list & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18\\
- \hline
- \end{tabular}
-=======
->>>>>>> abaf79ac2338ce8dcb007c5580e8fe31599c66d6
 \section{La classes Contrôleur}
 
 
@@ -246,8 +232,8 @@ Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres.
 Il s'agit de la classe principale : c'est elle qui s'occupe de gérer les déplacements des différents véhicules sur la carte. Le contrôleur a directement accès à la boîte aux lettres, et donc aux requêtes qu'elle contient.\\
 C'est également lui qui possède la "carte" (ici, une HashMap) des différentes places du réseau routier : il est le seul à agir dessus.
 La méthode traiteRequete() se charge de traiter les requêtes selon leur priorité :
-\begin{wrapfigure}[16]{l}{5.5cm}
-\includegraphics[scale=1]{Images/boite.png}
+\begin{wrapfigure}[16]{l}{5cm}
+\includegraphics[scale=1]{Images/controleur.png}
 \end{wrapfigure}
  \begin{itemize}
       \item Les requêtes de fin de trajet sont prioritaires sur toutes les autres : rendre un véhicule à nouveau disponible signifie le débarquement d'un passager, et donc la capacité d'en accepter de nouveaux.
@@ -290,14 +276,16 @@ Afin de permettre une meilleure représenation des différentes parties du progr
 \item Le modèle est la partie calculatoire du programme. C'est lui qui, dans notre cas, se charge de la totalité de la simulation (voitures, contrôleur, trajets, etc...). Il peut alors envoyer des données à la vue pour qu'elle les affiche (faire bouger un véhicule, par exemple).
 \end{itemize}
 Ces trois parties sont mises en relation par le biais d'interfaces "Observer" et "Observable", qui permettent au modèle d'envoyer des informations à la vue sans même avoir conscience de son existence. Cette indépendance permet de modifier la vue à volonté sans avoir à modifier le modèle...
+\section{Des threads pour régir les déplacements}
 
-<<<<<<< HEAD
-\section{La classe Cerveau}
-Il s'agit du Thread chargé de négocier le départ puis l'arrivée d'un véhicule. Il est ajouté au véhicule lorsque celui-ci reçoit un passager. C'est alors lui qui se charge, après avoir calculé le chemin à emprunter, de faire la demande de réservation auprès du contrôleur et, si celui-ci l'autorise, à faire partir le véhicule.\\
-Par la suite, il se charge d'acheminer le véhicule jusqu'à sa destination, et signale ensuite au contrôleur la fin du trajet. Il est alors détruit, et le véhicule devient à nouveau disponible. Celui-ci recevra un nouveau "Cerveau" lors de l'embarquement du passager suivant.
+Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicule de bouger indépendamment.
+
+\chapter{Difficultés rencontrées}
+
 \chapter{Implementation en java}
 \section{Classe controleur}
-La fonction principal de cette classe et la methode traiteRequete, en effet il s'agit de la methode qui doit se charger de verifiersi il y a des requete dans la boite au lettre et si c'est le cas aors elle feras un type de traitement different celon le type de requete. De plus afin de correspondre avec les thread il faut que cette fonction attende le temps	que la liste soit mise a jour par les voitures.
+La fonction principal de cette classe et la methode traiteRequete, en effet il s'agit de la methode qui doit se charger de verifiersi il y a des requete dans la boite au lettre et si c'est le cas aors elle feras un type de traitement different celon le type de requete. De plus afin de correspondre avec les thread il faut que cette fonction attende le temps	que la liste soit mise a jour par les voitures.\\
+\begin{lstlisting}
 public void traiteRequete() {
 		if (boite.getSizeRFintrajet() != 0) {
 			traiteRequete(boite.getRFinTrajet());
@@ -342,9 +330,10 @@ public void traiteRequete() {
 		}
 
 	}
-\\
-Nous pouvont par ailleur nous attarder sur l'implementation en java de la methode traiteRequete(RMap), en effet cette methode doit dans un premier temp verifier que toute les route demander sont libre, puis elle doit reserver ces routes dans la haspmap géneral, de plus cette fonction doit demander a la boite de lettre de suprimer toute le requete de verification de hasmap de cette voiture puisqu'elle n'ont plus de raison d'etre et enfin elle doit avertir la voiture qu'elle peut partir.	
+\end{lstlisting}
 
+Nous pouvont par ailleur nous attarder sur l'implementation en java de la methode traiteRequete(RMap), en effet cette methode doit dans un premier temp verifier que toute les route demander sont libre, puis elle doit reserver ces routes dans la haspmap géneral, de plus cette fonction doit demander a la boite de lettre de suprimer toute le requete de verification de hasmap de cette voiture puisqu'elle n'ont plus de raison d'etre et enfin elle doit avertir la voiture qu'elle peut partir.	
+\begin{lstlisting}
 private void traiteRequete(RMap r) {
 		ArrayList<Boolean> m = r.getRequest_map();
 		// compteur pour savoir ou on en est dans les boucles
@@ -374,7 +363,7 @@ private void traiteRequete(RMap r) {
 		// si le nombre true dans la request map et dans la hasmap general sont
 		// egaux alors les ressource sont libre et on peut les reserver+passer le boolean de la voiture en true
 		if(trueInRequete==trueInGeneral){
-			//fonction permettant de de metre les ressource en indisponibilité
+			//fonction permettant de de metre les ressource en indisponibilite
 			for(int j=0;j<i;j++){
 				general.put(tab[i], false);
 			}
@@ -382,9 +371,10 @@ private void traiteRequete(RMap r) {
 		}
 
 	}
-
+\end{lstlisting}
 \section{Classe Vehicule}
 Une des methode les plus importante de cette classe est la methode finPath qui a partir d'un passager creer une liste de point qui sont les differente ressource a reserver. Voici le code en JAVA:
+\begin{lstlisting}
 public void findPath(Passager p) {
 		// On vide la liste
 		trajet.clear();
@@ -442,17 +432,13 @@ public void findPath(Passager p) {
 		trajet.add(fin + 10);
 		
 	}
-=======
-\section{Des threads pour régir les déplacements}
+\end{lstlisting}
 
-Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicule de bouger indépendamment.
-
-\chapter{Difficultés rencontrées}
 \chapter*{Conclusion}
->>>>>>> abaf79ac2338ce8dcb007c5580e8fe31599c66d6
 
-\\
+
 Grace a cette liste de point la classe vas pouvoir generer une Request Map qui seras apres envoyer a la boite au lettre, formater comme indiquer  dans la partie requete.Voici sont implementation en JAVA:
+\begin{lstlisting}
 public RMap trajetToMap(ArrayList<Integer> trajet) {
 		RMap rq = new RMap(ID);
 		for (int i : trajet) {
@@ -472,6 +458,7 @@ public RMap trajetToMap(ArrayList<Integer> trajet) {
 		}
 		return rq;
 	}
+\end{lstlisting}
 \section{Classe Boite au lettres}
 Cette classe possede 4 listes, chacune de ces liste a le méme logique: dans un premier temps le controleur doit pouvoir acceder a la taille de cette liste afin de savoir si elle est vide ou non.
 \\

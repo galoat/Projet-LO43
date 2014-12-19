@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.16)  19 DEC 2014 13:47
-=======
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 12:26
->>>>>>> abaf79ac2338ce8dcb007c5580e8fe31599c66d6
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 14:46
 entering extended mode
 **rapport.tex
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.tex
@@ -682,49 +678,26 @@ rente :
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (72.64789pt too wide) in paragraph at lines 229--240
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 242--245
-=======
 Underfull \hbox (badness 10000) in paragraph at lines 219--220
->>>>>>> abaf79ac2338ce8dcb007c5580e8fe31599c66d6
 
  []
 
-File: Images/boite.png Graphic file (type png)
-<use Images/boite.png>
-Package pdftex.def Info: Images/boite.png used on input line 236.
-(pdftex.def)             Requested size: 158.84305pt x 185.1914pt.
+<Images/controleur.png, id=36, 146.79843pt x 161.10187pt>
+File: Images/controleur.png Graphic file (type png)
 
-Overfull \hbox (2.3529pt too wide) in paragraph at lines 236--237
+<use Images/controleur.png>
+Package pdftex.def Info: Images/controleur.png used on input line 236.
+(pdftex.def)             Requested size: 146.79807pt x 161.10147pt.
+
+Overfull \hbox (4.53429pt too wide) in paragraph at lines 236--237
 [][] 
  []
 
 [9
 
-<<<<<<< HEAD
- <./Images/BoiteAuxLettre.PNG>] [10]
-Chapitre 3.
-[11
-
-] [12
-
-] <Images/CasUtilisation.PNG, id=50, 685.8122pt x 291.33844pt>
-File: Images/CasUtilisation.PNG Graphic file (type png)
-
-<use Images/CasUtilisation.PNG>
-Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 283.
-(pdftex.def)             Requested size: 456.71866pt x 190.71915pt.
- [13
-
- <./Images/CasUtilisation.PNG>] [14
-=======
- <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/boite.png>]
-<Images/cerveau.png, id=40, 125.71968pt x 121.20282pt>
+ <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/boite.png> <C:/Users/Prop
+riétaire/git/Projet-LO43/Latek/Images/controleur.png>]
+<Images/cerveau.png, id=42, 125.71968pt x 121.20282pt>
 File: Images/cerveau.png Graphic file (type png)
 
 <use Images/cerveau.png>
@@ -745,59 +718,128 @@ Underfull \hbox (badness 10000) in paragraph at lines 272--273
 Chapitre 4.
 [13
 
-] [14
+]
+Chapitre 5.
 
-] <Images/CasUtilisation.PNG, id=58, 685.8122pt x 291.33844pt>
+Underfull \hbox (badness 10000) in paragraph at lines 287--288
+
+ []
+
+[14
+
+]
+Overfull \hbox (2.30807pt too wide) in paragraph at lines 341--342
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (8.30814pt too wide) in paragraph at lines 345--346
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (38.30844pt too wide) in paragraph at lines 363--364
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (230.3104pt too wide) in paragraph at lines 364--365
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][] 
+ []
+
+
+Overfull \hbox (56.30862pt too wide) in paragraph at lines 366--367
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (38.30844pt too wide) in paragraph at lines 381--382
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[15]
+Overfull \hbox (14.3082pt too wide) in paragraph at lines 387--388
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (20.30826pt too wide) in paragraph at lines 390--391
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (62.30869pt too wide) in paragraph at lines 401--402
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (38.30844pt too wide) in paragraph at lines 408--409
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (74.3088pt too wide) in paragraph at lines 409--410
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (26.30832pt too wide) in paragraph at lines 430--431
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[16]
+Overfull \hbox (26.30832pt too wide) in paragraph at lines 452--453
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (26.30832pt too wide) in paragraph at lines 454--455
+[][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (72.49991pt too wide) in paragraph at lines 468--474
+[]\T1/lmr/m/n/10 public RDe-part get-De-part()  RDe-part r = new RDe-part(); //
+ on re-cu-pere le ser-nier ele-ment r.clone(rDepart.get(rDepart.size()
+ []
+
+[17
+
+] [18
+
+] <Images/CasUtilisation.PNG, id=74, 685.8122pt x 291.33844pt>
 File: Images/CasUtilisation.PNG Graphic file (type png)
 
 <use Images/CasUtilisation.PNG>
-Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 291.
+Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 484.
 (pdftex.def)             Requested size: 456.71866pt x 190.71915pt.
- [15
+ [19
 
- <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/CasUtilisation.PNG>] [16
->>>>>>> abaf79ac2338ce8dcb007c5580e8fe31599c66d6
+ <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/CasUtilisation.PNG>] [20
 
 ]
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.aux) ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 6468 strings out of 493304
- 90115 string characters out of 6139870
- 204067 words of memory out of 5000000
- 9805 multiletter control sequences out of 15000+600000
- 49876 words of font info for 41 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 38i,7n,40p,792b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/tex
-live/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/publi
-c/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/
-texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
-utmr8a.pfb>
-Output written on rapport.pdf (14 pages, 168997 bytes).
-PDF statistics:
- 79 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
-=======
- 5938 strings out of 493921
- 81478 string characters out of 3147257
- 194403 words of memory out of 3000000
- 9137 multiletter control sequences out of 15000+200000
- 49876 words of font info for 41 fonts, out of 3000000 for 9000
+ 6321 strings out of 493921
+ 84858 string characters out of 3147257
+ 224403 words of memory out of 3000000
+ 9518 multiletter control sequences out of 15000+200000
+ 54139 words of font info for 42 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,7n,40p,516b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,7n,40p,792b,1613s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/M
-iKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/d
-vips/fontname/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/
-times/utmr8a.pfb>
-Output written on rapport.pdf (16 pages, 182965 bytes).
+iKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
+nc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.
+enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+lm/lmri10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on rapport.pdf (20 pages, 225733 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
->>>>>>> abaf79ac2338ce8dcb007c5580e8fe31599c66d6
+ 109 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
