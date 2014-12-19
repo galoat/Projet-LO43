@@ -221,9 +221,9 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
 Nous avons choisi de diviser l'utilisateur principal en deux autres : un utilisateur qui utiliserait le mode manuel, et un autre qui utiliserait le mode automatique. Ceci étant dû au fait que l'utilisateur en mode manuel pourra accéder à des fonctions interdites au mode automatique (la création d'un passager).\\
 En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'utilisateur (et quel que soit son mode) pourra mettre la simulation en pause et, si nécessaire, réinitialiser celle-ci. 
 \section{Diagramme de séquence(annexe B)}
-\hspace{0.5cm} Le diagramme de séquence permet de représenter les interactions entre les différentes classes selon un ordre chronologique.
+\hspace{0.5cm} Le diagramme de séquence permet de représenter les interactions entre les différentes classes selon un ordre chronologique. Ici, il représente l'envoi d'une requête de départ par l'utilisateur, et les actions qui s'en suivent, jusqu'à la fin du trajet du véhicule.
 \section{Diagramme de classes(annexe C)}
-\hspace{0.5cm} Nous verrons en détail, une description de chaque classe.
+\hspace{0.5cm} Nous verrons en détail, une description de chaque classe. Le diagramme présenté en annexe constitue la partie calculatoire du programme : nous avons choisi d'ignorer la partie graphique...
 
 \chapter{Description des classes}
 \section{Classe BoiteAuxLettre}
@@ -315,7 +315,7 @@ private void traiteRequete(RMap r) {
 	// entier pour savoir combien de true il y a dans la requestMapr e
 	// general
 	int trueInRequete = 0;
-	// entie pour connaitre le nombre de true dans la liste general;
+	// entier pour connaitre le nombre de true dans la liste general;
 	int trueInGeneral = 0;
 	for (Boolean b : m) {
 		if (b == true) {
@@ -436,7 +436,6 @@ public void run() {
 			try {
 				sleep(300);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -457,7 +456,6 @@ public void run() {
 			try {
 				sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
