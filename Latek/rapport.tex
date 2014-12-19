@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
-
+\usepackage{lscape}
 \usepackage{graphicx} 
 
 
@@ -141,13 +141,13 @@ Université de technologie de Belfort-Montbéliard
 \newpage
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
+\vspace{7cm}
 \hspace{0.5cm}Dans le cadre de  l'UV LO43 " Bases fondamentales de la programmation orientée objet", il nous a été demandé de réaliser un projet de groupe, afin de mettre en pratique les connaissances acquises lors des cours et TDs du semestre.
 \\
 Trois sujet nous on été présentés. Nous avons fait le choix de traiter le sujet de la "Flotte de véhicules autonomes", et ceci pour plusieurs raisons :
 \begin{itemize}
-  \item (A TROUVER)
-  \item N'étant que deux, sur un maximum de quatre étudiants par groupe autorisés, les autres sujets ne nous ont pas parus réalisables en temps et en heures et sans bugs majeurs...
-  \item (A TROUVER)
+  \item Premièrement, ce sujet nous semblait être le plus à même d'être modifié, amélioré, contrairement aux deux jeux de plateau, aux règles déjà préétablies...
+  \item ensuite, n'étant que deux, sur un maximum de quatre étudiants par groupe autorisés, les autres sujets ne nous ont pas parus réalisables en temps et en heures et sans bugs majeurs...
 \end{itemize}
 Nous présenterons tout d'abord le sujet, ses contraintes, et les libertés prises par rapport à celles-ci. Par la suite, nous parlerons des différents diagrammes UML, et les expliquerons. Enfin, nous terminerons par l'implémentation en Java et l'interface graphique.
 
@@ -469,12 +469,15 @@ public void run() {
 }
 \end{lstlisting}
 \chapter*{Conclusion}
-Grace a ce projet vous avont pus nous faire une modélisation de notre projet a l'aide de l'UML, ceci nous a permit d'engager un travail de reflexion de notre projet en amont, et donc nous economiser du temps sur une eventuel faute d'architecture que l'on aurait pus commetre sans ce langage. De plus grace a ce projet nous avont pus voir de nouvelle fonctionlaiter de JAVA qui sont les Thread et les exception. Enfin nous avont implementer dans ce projet la javadoc afin que la communication entre les différents devellopeur soit plus simple. Nous avont aussi utiliser git pour stocker notre projet, nous avont choisi cette outil car il permet une gestion simple des différente version, ainsi qu la possibilité de travailler en méme temps sur le projet sans conflit.
+Grâce à ce projet, vous avons pu faire une modélisation de notre projet a l'aide du langage UML. Ceci nous a permit d'en découvrir l'utilité et la practicité, ainsi que d'engager un travail de réflexion sur notre projet en amont... Nous avons alors pu économiser du temps sur un éventuel défaut d'architecture que l'on aurait pu commettre sans l'aide de ce langage. De plus, ce projet nous a fait découvrir de nouvelles fonctionnalités de Java, à savoir les Threads et les exception. Enfin, nous avons implémenté dans ce projet une Javadoc, afin que la communication entre les différents développeurs (notamment les futurs) soit plus simple. L'outil Git nous a également été d'une grande aide, pour stocker notre projet, gérer les différents bugs et simplifier la gestion d'un code à deux (versionnage, travail simultané sur un fichier, etc...).
 %  les annexesra
 \appendix
 %diagrame cas d'utilisation
+\begin{landscape}
+
 \chapter*{Annexe A}
 \includegraphics[width=455px, height=190px]{Images/CasUtilisation.PNG}
+\end{landscape}
 %diagrame de sequence
 \chapter*{Annexe B}
 \end{document}

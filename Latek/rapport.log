@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 17:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 17:44
 entering extended mode
 **rapport.tex
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.tex
@@ -290,8 +290,8 @@ Package babel Info: Making ? an active character on input line 123.
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks16
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
@@ -314,7 +314,9 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count91
-))
+)))
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 \Gin@req@height=\dimen106
 \Gin@req@width=\dimen107
 )
@@ -750,19 +752,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 345--347
 File: Images/CasUtilisation.PNG Graphic file (type png)
 
 <use Images/CasUtilisation.PNG>
-Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 477.
+Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 479.
 (pdftex.def)             Requested size: 456.71866pt x 190.71915pt.
  [18
 
+
  <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/CasUtilisation.PNG>] [19
+
 
 ]
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 6377 strings out of 493921
- 85870 string characters out of 3147257
- 266603 words of memory out of 3000000
- 9567 multiletter control sequences out of 15000+200000
+ 6391 strings out of 493921
+ 86125 string characters out of 3147257
+ 266760 words of memory out of 3000000
+ 9578 multiletter control sequences out of 15000+200000
  49876 words of font info for 41 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  27i,7n,40p,857b,1635s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -774,7 +778,7 @@ iles/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on rapport.pdf (19 pages, 205424 bytes).
+Output written on rapport.pdf (19 pages, 204125 bytes).
 PDF statistics:
  102 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
