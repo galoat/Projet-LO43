@@ -17,3 +17,8 @@
 \contentsline {section}{\numberline {2.3}Les classes Requ\IeC {\^e}tes}{10}
 \contentsline {section}{\numberline {2.4}La classe Cerveau}{10}
 \contentsline {section}{\numberline {2.5}La Classe V\IeC {\'e}hicule}{10}
+\contentsline {part}{III\hspace {1em}Impl\IeC {\'e}mentation Java}{11}
+\contentsline {chapter}{\numberline {3}Choix d'architecture}{12}
+\contentsline {section}{\numberline {3.1}Le pattern MVC}{12}
+\contentsline {section}{\numberline {3.2}Des threads pour r\IeC {\'e}gir les d\IeC {\'e}placements}{12}
+\contentsline {chapter}{\numberline {4}Difficult\IeC {\'e}s rencontr\IeC {\'e}es}{13}

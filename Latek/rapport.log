@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 11:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 12:26
 entering extended mode
 **rapport.tex
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.tex
@@ -703,15 +703,29 @@ Package pdftex.def Info: Images/cerveau.png used on input line 254.
  [10 <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/cerveau.png>] [11
 
 ]
-<Images/CasUtilisation.PNG, id=48, 685.8122pt x 291.33844pt>
+Chapitre 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
+
+ []
+
+[12
+
+]
+Chapitre 4.
+[13
+
+] [14
+
+] <Images/CasUtilisation.PNG, id=58, 685.8122pt x 291.33844pt>
 File: Images/CasUtilisation.PNG Graphic file (type png)
 
 <use Images/CasUtilisation.PNG>
-Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 274.
+Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 291.
 (pdftex.def)             Requested size: 456.71866pt x 190.71915pt.
- [12
+ [15
 
- <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/CasUtilisation.PNG>] [13
+ <C:/Users/Propriétaire/git/Projet-LO43/Latek/Images/CasUtilisation.PNG>] [16
 
 ]
 (C:\Users\Propriétaire\git\Projet-LO43\Latek\rapport.aux) ) 
@@ -730,9 +744,9 @@ pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/
 times/utmr8a.pfb>
-Output written on rapport.pdf (13 pages, 176947 bytes).
+Output written on rapport.pdf (16 pages, 182965 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
+ 85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

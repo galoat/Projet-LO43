@@ -254,6 +254,8 @@ Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres.
 \includegraphics[scale=1]{Images/cerveau.png}
 \end{wrapfigure}Il s'agit du Thread chargé de négocier le départ puis l'arrivée d'un véhicule. Il est ajouté au véhicule lorsque celui-ci reçoit un passager. C'est alors lui qui se charge, après avoir calculé le chemin à emprunter, de faire la demande de réservation auprès du contrôleur et, si celui-ci l'autorise, à faire partir le véhicule. Cette autorisation se fait par le biais d'un booléen, modifié par la flotte de véhicules, à la demande du contrôleur.\\
 Par la suite, il se charge d'acheminer le véhicule jusqu'à sa destination, et signale ensuite au contrôleur la fin du trajet. Il est alors détruit, et le véhicule devient à nouveau disponible. Celui-ci recevra un nouveau "Cerveau" lors de l'embarquement du passager suivant.
+\vspace{0.3cm}
+En parallèle, le cerveau se charge également de synchroniser l'avancée du trajet avec la partie graphique : en effet, afin d'éviter des bugs d'affichage, le modèle doit attendre que le véhicule affiché atteigne la place suivante avant d'envoyer les requêtes de libération et, à la fin du trajet, la requête de fin de trajet.
 \vspace{0.5cm}
 \section{La Classe Véhicule}
 
@@ -264,7 +266,22 @@ Par la suite, il se charge d'acheminer le véhicule jusqu'à sa destination, et 
 Chaque véhicule possède un identifiant unique donné par la classe "Flotte de Véhicules" et stocké  dans un Integer "identifiant". Les véhicules sont instanciés sans trajet ni cerveau. Ceux-ci lui seront attribués plus tard, la de l'embarquement d'un passager. Le Cerveau se charge alors d'appeler les fonctions du véhicule pour calculer le trajet, envoyer des requêtes...
 A la fin de son trajet, seul le cerveau est détruit. Le véhicule  redevient alors libre, dans l'attente d'un nouveau passager.
 
+\part{Implémentation Java}
+\chapter{Choix d'architecture}
+\section{Le pattern MVC}
+Afin de permettre une meilleure représenation des différentes parties du programme, le choix a été fait d'utiliser le pattern "Modèle - Vue - Contrôleur". Il est constitué comme suit :\\
+\begin{itemize}
+\item La vue est la partie visible pour l'utilisateur : elle rassemble les différentes fenêtres du programme, les boutons et autres moyens pour l'utilisateur d'interagir avec celui-ci.
+\item Le contrôleur (afin d'éviter toute confusion avec le nom de la classe principale du programme, nous l'appellerons Vérificateur)se charge de vérifier  que les données venant de la vue (et donc souvent de l'utilisateur), afin d'éviter l'envoi d'arguments non attendus aux fonctions internes. Il se charge par la suite de transmettre ces données au modèle.
+\item Le modèle est la partie calculatoire du programme. C'est lui qui, dans notre cas, se charge de la totalité de la simulation (voitures, contrôleur, trajets, etc...). Il peut alors envoyer des données à la vue pour qu'elle les affiche (faire bouger un véhicule, par exemple).
+\end{itemize}
+Ces trois parties sont mises en relation par le biais d'interfaces "Observer" et "Observable", qui permettent au modèle d'envoyer des informations à la vue sans même avoir conscience de son existence. Cette indépendance permet de modifier la vue à volonté sans avoir à modifier le modèle...
 
+\section{Des threads pour régir les déplacements}
+
+Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicule de bouger indépendamment.
+
+\chapter{Difficultés rencontrées}
 \chapter*{Conclusion}
 
 %  les annexes
