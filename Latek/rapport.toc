@@ -21,9 +21,8 @@
 \contentsline {chapter}{\numberline {3}Choix d'architecture}{12}
 \contentsline {section}{\numberline {3.1}Le pattern MVC}{12}
 \contentsline {section}{\numberline {3.2}Des threads pour r\IeC {\'e}gir les d\IeC {\'e}placements}{12}
-\contentsline {chapter}{\numberline {4}Difficult\IeC {\'e}s rencontr\IeC {\'e}es}{13}
-\contentsline {chapter}{\numberline {5}Fonctions importantes}{14}
-\contentsline {section}{\numberline {5.1}Classe Controleur}{14}
-\contentsline {section}{\numberline {5.2}Classe Vehicule}{15}
-\contentsline {section}{\numberline {5.3}Classe Boite au lettres}{16}
-\contentsline {section}{\numberline {5.4}Classe Cerveau}{16}
+\contentsline {chapter}{\numberline {4}Fonctions importantes}{13}
+\contentsline {section}{\numberline {4.1}Classe Controleur}{13}
+\contentsline {section}{\numberline {4.2}Classe Vehicule}{14}
+\contentsline {section}{\numberline {4.3}Classe Boite au lettres}{15}
+\contentsline {section}{\numberline {4.4}Classe Cerveau}{15}

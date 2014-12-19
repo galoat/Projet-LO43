@@ -294,9 +294,9 @@ Afin de permettre une meilleure représenation des différentes parties du progr
 Ces trois parties sont mises en relation par le biais d'interfaces "Observer" et "Observable", qui permettent au modèle d'envoyer des informations à la vue sans même avoir conscience de son existence. Cette indépendance permet de modifier la vue à volonté sans avoir à modifier le modèle...
 \section{Des threads pour régir les déplacements}
 
-Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicule de bouger indépendamment.
+Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicule de bouger indépendamment. En effet, chaque véhicule actif (c'est à dire embarquant un passager) est dirigé par un Thread (la classe Cerveau). De cette manière, ils peuvent tous agir indépendamment. De plus, le contrôleur possède lui aussi un Thread, afin de pouvoir traiter de lui-même les requêtes qui arrivent dans la boîte aux lettres. Cette utilisation de nombreux Threads pourrait être problématique si un grand nombre de véhicules étaient présents simultanément sur la carte. Nous avons malgré tout persisté en se basant sur le fait que, telle que la carte et les contraintes sont faites, le nombre maximum de voitures sur la carte à un instant donné est de 3. Pas de risque de trop grande consommation des ressources, donc.
 
-\chapter{Difficultés rencontrées}
+%\chapter{Difficultés rencontrées}
 
 \chapter{Fonctions importantes}
 Ce chapitre est destiné à mettre plus en lumières certaines fonctions que nous avons jugé assez importantes pour nous y attarder. Nous en donnerons le code, puis expliciterons sa fonction et son fonctionnement.
