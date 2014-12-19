@@ -407,11 +407,6 @@ public void findPath(Passager p) {
 }
 \end{lstlisting}
 Grace à cette liste de points,  la classe va pouvoir générer une RMap qui seras par la suite envoyée à la boîte aux lettres, formatée comme indiqué  dans la partie Requête.
-
-\chapter*{Conclusion}
-
-
-
 \section{Classe Boite au lettres}
 Cette classe possede 4 listes, chacune de ces liste a le méme logique: dans un premier temps le controleur doit pouvoir acceder a la taille de cette liste afin de savoir si elle est vide ou non.
 \\
@@ -426,7 +421,53 @@ public RDepart getDepart() {
 	return r;
 }
 \end{lstlisting}
-
+\section{Classe Cerveau}
+La classe Cerveau ne contient qu'une seule fonction à proprement parler, et celle-ci est de grande importance : c'est elle qui fait bouger le véhicule, lui fait envoyer des requêtes, et le synchronise avec la partie graphique. Pour cela, elle se divise en deux phases : la première, où le Cerveau, après avoir calculé le trajet, demande (par le biais du véhicule) au Contrôleur l'autorisation de partir. La seconde, où l'autorisation a été donnée. 
+\begin{lstlisting}
+public void run() {
+	int i=1;
+	//On calcule le trajet
+	corps.findPath(corps.passager);
+	requestmap = corps.trajetToMap(corps.trajet);
+	while (start != true) {
+		if (maj) {
+			corps.sendRMap(requestmap);
+			maj = false;
+		} else {
+			try {
+				sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	//On se positionne au depart
+	iDVehiculeGraphique = corps.notifyDebutMission(corps.trajet.get(0));
+	System.out.println("Depart : " + corps.trajet.get(0));
+	//Et on va de points en points
+	while (i < corps.trajet.size()) {
+		//Si la voiture graphique a termine de bouger
+		if(graphtop){
+			graphtop=false;
+			corps.sendRLib(corps.trajet.get(i-1));
+			i++;
+			//Nouvelles coordonnees
+			corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i-1));
+		}else{
+			try {
+				sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}//Le trajet est termine
+	corps.sendRLib(corps.trajet.get(i-1));
+	corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond a la fin du trajet
+	corps.sendRFinTrajet();
+}
+\end{lstlisting}
 \chapter*{Conclusion}
 Grace a ce projet vous avont pus nous faire une modélisation de notre projet a l'aide de l'UML, ceci nous a permit d'engager un travail de reflexion de notre projet en amont, et donc nous economiser du temps sur une eventuel faute d'architecture que l'on aurait pus commetre sans ce langage. De plus grace a ce projet nous avont pus voir de nouvelle fonctionlaiter de JAVA qui sont les Thread et les exception. Enfin nous avont implementer dans ce projet la javadoc afin que la communication entre les différents devellopeur soit plus simple. Nous avont aussi utiliser git pour stocker notre projet, nous avont choisi cette outil car il permet une gestion simple des différente version, ainsi qu la possibilité de travailler en méme temps sur le projet sans conflit.
 %  les annexesra

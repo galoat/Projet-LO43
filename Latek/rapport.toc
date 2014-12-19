@@ -25,4 +25,5 @@
 \contentsline {chapter}{\numberline {5}Fonctions importantes}{14}
 \contentsline {section}{\numberline {5.1}Classe Controleur}{14}
 \contentsline {section}{\numberline {5.2}Classe Vehicule}{15}
-\contentsline {section}{\numberline {5.3}Classe Boite au lettres}{17}
+\contentsline {section}{\numberline {5.3}Classe Boite au lettres}{16}
+\contentsline {section}{\numberline {5.4}Classe Cerveau}{16}
