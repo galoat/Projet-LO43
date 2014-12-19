@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 17:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  19 DEC 2014 18:04
 entering extended mode
 **rapport.tex
 (C:\Users\PropriÃ©taire\git\Projet-LO43\Latek\rapport.tex
@@ -681,21 +681,21 @@ Chapitre 2.
 <Images/boite.png, id=35, 158.84344pt x 185.19188pt>
 File: Images/boite.png Graphic file (type png)
  <use Images/boite.png>
-Package pdftex.def Info: Images/boite.png used on input line 234.
+Package pdftex.def Info: Images/boite.png used on input line 233.
 (pdftex.def)             Requested size: 158.84305pt x 185.1914pt.
 
-Overfull \hbox (2.3529pt too wide) in paragraph at lines 234--235
+Overfull \hbox (2.3529pt too wide) in paragraph at lines 233--234
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--235
+Underfull \hbox (badness 10000) in paragraph at lines 231--234
 \T1/lmr/m/n/10 quêtes dif-fé-rentes, sto-ckées cha-cunes dans une liste dif-fé-
 rente :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--236
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
 
  []
 
@@ -703,10 +703,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 235--236
 File: Images/controleur.png Graphic file (type png)
 
 <use Images/controleur.png>
-Package pdftex.def Info: Images/controleur.png used on input line 252.
+Package pdftex.def Info: Images/controleur.png used on input line 251.
 (pdftex.def)             Requested size: 146.79807pt x 161.10147pt.
 
-Overfull \hbox (4.53429pt too wide) in paragraph at lines 252--253
+Overfull \hbox (4.53429pt too wide) in paragraph at lines 251--252
 [][] 
  []
 
@@ -718,14 +718,14 @@ riÃ©taire/git/Projet-LO43/Latek/Images/controleur.png>]
 File: Images/cerveau.png Graphic file (type png)
 
 <use Images/cerveau.png>
-Package pdftex.def Info: Images/cerveau.png used on input line 270.
+Package pdftex.def Info: Images/cerveau.png used on input line 269.
 (pdftex.def)             Requested size: 125.71936pt x 121.20251pt.
  [10 <C:/Users/PropriÃ©taire/git/Projet-LO43/Latek/Images/cerveau.png>] [11
 
 ]
 Chapitre 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 288--289
+Underfull \hbox (badness 10000) in paragraph at lines 287--288
 
  []
 
@@ -734,14 +734,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 288--289
 ]
 Chapitre 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 304--305
+Underfull \hbox (badness 10000) in paragraph at lines 303--304
 
  []
 
 [13
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 345--347
+Underfull \hbox (badness 10000) in paragraph at lines 344--346
 
  []
 
@@ -752,7 +752,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 345--347
 File: Images/CasUtilisation.PNG Graphic file (type png)
 
 <use Images/CasUtilisation.PNG>
-Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 479.
+Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 478.
 (pdftex.def)             Requested size: 456.71866pt x 190.71915pt.
  [18
 
@@ -769,7 +769,7 @@ Here is how much of TeX's memory you used:
  9578 multiletter control sequences out of 15000+200000
  49876 words of font info for 41 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,7n,40p,857b,1635s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,7n,40p,891b,1635s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.
@@ -778,7 +778,7 @@ iles/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on rapport.pdf (19 pages, 204125 bytes).
+Output written on rapport.pdf (19 pages, 204237 bytes).
 PDF statistics:
  102 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

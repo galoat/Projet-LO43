@@ -1,5 +1,0 @@
-\select@language {french}
-\contentsline {chapter}{Introduction}{3}
-\contentsline {part}{I\hspace {1em} Description du sujet}{4}
-\contentsline {section}{\numberline {0.1}Objectif}{5}
-\contentsline {section}{\numberline {0.2}Reformulation du sujet}{5}

@@ -203,7 +203,6 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
 \vspace{0.25cm}
 \begin{itemize}
   \item Un véhicule ne peut pas contourner une place occupée pour mener sa mission à bien.
-  \item 
 \end{itemize}
 \setcounter{chapter}{0}
 \setcounter{section}{0}
@@ -406,16 +405,16 @@ public void findPath(Passager p) {
 	trajet.add(fin + 10);
 }
 \end{lstlisting}
-Grace à cette liste de points,  la classe va pouvoir générer une RMap qui seras par la suite envoyée à la boîte aux lettres, formatée comme indiqué  dans la partie Requête.
+Grâce à cette liste de points,  la classe va pouvoir générer une RMap qui seras par la suite envoyée à la boîte aux lettres, formatée comme indiqué  dans la partie Requête.
 \section{Classe Boite au lettres}
-Cette classe possede 4 listes, chacune de ces liste a le méme logique: dans un premier temps le controleur doit pouvoir acceder a la taille de cette liste afin de savoir si elle est vide ou non.
+Cette classe possède 4 listes, chacune de ses liste a la même logique: dans un premier temps le Contrôleur doit pouvoir accéder à la taille de cette liste afin de savoir si elle est vide ou non.
 \\
-De plus  lorsque le controleur veut une requete il faut lui envoyer puis suprimer cette requete de la liste. Voici un exemple d'implementatio pour la methode getDepart
+Ensuite, lorsque le Contrôleur veut une requête il faut lui envoyer puis supprimer cette requête de la liste. Voici un exemple d'implémentation pour la méthode getDepart
 
 \begin{lstlisting}
 public RDepart getDepart() {
 	RDepart r = new RDepart();
-	// on recupere le sernier element
+	// on recupere le dernier element
 	r.clone(rDepart.get(rDepart.size() - 1));
 	rDepart.remove(getSizeRDepart() - 1);
 	return r;
