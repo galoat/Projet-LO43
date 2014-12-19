@@ -214,9 +214,9 @@ En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'u
 \section{Classe BoiteAuxLettre}
      
       Il s'agit de la classe recevant toute les requêtes, qu'elles soient envoyées depuis la partie graphique (c'est à dire des requêtes pour la création d'une nouvelle mission, et donc d'un nouveau passager), ou du modèle. Il y a 4 requêtes différentes, stockées chacunes dans une liste différente:
-      \begin{wrapfigure}[15]{l}{5.5cm}
-\includegraphics[scale=1]{Images/BoiteAuxLettre.PNG}
-\end{wrapfigure}   
+      \begin{wrapfigure}[17]{l}{5.5cm}
+\includegraphics[scale=1]{Images/boite.png}
+\end{wrapfigure} \\  
       \begin{itemize}
       \item Une liste de requêtes de départ : cette liste contient toutes les demandes de trajet. Ces trajet peuvent être demandés soit par l'utilisateur, soit générés par le modèle.
       \item Une liste de requêtes de trajet : ce sont les requêtes qu'envoient chacun des véhicules ayant un passager pour demander au contrôleur la permission d'utiliser un chemin (la réponse n'est positive que si le chemin concerné est libre)...
@@ -224,15 +224,17 @@ En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'u
       \item Enfin, une liste de requêtes de libération de ressources : ces requêtes sont envoyées par les véhicules lorsqu'il n'ont plus besoin d'une place (lorsqu'ils sont déjà passés de dessus). Le contrôleur peut alors considérer ces places comme disponibles.
       \end{itemize}
 
-\section{Les classes Requêtes}
 
-Etant donné que le but de chaque requête a été explicité ci-dessus, et que la structure de celles-ci ne présente pas d'intérêt particulier, nous nous intéresserons à leurs caractéristiques générales. \\
-Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres. Un requête, une fois traitée, est immédiatement détruite. Enfin,à chaque liste de requêtes est attribuée une priorité, afin que le contrôleur traite les requêtes les plus importantes en premier.
 \section{La classes Contrôleur}
+
+
 
 Il s'agit de la classe principale : c'est elle qui s'occupe de gérer les déplacements des différents véhicules sur la carte. Le contrôleur a directement accès à la boîte aux lettres, et donc aux requêtes qu'elle contient.\\
 C'est également lui qui possède la "carte" (ici, une HashMap) des différentes places du réseau routier : il est le seul à agir dessus.
-La méthode traiteRequete() se charge de traiter les requêtes selon leur priorité :\\
+La méthode traiteRequete() se charge de traiter les requêtes selon leur priorité :
+\begin{wrapfigure}[16]{l}{5.5cm}
+\includegraphics[scale=1]{Images/boite.png}
+\end{wrapfigure}
  \begin{itemize}
       \item Les requêtes de fin de trajet sont prioritaires sur toutes les autres : rendre un véhicule à nouveau disponible signifie le débarquement d'un passager, et donc la capacité d'en accepter de nouveaux.
       \item Les requêtes de libération de ressources arrivent en second. En effet, rendre une place disponible le plus vite possible est prioritaire pour pouvoir valider les trajets d'autres véhicules.
@@ -241,21 +243,28 @@ La méthode traiteRequete() se charge de traiter les requêtes selon leur priori
       \end{itemize}
 
 Par la suite, et en fonction des requêtes qu'il reçoit, le contrôleur a plusieurs tâches. Il peut libérer un véhicule en fin de trajet, en réserver un autre et lui attribuer un passager. Enfin, il valide (ou non) les chemins demandés par les véhicules, et se charge ensuite de réserver les ressources correspondantes.
+\section{Les classes Requêtes}
 
-
-\section{La Classe Véhicule}
-
-Chaque véhicule possède un identifiant unique donné par la classe "Flotte de Véhicules" et stocké  dans un Integer "identifiant". De plus, lors de l'instanciation de cette classe, on lui assigne le trajet donner par le passager.
-\\ Cette classe possède aussi la liste des routes possible trier par priorité. A l'aide de la liste des priorité et de sa route chaque voiture vas pouvoir générer une hasmap (décrite dans la partie 1.3.2) et l'envoyer dans la boite au lettre.
-\\
- Après traitement par le contrôleur, si les routes sont libre la voiture recevras une autorisation de la partir de la pars du contrôleur. Cette autorisation est visible dans la classe voiture grâce au boolean autoriser.
-\\
-Lorsque le thread reviendras vérifier que la possibilité de départ de la voiture il constateras que le boolean est true et ainsi commencera le trajet.
-De plus lorsque la voiture avance dans sont trajet elle libère au fur et a mesure les chemins déjà utilisé  a l'aide de la fonction free.
+Etant donné que le but de chaque requête a été explicité ci-dessus, et que la structure de celles-ci ne présente pas d'intérêt particulier, nous nous intéresserons à leurs caractéristiques générales. \\
+Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres. Un requête, une fois traitée, est immédiatement détruite. Enfin,à chaque liste de requêtes est attribuée une priorité, afin que le contrôleur traite les requêtes les plus importantes en premier.
 
 \section{La classe Cerveau}
-Il s'agit du Thread chargé de négocier le départ puis l'arrivée d'un véhicule. Il est ajouté au véhicule lorsque celui-ci reçoit un passager. C'est alors lui qui se charge, après avoir calculé le chemin à emprunter, de faire la demande de réservation auprès du contrôleur et, si celui-ci l'autorise, à faire partir le véhicule.\\
+\begin{wrapfigure}[10]{l}{4.5cm}
+\vspace{-0.5cm}
+\includegraphics[scale=1]{Images/cerveau.png}
+\end{wrapfigure}Il s'agit du Thread chargé de négocier le départ puis l'arrivée d'un véhicule. Il est ajouté au véhicule lorsque celui-ci reçoit un passager. C'est alors lui qui se charge, après avoir calculé le chemin à emprunter, de faire la demande de réservation auprès du contrôleur et, si celui-ci l'autorise, à faire partir le véhicule. Cette autorisation se fait par le biais d'un booléen, modifié par la flotte de véhicules, à la demande du contrôleur.\\
 Par la suite, il se charge d'acheminer le véhicule jusqu'à sa destination, et signale ensuite au contrôleur la fin du trajet. Il est alors détruit, et le véhicule devient à nouveau disponible. Celui-ci recevra un nouveau "Cerveau" lors de l'embarquement du passager suivant.
+\vspace{0.5cm}
+\section{La Classe Véhicule}
+
+%\begin{wrapfigure}[16]{l}{5cm}
+%\vspace{-0.5cm}
+%\includegraphics[scale=1]{Images/vehicule.png}
+%\end{wrapfigure}
+Chaque véhicule possède un identifiant unique donné par la classe "Flotte de Véhicules" et stocké  dans un Integer "identifiant". Les véhicules sont instanciés sans trajet ni cerveau. Ceux-ci lui seront attribués plus tard, la de l'embarquement d'un passager. Le Cerveau se charge alors d'appeler les fonctions du véhicule pour calculer le trajet, envoyer des requêtes...
+A la fin de son trajet, seul le cerveau est détruit. Le véhicule  redevient alors libre, dans l'attente d'un nouveau passager.
+
+
 \chapter*{Conclusion}
 
 %  les annexes

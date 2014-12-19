@@ -19,7 +19,7 @@ public class FlotteVehicules {
 	/**
 	 * Le nombre de vehicule libre sur la map, cette entier n'est pas modifiable par une autre classe
 	 */
-	private int capaciter;
+	private int capacite;
 	/**
 	 * Une Hashmap contenant :
 	 *<ul>
@@ -44,7 +44,7 @@ public class FlotteVehicules {
 	 */
 	
 	FlotteVehicules(int c, BoiteAuxLettres boite){
-		capaciter=c;
+		capacite=c;
 		//vehicule=new HashMap<Integer, Boolean>();
 		vehicules = new ArrayList<Vehicule>();
 		for(int i =0;i<c;i++){
@@ -100,8 +100,8 @@ public class FlotteVehicules {
 	 * @see capaciter
 	 */
 
-	public int getCapaciter() {
-		return capaciter;
+	public int getCapacite() {
+		return capacite;
 	}
 
 
