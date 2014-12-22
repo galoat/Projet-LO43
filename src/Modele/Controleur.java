@@ -124,7 +124,7 @@ public class Controleur implements Observable,Runnable {
 
 		} else {
 			try {
-				System.out.println("rien dans la boite");
+			//	System.out.println("rien dans la boite");
 				wait(1000);
 			} catch (InterruptedException e) {
 				
@@ -175,7 +175,7 @@ public class Controleur implements Observable,Runnable {
 	 * @param r
 	 *            une requete de fin de trajet
 	 */
-	private synchronized void traiteRequete(RFinTrajet r) {
+	private  void traiteRequete(RFinTrajet r) {
 
 		maFlotte.liberer(r.getIdentifiant());
 	}
@@ -188,7 +188,7 @@ public class Controleur implements Observable,Runnable {
 	 * @param r
 	 *            une request map
 	 */
-	private synchronized void traiteRequete(RMap r) {
+	private  void traiteRequete(RMap r) {
 		System.out.println(r.getIdentifiant());
 		ArrayList<Boolean> m = r.getRequest_map();
 	//	System.out.println(m);

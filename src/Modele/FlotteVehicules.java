@@ -80,8 +80,8 @@ public class FlotteVehicules {
 	}
 	
 	public synchronized void checkAttente(){
-		int i=0;
-		System.out.println("verification liste attente vehicule");
+		
+	//	System.out.println("verification liste attente vehicule");
 		if(listeAttente.size()==0){
 			
 			try {
@@ -96,6 +96,7 @@ public class FlotteVehicules {
 				Passager p = listeAttente.get(0);
 			System.out.println("demande de "+ p.getDebut() +" a" +p.getFin());
 			if(!p.isEmbarque()){
+				int i=0;
 				while(!vehicules.get(i).isDispo() && i<vehicules.size()){
 					i++;
 				}
