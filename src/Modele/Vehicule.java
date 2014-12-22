@@ -198,7 +198,7 @@ public class Vehicule implements Observable {
 	}
 
 	@Override
-	public int notifyDebutMission(int dep) {
+	public synchronized int notifyDebutMission(int dep) {
 		return obs.updateDebutMission(dep);
 	}
 

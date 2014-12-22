@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import Exception.FlotteException;
+import Exception.RDepartException;
 
 /**
  * <b> La classe qui regit toute la partie Objet </b>
@@ -22,7 +23,7 @@ import Exception.FlotteException;
  * @author florian + theo
  * @version 0.1
  */
-public class Controleur implements Observable {
+public class Controleur implements Observable,Runnable {
 
 	/**
 	 * La liste des points atteignables sou forme d'int comme suivant
@@ -49,6 +50,20 @@ public class Controleur implements Observable {
 		createHashMap();
 		boite = new BoiteAuxLettres();
 		maFlotte = new FlotteVehicules(3, boite);
+		/* partie ajouter pour test
+		*
+		*
+		*
+		*
+		*/
+		RDepart r = null;
+		try {
+			r = new RDepart(1,3);
+		} catch (RDepartException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boite.addRequete(r);
 	}
 
 	/**
@@ -79,9 +94,10 @@ public class Controleur implements Observable {
 	 * 
 	 * @throws InterruptedException
 	 */
-	public void traiteRequete() {
+	public synchronized void traiteRequete() {
 		if (boite.getSizeRFintrajet() != 0) {
 			traiteRequete(boite.getRFinTrajet());
+			System.out.println("fin trajet");
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
@@ -90,6 +106,7 @@ public class Controleur implements Observable {
 			}
 		} else if (boite.getSizeRLib() != 0) {
 			traiteRequete(boite.getRLib());
+			System.out.println("liberation");
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
@@ -98,6 +115,7 @@ public class Controleur implements Observable {
 			}
 		} else if (boite.getSizeRDepart() != 0) {
 			traiteRequete(boite.getDepart());
+			System.out.println("depart");
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
@@ -106,6 +124,7 @@ public class Controleur implements Observable {
 			}
 		} else if (boite.getSizeRMap() != 0) {
 			traiteRequete(boite.getRMap());
+			System.out.println("map");
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
@@ -115,6 +134,7 @@ public class Controleur implements Observable {
 
 		} else {
 			try {
+				System.out.println("rien");
 				wait(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -265,5 +285,14 @@ public class Controleur implements Observable {
 	@Override
 	public int notifyDebutMission(int dep) {
 		return 0;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true){
+			System.out.println("controleur");
+			traiteRequete();
+		}
 	}
 }
