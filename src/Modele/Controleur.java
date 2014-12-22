@@ -45,12 +45,10 @@ public class Controleur implements Observable,Runnable {
 	private BoiteAuxLettres boite;
 	private FlotteVehicules maFlotte;
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
-	private int compteurAttente;
 
 	public Controleur() {
 		createHashMap();
 		boite = new BoiteAuxLettres();
-		compteurAttente = 0;
 	}
 
 	public void debutSim(int taille){
@@ -283,10 +281,7 @@ public class Controleur implements Observable,Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while(true){
-			if(compteurAttente == 5){
-				maFlotte.checkAttente();
-				compteurAttente = 0;
-			}
+			maFlotte.checkAttente();
 			traiteRequete();
 		}
 	}
