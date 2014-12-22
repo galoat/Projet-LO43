@@ -52,6 +52,7 @@ public class Controleur implements Observable,Runnable {
 
 	public void debutSim(int taille){
 		maFlotte = new FlotteVehicules(taille, boite);
+		
 	}
 	/**
 	 * Constructeur de la Hashmap
@@ -122,7 +123,7 @@ public class Controleur implements Observable,Runnable {
 
 		} else {
 			try {
-				System.out.println("rien");
+				System.out.println("rien dans la boite");
 				wait(1000);
 			} catch (InterruptedException e) {
 				

@@ -1,8 +1,6 @@
 package Modele;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 
 import Exception.FlotteException;
 /**
@@ -74,9 +72,20 @@ public class FlotteVehicules {
 		listeAttente.add(m);
 	}
 	
-	public void checkAttente(){
+	public synchronized void checkAttente(){
 		int i=0;
+		System.out.println("verification liste attente vehicule");
+		if(listeAttente.size()==0){
+			
+			try {
+				wait(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
 		for(Passager p : listeAttente){
+			System.out.println("demande de"+ p.getDebut() +" a" +p.getFin());
 			if(!p.isEmbarque()){
 				while(!vehicules.get(i).isDispo() && i<vehicules.size()){
 					i++;
@@ -91,7 +100,7 @@ public class FlotteVehicules {
 			}
 		}
 	}
-
+	}
 	public void liberer(int iD){
 		int i=0;
 		while(vehicules.get(i).getID() != iD){

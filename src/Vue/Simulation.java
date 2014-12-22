@@ -288,7 +288,7 @@ public class Simulation extends MainPan implements Observer {
 			for(Place p : places){
 				g.setColor(new Color(255, 255, 255));
 				g.fillRect(p.x, p.y, 2, 2);
-				System.out.println("Place " + p.iD + " : X : " + p.x + " Y : " + p.y);
+			//	System.out.println("Place " + p.iD + " : X : " + p.x + " Y : " + p.y);
 				
 			}
 			for (Vehicule v : vehicules) {
@@ -397,11 +397,11 @@ public class Simulation extends MainPan implements Observer {
 		 */
 		public void run() {
 			// map.repaint();
-			System.out.println("Da");
+		//	System.out.println("Da");
 			while (true) {
 				// Si la destination a ete modifiee
 				if (x != xdest || y != ydest) {
-					System.out.println("Da2");
+				//	System.out.println("Da2");
 					this.xi = x;
 					this.yi = y;
 					decalx = 0;
