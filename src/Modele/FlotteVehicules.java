@@ -32,7 +32,14 @@ public class FlotteVehicules {
 	//private HashMap<Integer, Boolean> vehicule;
 	private ArrayList<Vehicule> vehicules;
 	
-	
+	public  synchronized void setMaj(int ID){
+		
+		int i=0;
+		while(vehicules.get(i).getID()!=ID){
+			i++;
+		}
+		vehicules.get(i).getCerveau().setMaj(true);
+	}
 	
 	public ArrayList<Vehicule> getVehicules() {
 		return vehicules;
@@ -55,7 +62,7 @@ public class FlotteVehicules {
 		vehicules = new ArrayList<Vehicule>();
 		for(int i =0;i<c;i++){
 			//vehicule.put(i,true);
-			vehicules.add(new Vehicule(c, boite));
+			vehicules.add(new Vehicule(i, boite));
 		}
 		listeAttente=new ArrayList<Passager>();
 	}

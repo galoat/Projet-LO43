@@ -105,6 +105,7 @@ public class Controleur implements Observable,Runnable {
 		} else if (boite.getSizeRDepart() != 0) {
 			traiteRequete(boite.getDepart());
 			System.out.println("depart");
+			
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
@@ -165,7 +166,7 @@ public class Controleur implements Observable,Runnable {
 				e1.printStackTrace();
 			}
 		}
-
+		
 	}
 
 	/**
@@ -237,6 +238,7 @@ public class Controleur implements Observable,Runnable {
 		}
 		//System.out.println("au depart");
 		//System.out.println(general);
+		maFlotte.setMaj(r.getIdentifiant());
 	}
 
 	public void updateArriveeTemp(int iD) {
