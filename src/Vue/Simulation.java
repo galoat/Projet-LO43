@@ -31,11 +31,11 @@ import Modele.Observer;
 public class Simulation extends MainPan implements Observer {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel buttonpan, missionpan, controlpan;
+	private JPanel buttonpan, missionpan, controlpan, passagerpan;
 	private MapPan map;
 	private JButton pause, reset, envoyer;
 	private JComboBox depart, arrivee;
-	private JLabel dep, ar;
+	private JLabel dep, ar, passattvoiture, passattdepart, p1, p2;
 	private String[] tab = { "1", "2", "3", "4", "5", "6" };
 	private ArrayList<Place> places;
 	private ArrayList<Vehicule> vehicules;
@@ -67,17 +67,19 @@ public class Simulation extends MainPan implements Observer {
 		// On initialise la liste des places et de leurs coordonnees
 		buildPlaces();
 		// On rediemnsionne la fenetre
-		mere.setSize(new Dimension(350, 475));
+		mere.setSize(new Dimension(350, 515));
 		// Initialisaion de la simulation
-		this.setPreferredSize(new Dimension(350, 450));
+		this.setPreferredSize(new Dimension(350, 490));
 		this.setLayout(new BorderLayout());
 		map = new MapPan();
-		map.setPreferredSize(new Dimension(350, 350));
+		map.setPreferredSize(new Dimension(350, 380));
 		buttonpan = new JPanel();
 		// Panel permettant de generer des requetes
 		missionpan = new JPanel();
 		// Panel contenant pause et reset
 		controlpan = new JPanel();
+		//Panel contenant les infos sur les passagers en attente
+		passagerpan = new JPanel();
 
 		pause = mere.prepButton("Pause");
 		reset = mere.prepButton("Reinitialiser");
@@ -95,16 +97,32 @@ public class Simulation extends MainPan implements Observer {
 
 		dep = new JLabel("Depart : ");
 		ar = new JLabel("Arrivee : ");
+		passattvoiture = new JLabel("            En attente d'un voiture : ");
+		passattdepart = new JLabel("En instance de depart : ");
+		p1 = new JLabel("0");
+		p2 = new JLabel("0");
 
 		buttonpan.setBackground(new Color(52, 52, 52));
 		missionpan.setBackground(new Color(52, 52, 52));
 		controlpan.setBackground(new Color(52, 52, 52));
+		passagerpan.setBackground(new Color(52, 52, 52));
 
 		buttonpan.setLayout(new BorderLayout());
-		buttonpan.setPreferredSize(new Dimension(350, 75));
+		buttonpan.setPreferredSize(new Dimension(350, 110));
+		passagerpan.setPreferredSize(new Dimension(350, 35));
 
 		dep.setForeground(new Color(90, 150, 12));
 		ar.setForeground(new Color(90, 150, 12));
+		passattdepart.setForeground(new Color(90, 150, 12));
+		passattvoiture.setForeground(new Color(90, 150, 12));
+		p1.setForeground(new Color(200, 200, 200));
+		p2.setForeground(new Color(200, 200, 200));
+		
+		passagerpan.add(passattdepart);
+		passagerpan.add(p1);
+		passagerpan.add(passattvoiture);
+		passagerpan.add(p2);
+		
 		// Finalisation du missionpan
 		missionpan.add(dep);
 		missionpan.add(depart);
@@ -124,8 +142,8 @@ public class Simulation extends MainPan implements Observer {
 
 		controlpan.add(pause);
 		controlpan.add(reset);
-
-		buttonpan.add(missionpan, BorderLayout.NORTH);
+		buttonpan.add(passagerpan, BorderLayout.NORTH);
+		buttonpan.add(missionpan, BorderLayout.CENTER);
 		buttonpan.add(controlpan, BorderLayout.SOUTH);
 
 		// On centre le panel de la map, puis on l'ajoute
@@ -160,13 +178,27 @@ public class Simulation extends MainPan implements Observer {
 		places = new ArrayList<Place>();
 
 		// A REMPLACER PAR LES VRAIES COORDONNEES
-		places.add(new Place(1,(int) (centerx - (dist / 2) * Math.sqrt(3) + 42*Math.cos(3.14159265359)),(int)(centery - (dist / 2) - 42*Math.sin(3.14159265359))));// I1
-		places.add(new Place(2, (int)(centerx + 42*Math.cos(2.09439510239)), (int) (centery - dist - 42*Math.sin(2.09439510239))));// I2
-		places.add(new Place(3,(int) (centerx + (dist / 2) * Math.sqrt(3) + 42*Math.cos(1.0471975512)), (int) (centery	- (dist / 2) - 42*Math.sin(1.0471975512))));// I3
-		places.add(new Place(4,(int) (centerx + (dist / 2) * Math.sqrt(3) + 42*Math.cos(-0.01)), (int) (centery+ (dist / 2) - 42*Math.sin(-0.01))));// I4
-		places.add(new Place(5, (int) (centerx + 42*Math.cos(-2.09439510239)), (int)(centery + dist - 42*Math.sin(-2.09439510239))));// I5
-		places.add(new Place(6,(int) ((centerx - (dist / 2) * Math.sqrt(3)) + 42*Math.cos(-2.09439510239)), (int) (centery + (dist / 2) - 42*Math.sin(-2.09439510239))));// I6
-
+		places.add(new Place(1,
+				(int) (centerx - (dist / 2) * Math.sqrt(3) + 42 * Math
+						.cos(3.14159265359)),
+				(int) (centery - (dist / 2) - 42 * Math.sin(3.14159265359))));// I1
+		places.add(new Place(2, (int) (centerx + 42 * Math.cos(2.09439510239)),
+				(int) (centery - dist - 42 * Math.sin(2.09439510239))));// I2
+		places.add(new Place(3,
+				(int) (centerx + (dist / 2) * Math.sqrt(3) + 42 * Math
+						.cos(1.0471975512)),
+				(int) (centery - (dist / 2) - 42 * Math.sin(1.0471975512))));// I3
+		places.add(new Place(4,
+				(int) (centerx + (dist / 2) * Math.sqrt(3) + 42 * Math
+						.cos(-0.01)), (int) (centery + (dist / 2) - 42 * Math
+						.sin(-0.01))));// I4
+		places.add(new Place(5,
+				(int) (centerx + 42 * Math.cos(-2.09439510239)), (int) (centery
+						+ dist - 42 * Math.sin(-2.09439510239))));// I5
+		places.add(new Place(6,
+				(int) ((centerx - (dist / 2) * Math.sqrt(3)) + 42 * Math
+						.cos(-2.09439510239)),
+				(int) (centery + (dist / 2) - 42 * Math.sin(-2.09439510239))));// I6
 
 		places.add(new Place(11, (int) (centerx - (dist / 2) * Math.sqrt(3)),
 				(centery - (dist / 2))));// R1
@@ -180,13 +212,28 @@ public class Simulation extends MainPan implements Observer {
 				centery + (dist / 2)));// R6
 
 		// A REMPLACER PAR LES VRAIES COORDONNEES
-		places.add(new Place(21,(int) ((centerx - (dist / 2) * Math.sqrt(3)) + 42*Math.cos(2.09439510239)) ,(int)((centery - (dist / 2))-42*Math.sin(2.09439510239))));// O1
-		places.add(new Place(22, (int)(centerx + 42*Math.cos(1.0471975512)), (int)(centery - dist - 42*Math.sin(1.0471975512))));// O2
-		places.add(new Place(23,(int) ((centerx + (dist / 2) * Math.sqrt(3)) + 42*Math.cos(0)), (int)(centery - (dist / 2) - 42*Math.sin(0))));// O3
-		places.add(new Place(24,(int) ((centerx + (dist / 2) * Math.sqrt(3)) + 42*Math.cos(-1.0471975512)), (int)(centery + (dist / 2) - 42*Math.sin(-1.0471975512))));// O4
-		places.add(new Place(25, (int) (centerx - 42*Math.cos(-2.09439510239)), (int)(centery + dist - 42*Math.sin(-2.09439510239))));// O5
-		places.add(new Place(26,(int) (centerx - (dist / 2) * Math.sqrt(3) + 42*Math.cos(3.14159265359)), (int)(centery+ (dist / 2) - 42*Math.sin(3.14159265359))));// O6
-		
+		places.add(new Place(21,
+				(int) ((centerx - (dist / 2) * Math.sqrt(3)) + 42 * Math
+						.cos(2.09439510239)),
+				(int) ((centery - (dist / 2)) - 42 * Math.sin(2.09439510239))));// O1
+		places.add(new Place(22, (int) (centerx + 42 * Math.cos(1.0471975512)),
+				(int) (centery - dist - 42 * Math.sin(1.0471975512))));// O2
+		places.add(new Place(
+				23,
+				(int) ((centerx + (dist / 2) * Math.sqrt(3)) + 42 * Math.cos(0)),
+				(int) (centery - (dist / 2) - 42 * Math.sin(0))));// O3
+		places.add(new Place(24,
+				(int) ((centerx + (dist / 2) * Math.sqrt(3)) + 42 * Math
+						.cos(-1.0471975512)),
+				(int) (centery + (dist / 2) - 42 * Math.sin(-1.0471975512))));// O4
+		places.add(new Place(25,
+				(int) (centerx - 42 * Math.cos(-2.09439510239)), (int) (centery
+						+ dist - 42 * Math.sin(-2.09439510239))));// O5
+		places.add(new Place(26,
+				(int) (centerx - (dist / 2) * Math.sqrt(3) + 42 * Math
+						.cos(3.14159265359)),
+				(int) (centery + (dist / 2) - 42 * Math.sin(3.14159265359))));// O6
+
 		places.add(new Place(30, centerx, centery));// C
 	}
 
@@ -204,7 +251,7 @@ public class Simulation extends MainPan implements Observer {
 		int i = 0;
 		// Si c'est la fin du trajet
 		if (suivant == 99) {
-			for (int j=0; j<vehicules.size(); j++) {
+			for (int j = 0; j < vehicules.size(); j++) {
 				// On enleve le vehicule graphique
 				if (vehicules.get(j).iD == ID) {
 					vehicules.remove(vehicules.get(j));
@@ -266,8 +313,8 @@ public class Simulation extends MainPan implements Observer {
 		 */
 		public MapPan() {
 			try {
-				img = ImageIO
-						.read(this.getClass().getResource("Map_proj2try.png"));
+				img = ImageIO.read(this.getClass().getResource(
+						"Map_proj2try.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -286,12 +333,13 @@ public class Simulation extends MainPan implements Observer {
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0,
 					this.getWidth(), this.getHeight(), null);
 			// On dessine les vehicules
-			/*for(Place p : places){
-				g.setColor(new Color(255, 255, 255));
-				g.fillRect(p.x, p.y, 2, 2);
-			//	System.out.println("Place " + p.iD + " : X : " + p.x + " Y : " + p.y);
-				
-			}*/
+			/*
+			 * for(Place p : places){ g.setColor(new Color(255, 255, 255));
+			 * g.fillRect(p.x, p.y, 2, 2); // System.out.println("Place " + p.iD
+			 * + " : X : " + p.x + " Y : " + p.y);
+			 * 
+			 * }
+			 */
 			for (Vehicule v : vehicules) {
 				// A chaque type de vehicule correspond une image differente
 				/*
@@ -398,11 +446,11 @@ public class Simulation extends MainPan implements Observer {
 		 */
 		public void run() {
 			// map.repaint();
-		//	System.out.println("Da");
+			// System.out.println("Da");
 			while (true) {
 				// Si la destination a ete modifiee
 				if (x != xdest || y != ydest) {
-				//	System.out.println("Da2");
+					// System.out.println("Da2");
 					this.xi = x;
 					this.yi = y;
 					decalx = 0;
