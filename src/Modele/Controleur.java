@@ -289,7 +289,19 @@ public class Controleur implements Observable,Runnable {
 		}
 	}
 
-	
+	public void updatePassagersEnAttente(){
+		int attvoiture = 0, attdepart = 0;
+		System.out.println(maFlotte.listeAttente.isEmpty());
+		for(Passager p : maFlotte.listeAttente){
+			if(p.embarque){
+				attdepart++;
+			}else{
+				attvoiture++;
+			}System.out.println(maFlotte.listeAttente.isEmpty());
+		}
+		for (Observer obs : listObserver)
+			obs.updatePassagers(attdepart, attvoiture);
+	}
 	
 	public BoiteAuxLettres getBoite() {
 		return boite;
@@ -324,11 +336,13 @@ public class Controleur implements Observable,Runnable {
 		return 0;
 	}
 
+	
 	@Override
 	public void run() {
 		
 		while(true){
 			maFlotte.checkAttente();
+			updatePassagersEnAttente();
 			traiteRequete();
 		}
 	}

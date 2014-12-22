@@ -535,4 +535,11 @@ public class Simulation extends MainPan implements Observer {
 		veh.start();
 		return iD - 1;
 	}
+
+	@Override
+	public void updatePassagers(int attdepart, int attvoiture) {
+		p1.setText(Integer.toString(attdepart));
+		p2.setText(Integer.toString(attvoiture));
+		System.out.println("attdepart : " + attdepart + " attvoiture : " + attvoiture);
+	}
 }

@@ -286,4 +286,10 @@ public class Fenetre extends JFrame implements Observer {
 		return 0;
 		
 	}
+
+	@Override
+	public void updatePassagers(int attdepart, int attvoiture) {
+		s.updatePassagers(attdepart, attvoiture);
+		
+	}
 }
