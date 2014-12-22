@@ -50,6 +50,7 @@ public class Fenetre extends JFrame implements Observer {
 	private BarPanel barpan;
 	private Simulation s;
 	private JSlider vitesse, flotte;
+	private int tailleflotte, valvitesse;
 
 	/**
 	 * Constructeur de la fenetre : on y initialise les differents panels et
@@ -69,6 +70,8 @@ public class Fenetre extends JFrame implements Observer {
 			e.printStackTrace();
 		}
 		this.verif = v;
+		valvitesse = 20;
+		tailleflotte = 5;
 		// On retire le look&feel classique
 		this.setUndecorated(true);
 		this.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
@@ -149,11 +152,12 @@ public class Fenetre extends JFrame implements Observer {
 		vitesse.setForeground(new Color(98, 148, 49));
 		vitesse.setMaximum(100);
 		vitesse.setMinimum(0);
-		vitesse.setValue(30);
+		vitesse.setValue(20);
 		vitesse.setPaintTicks(true);
 		vitesse.setPaintLabels(true);
-		vitesse.setMinorTickSpacing(10);
-		vitesse.setMajorTickSpacing(20);
+		vitesse.setMinorTickSpacing(5);
+		vitesse.setMajorTickSpacing(25);
+		vitesse.setSnapToTicks(true);
 		flotte = new JSlider();
 		flotte.setBackground(new Color(52, 52, 52));
 		flotte.setForeground(new Color(98, 148, 49));
@@ -164,6 +168,7 @@ public class Fenetre extends JFrame implements Observer {
 		flotte.setPaintLabels(true);
 		flotte.setMinorTickSpacing(1);
 		flotte.setMajorTickSpacing(5);
+		flotte.setSnapToTicks(true);
 		optpan.add(Box.createRigidArea(new Dimension(30, 30)));
 		optpan.add(flotteLabel);
 		optpan.add(Box.createRigidArea(new Dimension(5, 10)));
@@ -243,11 +248,11 @@ public class Fenetre extends JFrame implements Observer {
 				changerPan(1);
 			}
 			if (e.getSource() == Bauto) {
-				s = new Simulation(true, Fenetre.this, verif);
+				s = new Simulation(true, Fenetre.this, verif, valvitesse, tailleflotte);
 				changerPan(2);
 			}
 			if (e.getSource() == Bmanu) {
-				s = new Simulation(false, Fenetre.this, verif);
+				s = new Simulation(false, Fenetre.this, verif, valvitesse, tailleflotte);
 				changerPan(2);
 			}
 			if (e.getSource() == Bcredits) {
@@ -261,6 +266,8 @@ public class Fenetre extends JFrame implements Observer {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == Bvalider) {		
+				valvitesse = vitesse.getValue();
+				tailleflotte =  flotte.getValue();
 			}
 			changerPan(0);
 		}

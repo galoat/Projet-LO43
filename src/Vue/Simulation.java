@@ -39,7 +39,7 @@ public class Simulation extends MainPan implements Observer{
 	private String[] tab = { "1", "2", "3", "4", "5", "6" };
 	private ArrayList<Place> places;
 	private ArrayList<Vehicule> vehicules;
-	private int centerx = 145, centery = 166, r = 25, dist = 132, iD = 0;
+	private int centerx = 145, centery = 166, r = 25, dist = 132, iD = 0, tailleflotte, vitesse;
 	private Verificateur verif;
 
 	/**
@@ -51,10 +51,12 @@ public class Simulation extends MainPan implements Observer{
 	 * @see Verificateur
 	 * @see	Fenetre
 	 */
-	public Simulation(boolean auto, Fenetre mere, Verificateur verif) {
+	public Simulation(boolean auto, Fenetre mere, Verificateur verif, int vitesse, int tailleflotte) {
 		super();
 		//On stocke le verificateur
 		this.verif = verif;
+		this.vitesse = vitesse;
+		this.tailleflotte = tailleflotte;
 		//On initialise la liste des vehicules affiches
 		vehicules = new ArrayList<Vehicule>();
 		//On initialise la liste des places et de leurs coordonnees
@@ -373,8 +375,8 @@ public class Simulation extends MainPan implements Observer{
 						}
 					}angle = angle * coef;
 					//On calcule les deltas necessaires aux deplacements
-					float dX = (xdest - x)/(float)200;
-				    float dY = (ydest - y)/(float)200;
+					float dX = ((xdest - x)*vitesse/(float)1000);
+				    float dY = ((ydest - y)*vitesse/(float)1000);
 				    float xt = x, yt = y;
 					//Tant qu'on est pas arrive a la destination
 				    while(x != xdest || y != ydest){
