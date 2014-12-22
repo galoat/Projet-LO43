@@ -18,20 +18,14 @@ public class Main {
 		//Ajout de la fen�tre comme observer de notre mod�le
 		c.addObserver(f);
 		RDepart r;
-		t.start();
+		
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
-			r = new RDepart(1, 4);
-			c.traiteRequete(r);
-		} catch (RDepartException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		t.start();
 
 	}
 
