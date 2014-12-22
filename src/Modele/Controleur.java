@@ -141,6 +141,7 @@ public class Controleur implements Observable,Runnable {
 	 */
 	private synchronized void traiteRequete(RLib r) {
 		general.put(r.getLib(), true);
+		
 	}
 
 	/**

@@ -68,7 +68,7 @@ public class FlotteVehicules {
 	 *		Un passager
 	 */
 	//exception si la liste des vehicule est compléte ?
-	public void donnerPassager(Passager m)throws FlotteException {
+	public  synchronized void donnerPassager(Passager m)throws FlotteException {
 		listeAttente.add(m);
 	}
 	
@@ -105,15 +105,16 @@ public class FlotteVehicules {
 		}
 	}
 	}
-	public void liberer(int iD){
+	public  synchronized void liberer(int iD){
 		int i=0;
 		while(vehicules.get(i).getID() != iD){
 			i++;
 		}
 		vehicules.get(i).setDispo(true);
+		
 	}
 	
-	public void lancerVehicule(int iD,boolean start){
+	public  synchronized void lancerVehicule(int iD,boolean start){
 		int i=0;
 		while(vehicules.get(i).getID() != iD){
 			i++;

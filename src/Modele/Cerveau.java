@@ -23,6 +23,7 @@ public class Cerveau extends Thread {
 		//On calcule le trajet
 		corps.findPath(corps.passager);
 		requestmap = corps.trajetToMap(corps.trajet);
+		System.out.println(this.getName());
 		//A REMETTRE
 		while (start != true) {
 			if (maj) {
