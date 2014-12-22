@@ -15,9 +15,15 @@ public class Passager {
  */
 	int debut;
 	/**
-	 * UN entier representant la fin du trajetn
+	 * Un entier representant la fin du trajet
 	 */
 	int fin;
+	
+	/**
+	 * Un booleen indiquant que le passager est dans un vehicule ou non
+	 */
+	boolean embarque;
+	
 	/**	
 	 * Constructeur par default de Passager
 	 * @param debut
@@ -28,6 +34,7 @@ public class Passager {
 	Passager(int debut, int fin){
 		this.debut=debut;
 		this.fin=fin;
+		this.embarque = false;
 	}
 	/**
 	 * retourne le debut de la course
@@ -42,6 +49,12 @@ public class Passager {
 	 */
 	public int getFin() {
 		return fin;
+	}
+	public boolean isEmbarque() {
+		return embarque;
+	}
+	public void setEmbarque(boolean embarque) {
+		this.embarque = embarque;
 	}
 	
 

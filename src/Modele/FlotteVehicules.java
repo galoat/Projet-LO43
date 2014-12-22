@@ -20,8 +20,7 @@ public class FlotteVehicules {
 	/**
 	 * Le nombre de vehicule libre sur la map, cette entier n'est pas modifiable par une autre classe
 	 */
-	private int capaciter;
-	LinkedList<Passager> listeAttente;
+	ArrayList<Passager> listeAttente;
 	
 	private int capacite;
 	/**
@@ -60,7 +59,7 @@ public class FlotteVehicules {
 			//vehicule.put(i,true);
 			vehicules.add(new Vehicule(c, boite));
 		}
-		listeAttente=new LinkedList<Passager>();
+		listeAttente=new ArrayList<Passager>();
 	}
 	
 	
@@ -72,14 +71,25 @@ public class FlotteVehicules {
 	 */
 	//exception si la liste des vehicule est compléte ?
 	public void donnerPassager(Passager m)throws FlotteException {
+		listeAttente.add(m);
+	}
+	
+	public void checkAttente(){
 		int i=0;
-		while(!vehicules.get(i).isDispo()){
-			i++;
+		for(Passager p : listeAttente){
+			if(!p.isEmbarque()){
+				while(!vehicules.get(i).isDispo() && i<vehicules.size()){
+					i++;
+				}
+				if(!(i == vehicules.size())){
+					p.setEmbarque(true);
+					vehicules.get(i).setDispo(false);
+					vehicules.get(i).setPassager(p);
+					vehicules.get(i).setCerveau(new Cerveau(vehicules.get(i)));
+					vehicules.get(i).getCerveau().start();
+				}
+			}
 		}
-		vehicules.get(i).setDispo(false);
-		vehicules.get(i).setPassager(m);
-		vehicules.get(i).setCerveau(new Cerveau(vehicules.get(i)));
-		vehicules.get(i).getCerveau().start();
 	}
 
 	public void liberer(int iD){
@@ -94,6 +104,9 @@ public class FlotteVehicules {
 		int i=0;
 		while(vehicules.get(i).getID() != iD){
 			i++;
+		}
+		if(start){
+			listeAttente.remove(vehicules.get(i).getPassager());
 		}
 		vehicules.get(i).getCerveau().setMaj(true);
 		vehicules.get(i).getCerveau().setStart(start);
