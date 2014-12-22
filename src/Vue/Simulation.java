@@ -39,7 +39,7 @@ public class Simulation extends MainPan implements Observer {
 	private String[] tab = { "1", "2", "3", "4", "5", "6" };
 	private ArrayList<Place> places;
 	private ArrayList<Vehicule> vehicules;
-	private int centerx = 145, centery = 166, r = 25, dist = 132, iD = 0,
+	private int centerx = 169, centery = 178, r = 25, dist = 132, iD = 0,
 			tailleflotte, vitesse;
 	private Verificateur verif;
 
@@ -129,9 +129,9 @@ public class Simulation extends MainPan implements Observer {
 		buttonpan.add(controlpan, BorderLayout.SOUTH);
 
 		// On centre le panel de la map, puis on l'ajoute
-		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.NORTH);
-		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.EAST);
-		this.add(Box.createRigidArea(new Dimension(30, 20)), BorderLayout.WEST);
+		this.add(Box.createRigidArea(new Dimension(10, 10)), BorderLayout.NORTH);
+		this.add(Box.createRigidArea(new Dimension(5, 5)), BorderLayout.EAST);
+		this.add(Box.createRigidArea(new Dimension(5, 5)), BorderLayout.WEST);
 		this.add(map, BorderLayout.CENTER);
 		this.add(buttonpan, BorderLayout.SOUTH);
 		verif.obsVehicules(this);
@@ -266,7 +266,7 @@ public class Simulation extends MainPan implements Observer {
 		public MapPan() {
 			try {
 				img = ImageIO
-						.read(this.getClass().getResource("Map_proj2.png"));
+						.read(this.getClass().getResource("Map_proj2try.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -285,12 +285,12 @@ public class Simulation extends MainPan implements Observer {
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0,
 					this.getWidth(), this.getHeight(), null);
 			// On dessine les vehicules
-			for(Place p : places){
+			/*for(Place p : places){
 				g.setColor(new Color(255, 255, 255));
 				g.fillRect(p.x, p.y, 2, 2);
 			//	System.out.println("Place " + p.iD + " : X : " + p.x + " Y : " + p.y);
 				
-			}
+			}*/
 			for (Vehicule v : vehicules) {
 				// A chaque type de vehicule correspond une image differente
 				/*
