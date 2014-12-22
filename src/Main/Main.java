@@ -16,8 +16,7 @@ public class Main {
 		Fenetre f = new Fenetre(v);
 		//Ajout de la fen�tre comme observer de notre mod�le
 		c.addObserver(f);
-		System.out.println(Math.acos((-115)/Math.sqrt(Math.pow(-115,2)+Math.pow(66,2))));
-		RDepart r;
+		/*RDepart r;
 		try {
 			Thread.sleep(1500);
 		} catch (InterruptedException e1) {
@@ -30,7 +29,7 @@ public class Main {
 		} catch (RDepartException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 

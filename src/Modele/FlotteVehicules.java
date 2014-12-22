@@ -20,13 +20,10 @@ public class FlotteVehicules {
 	/**
 	 * Le nombre de vehicule libre sur la map, cette entier n'est pas modifiable par une autre classe
 	 */
-<<<<<<< HEAD
 	private int capaciter;
 	LinkedList<Passager> listeAttente;
 	
-=======
 	private int capacite;
->>>>>>> abaf79ac2338ce8dcb007c5580e8fe31599c66d6
 	/**
 	 * Une Hashmap contenant :
 	 *<ul>

@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 
 import Controleur.Verificateur;
@@ -43,11 +44,12 @@ public class Fenetre extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
 	private Verificateur verif;
 	private MainPan fenpanmain, fenpanopt, fenpancredits, actual;
-	private JPanel buttonpan;
-	private JLabel titre;
-	private JButton Bcredits, Bmanu, Bauto, Bopt;
+	private JPanel buttonpan, optpan, controlpan;
+	private JLabel titre, vitesseLabel, flotteLabel;
+	private JButton Bcredits, Bmanu, Bauto, Bopt, Bvalider, Bannuler;
 	private BarPanel barpan;
 	private Simulation s;
+	private JSlider vitesse, flotte;
 
 	/**
 	 * Constructeur de la fenetre : on y initialise les differents panels et
@@ -121,6 +123,62 @@ public class Fenetre extends JFrame implements Observer {
 		fenpanmain.add(buttonpan, BorderLayout.SOUTH);
 	}
 
+	public void createOptPan(){
+		fenpanopt = new MainPan();
+		fenpanopt.setPreferredSize(new Dimension(350, 375));
+		fenpanopt.setLayout(new BorderLayout());
+		optpan = new JPanel();
+		controlpan = new JPanel();
+		Bvalider = prepButton("Valider");
+		Bannuler = prepButton("Annuler");
+		Bvalider.addActionListener(new optListener());
+		Bannuler.addActionListener(new optListener());
+		optpan.setPreferredSize(new Dimension(170, 200));
+		optpan.setLayout(new BoxLayout(optpan, BoxLayout.PAGE_AXIS));
+		optpan.setBackground(new Color(0, 0, 0, 0));
+		controlpan.setBackground(new Color(0, 0, 0, 0));
+		// fenpanmain.add(barpan, BorderLayout.NORTH);
+		controlpan.add(Bvalider);
+		controlpan.add(Bannuler);
+		vitesseLabel = new JLabel("Vitesse des vehicules");
+		vitesseLabel.setForeground(new Color(98, 148, 49));
+		flotteLabel = new JLabel("Taille de la flotte");
+		flotteLabel.setForeground(new Color(98, 148, 49));
+		vitesse = new JSlider();
+		vitesse.setBackground(new Color(52, 52, 52));
+		vitesse.setForeground(new Color(98, 148, 49));
+		vitesse.setMaximum(100);
+		vitesse.setMinimum(0);
+		vitesse.setValue(30);
+		vitesse.setPaintTicks(true);
+		vitesse.setPaintLabels(true);
+		vitesse.setMinorTickSpacing(10);
+		vitesse.setMajorTickSpacing(20);
+		flotte = new JSlider();
+		flotte.setBackground(new Color(52, 52, 52));
+		flotte.setForeground(new Color(98, 148, 49));
+		flotte.setMaximum(20);
+		flotte.setMinimum(1);
+		flotte.setValue(5);
+		flotte.setPaintTicks(true);
+		flotte.setPaintLabels(true);
+		flotte.setMinorTickSpacing(1);
+		flotte.setMajorTickSpacing(5);
+		optpan.add(Box.createRigidArea(new Dimension(30, 30)));
+		optpan.add(flotteLabel);
+		optpan.add(Box.createRigidArea(new Dimension(5, 10)));
+		optpan.add(flotte);
+		optpan.add(Box.createRigidArea(new Dimension(20, 20)));
+		optpan.add(vitesseLabel);
+		optpan.add(Box.createRigidArea(new Dimension(5, 10)));
+		optpan.add(vitesse);
+		fenpanopt.add(optpan, BorderLayout.CENTER);
+		fenpanopt.add(controlpan, BorderLayout.SOUTH);
+	}
+	
+	public void createCreditsPan(){
+		
+	}
 	
 	public JButton prepButton(String s){
 		JButton b = new JButton(s, new ImageIcon(getClass().getResource( "b1.png" )));
@@ -181,7 +239,7 @@ public class Fenetre extends JFrame implements Observer {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == Bopt) {
-				fenpanopt = new PanOpt();
+				createOptPan();
 				changerPan(1);
 			}
 			if (e.getSource() == Bauto) {
@@ -193,9 +251,18 @@ public class Fenetre extends JFrame implements Observer {
 				changerPan(2);
 			}
 			if (e.getSource() == Bcredits) {
-				fenpancredits = new PanCredits();
+				createCreditsPan();
 				changerPan(3);
 			}
+		}
+	}
+	
+	private class optListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == Bvalider) {		
+			}
+			changerPan(0);
 		}
 	}
 

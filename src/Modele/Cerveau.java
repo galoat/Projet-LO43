@@ -35,7 +35,7 @@ public class Cerveau extends Thread {
 					e.printStackTrace();
 				}
 			}
-		}*/System.out.println("Autorisation accordee");
+		}*/
 		//On se positionne au depart
 		iDVehiculeGraphique = corps.notifyDebutMission(corps.trajet.get(0));
 		System.out.println("Depart : " + corps.trajet.get(0));
@@ -58,7 +58,7 @@ public class Cerveau extends Thread {
 			}
 		}//Le trajet est termine
 		corps.sendRLib(corps.trajet.get(i-1));
-		corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond e la fin du trajet
+		corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond a la fin du trajet
 		corps.sendRFinTrajet();
 	}
 
