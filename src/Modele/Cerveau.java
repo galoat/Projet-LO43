@@ -59,7 +59,7 @@ public class Cerveau extends Thread {
 		}//Le trajet est termine
 		corps.sendRLib(corps.trajet.get(i-1));
 		corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond a la fin du trajet
-		corps.sendRFinTrajet();
+		corps.sendRFinTrajet(corps.trajet.get(i-1));
 	}
 
 	public int getiDVehiculeGraphique() {

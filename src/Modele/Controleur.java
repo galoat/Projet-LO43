@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import Exception.FlotteException;
-import Exception.RDepartException;
 
 /**
  * <b> La classe qui regit toute la partie Objet </b>
@@ -86,10 +85,11 @@ public class Controleur implements Observable,Runnable {
 		if (boite.getSizeRFintrajet() != 0) {
 			traiteRequete(boite.getRFinTrajet());
 			System.out.println("fin trajet");
+			System.out.println(general);
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		} else if (boite.getSizeRLib() != 0) {
@@ -98,7 +98,7 @@ public class Controleur implements Observable,Runnable {
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		} else if (boite.getSizeRDepart() != 0) {
@@ -107,7 +107,7 @@ public class Controleur implements Observable,Runnable {
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		} else if (boite.getSizeRMap() != 0) {
@@ -116,7 +116,7 @@ public class Controleur implements Observable,Runnable {
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 
@@ -125,7 +125,7 @@ public class Controleur implements Observable,Runnable {
 				System.out.println("rien");
 				wait(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
@@ -156,11 +156,11 @@ public class Controleur implements Observable,Runnable {
 			maFlotte.donnerPassager(p);
 		} catch (FlotteException e) {
 			// si il n'y a plus de place pour les vehicule
-			// TODO Auto-generated catch block
+			
 			try {
 				wait(1000);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 		}
@@ -174,6 +174,7 @@ public class Controleur implements Observable,Runnable {
 	 *            une requete de fin de trajet
 	 */
 	private synchronized void traiteRequete(RFinTrajet r) {
+
 		maFlotte.liberer(r.getIdentifiant());
 	}
 
@@ -186,6 +187,7 @@ public class Controleur implements Observable,Runnable {
 	 *            une request map
 	 */
 	private synchronized void traiteRequete(RMap r) {
+		System.out.println(r.getIdentifiant());
 		ArrayList<Boolean> m = r.getRequest_map();
 		// compteur pour savoir ou on en est dans les boucles
 		int i = 1;
@@ -209,6 +211,7 @@ public class Controleur implements Observable,Runnable {
 					
 				}
 			}
+			
 			i++;
 			//changement de la valeur de i a cause des clée de la hasmap
 			if(i==7){
@@ -230,7 +233,8 @@ public class Controleur implements Observable,Runnable {
 			}
 			maFlotte.lancerVehicule(r.getIdentifiant(), true);	
 		}
-
+		System.out.println("au depart");
+		System.out.println(general);
 	}
 
 	public void updateArriveeTemp(int iD) {
@@ -268,7 +272,7 @@ public class Controleur implements Observable,Runnable {
 
 	@Override
 	public void notifyCoords(int iD, int suivant) {
-		// TODO Auto-generated method stub
+	
 
 	}
 
@@ -279,7 +283,7 @@ public class Controleur implements Observable,Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
 		while(true){
 			maFlotte.checkAttente();
 			traiteRequete();

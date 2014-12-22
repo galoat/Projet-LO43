@@ -168,7 +168,9 @@ public class Vehicule implements Observable {
 		boite.addRequete(rlib);
 	}
 		
-	public void sendRFinTrajet() {
+	public void sendRFinTrajet(int place) {
+		RLib rlib = new RLib(place);
+		boite.addRequete(rlib);
 		RFinTrajet rfin = new RFinTrajet(ID);
 		boite.addRequete(rfin);
 	}
