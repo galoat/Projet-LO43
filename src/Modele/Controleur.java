@@ -200,7 +200,7 @@ public class Controleur implements Observable,Runnable {
 	private synchronized void traiteRequete(RMap r) {
 		ArrayList<Boolean> m = r.getRequest_map();
 		// compteur pour savoir ou on en est dans les boucles
-		int i = 0;
+		int i = 1;
 		// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
 		// tableau
 		ArrayList<Integer> tab = new ArrayList<Integer>();
@@ -215,21 +215,21 @@ public class Controleur implements Observable,Runnable {
 			if (b == true) {
 				trueInRequete++;
 				// si la place est libre
-				if (general.get(i+1)) {
+				if (general.get(i)) {
 					trueInGeneral++;
-					tab.add(i+1);
+					tab.add(i);
 					
 				}
 			}
 			i++;
 			//changement de la valeur de i a cause des clée de la hasmap
-			if(i==6){
+			if(i==7){
 				i=11;
 			}
-			if(i==16){
+			if(i==17){
 				i=21;
 			}
-			if(i==26){
+			if(i==27){
 				i=30;
 			}
 		}
@@ -301,7 +301,7 @@ public class Controleur implements Observable,Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while(true){
-			System.out.println("controleur");
+			//System.out.println("controleur");
 			traiteRequete();
 		}
 	}
