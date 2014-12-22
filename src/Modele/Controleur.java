@@ -189,6 +189,7 @@ public class Controleur implements Observable,Runnable {
 	private synchronized void traiteRequete(RMap r) {
 		System.out.println(r.getIdentifiant());
 		ArrayList<Boolean> m = r.getRequest_map();
+		System.out.println(m);
 		// compteur pour savoir ou on en est dans les boucles
 		int i = 1;
 		// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
