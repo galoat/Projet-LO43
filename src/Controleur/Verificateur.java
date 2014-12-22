@@ -30,5 +30,10 @@ public class Verificateur {
 		}
 		
 	}
+	public void debutSim(int tailleflotte){
+		model.debutSim(tailleflotte);
+		Thread t=new Thread(model);
+		t.start();
+	}
 
 }

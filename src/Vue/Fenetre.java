@@ -248,10 +248,12 @@ public class Fenetre extends JFrame implements Observer {
 				changerPan(1);
 			}
 			if (e.getSource() == Bauto) {
+				verif.debutSim(tailleflotte);
 				s = new Simulation(true, Fenetre.this, verif, valvitesse, tailleflotte);
 				changerPan(2);
 			}
 			if (e.getSource() == Bmanu) {
+				verif.debutSim(tailleflotte);
 				s = new Simulation(false, Fenetre.this, verif, valvitesse, tailleflotte);
 				changerPan(2);
 			}

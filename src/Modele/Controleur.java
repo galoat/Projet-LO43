@@ -49,23 +49,11 @@ public class Controleur implements Observable,Runnable {
 	public Controleur() {
 		createHashMap();
 		boite = new BoiteAuxLettres();
-		maFlotte = new FlotteVehicules(3, boite);
-		/* partie ajouter pour test
-		*
-		*
-		*
-		*
-		*/
-		RDepart r = null;
-		try {
-			r = new RDepart(1,3);
-		} catch (RDepartException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		boite.addRequete(r);
 	}
 
+	public void debutSim(int taille){
+		maFlotte = new FlotteVehicules(taille, boite);
+	}
 	/**
 	 * Constructeur de la Hashmap
 	 * 
@@ -254,20 +242,12 @@ public class Controleur implements Observable,Runnable {
 		}
 	}
 
+	
+	
 	public BoiteAuxLettres getBoite() {
 		return boite;
 	}
 
-	/*
-	 * 
-	 * 
-	 * Patern MVC
-	 * 
-	 * 
-	 * (non-Javadoc)
-	 * 
-	 * @see Modele.Observable#addObserver(Modele.Observer)
-	 */
 	public void addObserver(Observer obs) {
 		this.listObserver.add(obs);
 	}

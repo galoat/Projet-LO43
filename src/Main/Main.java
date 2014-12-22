@@ -17,16 +17,6 @@ public class Main {
 		Fenetre f = new Fenetre(v);
 		//Ajout de la fen�tre comme observer de notre mod�le
 		c.addObserver(f);
-		RDepart r;
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		t.start();
-
 	}
 
 }
