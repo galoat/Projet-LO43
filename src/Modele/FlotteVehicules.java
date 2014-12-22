@@ -97,7 +97,7 @@ public class FlotteVehicules {
 			System.out.println("demande de "+ p.getDebut() +" a" +p.getFin());
 			if(!p.isEmbarque()){
 				int i=0;
-				while(!vehicules.get(i).isDispo() && i<vehicules.size()){
+				while(i<vehicules.size()&&!vehicules.get(i).isDispo()){
 					i++;
 				}
 				if(!(i == vehicules.size())){
@@ -106,9 +106,16 @@ public class FlotteVehicules {
 					vehicules.get(i).setPassager(p);
 					vehicules.get(i).setCerveau(new Cerveau(vehicules.get(i)));
 					vehicules.get(i).getCerveau().start();
-					
+					listeAttente.remove(0);
 				}
-				listeAttente.remove(0);
+				else{
+					try {
+						wait(500);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 	}

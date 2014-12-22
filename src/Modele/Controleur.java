@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import Exception.FlotteException;
+import Exception.RDepartException;
 
 /**
  * <b> La classe qui regit toute la partie Objet </b>
@@ -49,7 +50,39 @@ public class Controleur implements Observable,Runnable {
 		createHashMap();
 		boite = new BoiteAuxLettres();
 	}
-
+	/**
+	 * fonction appeler lorsque on veut faire une simulation en automatique
+	 */
+	public void debutSimAuto(int taille){
+		maFlotte = new FlotteVehicules(taille, boite);
+		while(true){
+			int a =generateur();
+			int b=generateur();
+			if(a!=b){
+				RDepart r	=null;
+				try {
+				 r=new RDepart(a,b);
+				} catch (RDepartException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				boite.addRequete(r);
+			}else
+			{
+				try {
+					wait(100000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			}	
+	}
+/**
+ * FOnction demarant la simulation en mode manuel 
+ * @param taille
+ * 				le nombre devehicule au depart
+ */
 	public void debutSim(int taille){
 		maFlotte = new FlotteVehicules(taille, boite);
 		
@@ -240,7 +273,13 @@ public class Controleur implements Observable,Runnable {
 		//System.out.println(general);
 		maFlotte.setMaj(r.getIdentifiant());
 	}
-
+/**
+ * fonction servat a generer un nombre alleatoire entre 1 et 6
+ * @param 
+ */
+	private int generateur(){
+		return 1 + (int)(Math.random() * 5 + 1);
+	}
 	public void updateArriveeTemp(int iD) {
 		for (Vehicule v : maFlotte.getVehicules()) {
 			// On se place sur le vehicule auquel est lie le vehicule graphique
