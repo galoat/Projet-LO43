@@ -84,8 +84,10 @@ public class FlotteVehicules {
 				e.printStackTrace();
 			}
 		}else{
-		for(Passager p : listeAttente){
-			System.out.println("demande de"+ p.getDebut() +" a" +p.getFin());
+			
+			while(listeAttente.size()!=0){
+				Passager p = listeAttente.get(0);
+			System.out.println("demande de "+ p.getDebut() +" a" +p.getFin());
 			if(!p.isEmbarque()){
 				while(!vehicules.get(i).isDispo() && i<vehicules.size()){
 					i++;
@@ -96,7 +98,9 @@ public class FlotteVehicules {
 					vehicules.get(i).setPassager(p);
 					vehicules.get(i).setCerveau(new Cerveau(vehicules.get(i)));
 					vehicules.get(i).getCerveau().start();
+					
 				}
+				listeAttente.remove(0);
 			}
 		}
 	}

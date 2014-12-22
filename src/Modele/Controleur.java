@@ -86,7 +86,7 @@ public class Controleur implements Observable,Runnable {
 		if (boite.getSizeRFintrajet() != 0) {
 			traiteRequete(boite.getRFinTrajet());
 			System.out.println("fin trajet");
-			System.out.println(general);
+			//System.out.println(general);
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
@@ -190,7 +190,7 @@ public class Controleur implements Observable,Runnable {
 	private synchronized void traiteRequete(RMap r) {
 		System.out.println(r.getIdentifiant());
 		ArrayList<Boolean> m = r.getRequest_map();
-		System.out.println(m);
+	//	System.out.println(m);
 		// compteur pour savoir ou on en est dans les boucles
 		int i = 1;
 		// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
@@ -235,8 +235,8 @@ public class Controleur implements Observable,Runnable {
 			}
 			maFlotte.lancerVehicule(r.getIdentifiant(), true);	
 		}
-		System.out.println("au depart");
-		System.out.println(general);
+		//System.out.println("au depart");
+		//System.out.println(general);
 	}
 
 	public void updateArriveeTemp(int iD) {
