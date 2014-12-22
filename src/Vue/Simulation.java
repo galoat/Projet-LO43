@@ -160,48 +160,33 @@ public class Simulation extends MainPan implements Observer {
 		places = new ArrayList<Place>();
 
 		// A REMPLACER PAR LES VRAIES COORDONNEES
-		places.add(new Place(1,
-				(int) (centerx - (dist / 2) * Math.sqrt(3)) - 1,
-				(centery - (dist / 2))));// 1
-		places.add(new Place(2, centerx - 1, centery - dist));// 2
-		places.add(new Place(3,
-				(int) (centerx + (dist / 2) * Math.sqrt(3)) - 1, centery
-						- (dist / 2)));// 3
-		places.add(new Place(4,
-				(int) (centerx + (dist / 2) * Math.sqrt(3)) - 1, centery
-						+ (dist / 2)));// 4
-		places.add(new Place(5, centerx - 1, centery + dist));// 5
-		places.add(new Place(6,
-				(int) (centerx - (dist / 2) * Math.sqrt(3)) - 1, centery
-						+ (dist / 2)));// 6
+		places.add(new Place(1,(int) (centerx - (dist / 2) * Math.sqrt(3) + 42*Math.cos(3.14159265359)),(int)(centery - (dist / 2) - 42*Math.sin(3.14159265359))));// I1
+		places.add(new Place(2, (int)(centerx + 42*Math.cos(2.09439510239)), (int) (centery - dist - 42*Math.sin(2.09439510239))));// I2
+		places.add(new Place(3,(int) (centerx + (dist / 2) * Math.sqrt(3) + 42*Math.cos(1.0471975512)), (int) (centery	- (dist / 2) - 42*Math.sin(1.0471975512))));// I3
+		places.add(new Place(4,(int) (centerx + (dist / 2) * Math.sqrt(3) + 42*Math.cos(-1.0471975512)), (int) (centery+ (dist / 2) - 42*Math.sin(-1.0471975512))));// I4
+		places.add(new Place(5, (int) (centerx + 42*Math.cos(-2.09439510239)), (int)(centery + dist - 42*Math.sin(-2.09439510239))));// I5
+		places.add(new Place(6,(int) ((centerx - (dist / 2) * Math.sqrt(3)) + 42*Math.cos(-2.09439510239)), (int) (centery + (dist / 2) - 42*Math.sin(-2.09439510239))));// I6
 
-		// CES PLACES SONT JUSTES
+
 		places.add(new Place(11, (int) (centerx - (dist / 2) * Math.sqrt(3)),
-				(centery - (dist / 2))));// 1
-		places.add(new Place(12, centerx, centery - dist));// 2
+				(centery - (dist / 2))));// R1
+		places.add(new Place(12, centerx, centery - dist));// R2
 		places.add(new Place(13, (int) (centerx + (dist / 2) * Math.sqrt(3)),
-				centery - (dist / 2)));// 3
+				centery - (dist / 2)));// R3
 		places.add(new Place(14, (int) (centerx + (dist / 2) * Math.sqrt(3)),
-				centery + (dist / 2)));// 4
-		places.add(new Place(15, centerx, centery + dist));// 5
+				centery + (dist / 2)));// R4
+		places.add(new Place(15, centerx, centery + dist));// R5
 		places.add(new Place(16, (int) (centerx - (dist / 2) * Math.sqrt(3)),
-				centery + (dist / 2)));// 6
+				centery + (dist / 2)));// R6
 
 		// A REMPLACER PAR LES VRAIES COORDONNEES
-		places.add(new Place(21,
-				(int) (centerx - (dist / 2) * Math.sqrt(3)) - 1,
-				(centery - (dist / 2))));// 1
-		places.add(new Place(22, centerx - 1, centery - dist));// 2
-		places.add(new Place(23,
-				(int) (centerx + (dist / 2) * Math.sqrt(3)) - 1, centery
-						- (dist / 2)));// 3
-		places.add(new Place(24,
-				(int) (centerx + (dist / 2) * Math.sqrt(3)) - 1, centery
-						+ (dist / 2)));// 4
-		places.add(new Place(25, centerx - 1, centery + dist));// 5
-		places.add(new Place(26,
-				(int) (centerx - (dist / 2) * Math.sqrt(3)) - 1, centery
-						+ (dist / 2)));// 6
+		places.add(new Place(21,(int) ((centerx - (dist / 2) * Math.sqrt(3)) + 42*Math.cos(2.09439510239)) ,(int)((centery - (dist / 2))-42*Math.sin(2.09439510239))));// O1
+		places.add(new Place(22, (int)(centerx + 42*Math.cos(1.0471975512)), (int)(centery - dist - 42*Math.sin(1.0471975512))));// O2
+		places.add(new Place(23,(int) ((centerx + (dist / 2) * Math.sqrt(3)) + 42*Math.cos(0)), (int)(centery - (dist / 2) - 42*Math.sin(0))));// O3
+		places.add(new Place(24,(int) ((centerx + (dist / 2) * Math.sqrt(3)) + 42*Math.cos(-1.0471975512)), (int)(centery + (dist / 2) - 42*Math.sin(-1.0471975512))));// O4
+		places.add(new Place(25, (int) (centerx - 42*Math.cos(-2.09439510239)), (int)(centery + dist - 42*Math.sin(-2.09439510239))));// O5
+		places.add(new Place(26,(int) (centerx - (dist / 2) * Math.sqrt(3) + 42*Math.cos(3.14159265359)), (int)(centery+ (dist / 2) - 42*Math.sin(3.14159265359))));// O6
+		
 		places.add(new Place(30, centerx, centery));// C
 	}
 
@@ -300,6 +285,12 @@ public class Simulation extends MainPan implements Observer {
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0,
 					this.getWidth(), this.getHeight(), null);
 			// On dessine les vehicules
+			for(Place p : places){
+				g.setColor(new Color(255, 255, 255));
+				g.fillRect(p.x, p.y, 2, 2);
+				System.out.println("Place " + p.iD + " : X : " + p.x + " Y : " + p.y);
+				
+			}
 			for (Vehicule v : vehicules) {
 				// A chaque type de vehicule correspond une image differente
 				/*
