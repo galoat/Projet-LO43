@@ -3,7 +3,7 @@ package Modele;
 public class Cerveau extends Thread {
 	private Vehicule corps;
 	private RMap requestmap;
-	private boolean start, maj, graphtop;
+	private boolean start, maj, graphtop, fin;
 	private int iDVehiculeGraphique;
 
 	public Cerveau(Vehicule v) {
@@ -11,6 +11,7 @@ public class Cerveau extends Thread {
 		start = false; // Indique que le vehicule est autorise a partir
 		maj = true; // Indique que la requete a ete traitee
 		graphtop = true; // Indique que la voiture (partie graphique) est arrivee au point suivant
+		fin = false; // Indique que la mission est terminee
 	}
 
 	/**
@@ -40,14 +41,14 @@ public class Cerveau extends Thread {
 		iDVehiculeGraphique = corps.notifyDebutMission(corps.trajet.get(0));
 		System.out.println("Depart : " + corps.trajet.get(0));
 		//Et on va de points en points
-		while (i < corps.trajet.size()) {
+		while (i <corps.trajet.size()) {
 			//Si la voiture graphique a termine de bouger
 			if(graphtop){
 				graphtop=false;
 				corps.sendRLib(corps.trajet.get(i-1));
-				i++;
 				//Nouvelles coordonnees
-				corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i-1));
+				corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i));
+				i++;
 			}else{
 				try {
 					sleep(100);
@@ -57,9 +58,22 @@ public class Cerveau extends Thread {
 				}
 			}
 		}//Le trajet est termine
-		corps.sendRLib(corps.trajet.get(i-1));
-		corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond a la fin du trajet
-		corps.sendRFinTrajet(corps.trajet.get(i-1));
+		while (fin == false) {
+			//Si la voiture graphique a termine de bouger
+			if(graphtop){
+				graphtop=false;
+				corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond a la fin du trajet
+				corps.sendRFinTrajet(corps.trajet.get(i-1));
+				fin = true;
+			}else{
+				try {
+					sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	public int getiDVehiculeGraphique() {

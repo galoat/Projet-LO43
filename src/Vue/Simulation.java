@@ -163,7 +163,7 @@ public class Simulation extends MainPan implements Observer {
 		places.add(new Place(1,(int) (centerx - (dist / 2) * Math.sqrt(3) + 42*Math.cos(3.14159265359)),(int)(centery - (dist / 2) - 42*Math.sin(3.14159265359))));// I1
 		places.add(new Place(2, (int)(centerx + 42*Math.cos(2.09439510239)), (int) (centery - dist - 42*Math.sin(2.09439510239))));// I2
 		places.add(new Place(3,(int) (centerx + (dist / 2) * Math.sqrt(3) + 42*Math.cos(1.0471975512)), (int) (centery	- (dist / 2) - 42*Math.sin(1.0471975512))));// I3
-		places.add(new Place(4,(int) (centerx + (dist / 2) * Math.sqrt(3) + 42*Math.cos(-1.0471975512)), (int) (centery+ (dist / 2) - 42*Math.sin(-1.0471975512))));// I4
+		places.add(new Place(4,(int) (centerx + (dist / 2) * Math.sqrt(3) + 42*Math.cos(-0.01)), (int) (centery+ (dist / 2) - 42*Math.sin(-0.01))));// I4
 		places.add(new Place(5, (int) (centerx + 42*Math.cos(-2.09439510239)), (int)(centery + dist - 42*Math.sin(-2.09439510239))));// I5
 		places.add(new Place(6,(int) ((centerx - (dist / 2) * Math.sqrt(3)) + 42*Math.cos(-2.09439510239)), (int) (centery + (dist / 2) - 42*Math.sin(-2.09439510239))));// I6
 
@@ -208,6 +208,7 @@ public class Simulation extends MainPan implements Observer {
 				// On enleve le vehicule graphique
 				if (vehicules.get(j).iD == ID) {
 					vehicules.remove(vehicules.get(j));
+					repaint();
 				}
 			}
 

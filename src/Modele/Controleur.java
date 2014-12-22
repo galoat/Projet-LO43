@@ -149,8 +149,7 @@ public class Controleur implements Observable,Runnable {
 	 * @param r
 	 *            une requete de depart
 	 */
-	//A CHANGER EN PRIVATE
-	public synchronized void traiteRequete(RDepart r) {
+	private synchronized void traiteRequete(RDepart r) {
 
 		Passager p = new Passager(r.getDebut(), r.getFin());
 		try {
