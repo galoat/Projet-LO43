@@ -150,7 +150,7 @@ public class Controleur implements Observable,Runnable {
 	 * @param r
 	 *            une requete de liberation de vehicule
 	 */
-	private void traiteRequete(RLib r) {
+	private synchronized void traiteRequete(RLib r) {
 		general.put(r.getLib(), true);
 	}
 
@@ -161,7 +161,7 @@ public class Controleur implements Observable,Runnable {
 	 *            une requete de depart
 	 */
 	//A CHANGER EN PRIVATE
-	public void traiteRequete(RDepart r) {
+	public synchronized void traiteRequete(RDepart r) {
 
 		Passager p = new Passager(r.getDebut(), r.getFin());
 		try {
@@ -185,7 +185,7 @@ public class Controleur implements Observable,Runnable {
 	 * @param r
 	 *            une requete de fin de trajet
 	 */
-	private void traiteRequete(RFinTrajet r) {
+	private synchronized void traiteRequete(RFinTrajet r) {
 		maFlotte.liberer(r.getIdentifiant());
 	}
 
@@ -197,14 +197,14 @@ public class Controleur implements Observable,Runnable {
 	 * @param r
 	 *            une request map
 	 */
-	private void traiteRequete(RMap r) {
+	private synchronized void traiteRequete(RMap r) {
 		ArrayList<Boolean> m = r.getRequest_map();
 		// compteur pour savoir ou on en est dans les boucles
 		int i = 0;
 		// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
 		// tableau
-		int[] tab = new int[5];
-		int iterateurTab = 0;
+		ArrayList<Integer> tab = new ArrayList<Integer>();
+		
 		// entier pour savoir combien de true il y a dans la requestMapr e
 		// general
 
@@ -215,20 +215,30 @@ public class Controleur implements Observable,Runnable {
 			if (b == true) {
 				trueInRequete++;
 				// si la place est libre
-				if (general.get(i)) {
+				if (general.get(i+1)) {
 					trueInGeneral++;
-					tab[iterateurTab] = i;
-					iterateurTab++;
+					tab.add(i+1);
+					
 				}
 			}
 			i++;
+			//changement de la valeur de i a cause des clée de la hasmap
+			if(i==6){
+				i=11;
+			}
+			if(i==16){
+				i=21;
+			}
+			if(i==26){
+				i=30;
+			}
 		}
 		// si le nombre true dans la request map et dans la hasmap general sont
 		// egaux alors les ressource sont libre et on peut les reserver+passer le boolean de la voiture en true
 		if(trueInRequete==trueInGeneral){
 			//fonction permettant de de metre les ressource en indisponibilité
-			for(int j=0;j<i;j++){
-				general.put(tab[i], false);
+			for(int j: tab){
+				general.put(j, false);
 			}
 			maFlotte.lancerVehicule(r.getIdentifiant(), true);	
 		}

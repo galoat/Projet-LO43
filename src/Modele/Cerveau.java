@@ -23,7 +23,7 @@ public class Cerveau extends Thread {
 		corps.findPath(corps.passager);
 		requestmap = corps.trajetToMap(corps.trajet);
 		//A REMETTRE
-		/*while (start != true) {
+		while (start != true) {
 			if (maj) {
 				corps.sendRMap(requestmap);
 				maj = false;
@@ -35,7 +35,7 @@ public class Cerveau extends Thread {
 					e.printStackTrace();
 				}
 			}
-		}*/
+		}
 		//On se positionne au depart
 		iDVehiculeGraphique = corps.notifyDebutMission(corps.trajet.get(0));
 		System.out.println("Depart : " + corps.trajet.get(0));
