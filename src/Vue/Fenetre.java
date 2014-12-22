@@ -151,7 +151,7 @@ public class Fenetre extends JFrame implements Observer {
 		vitesse.setBackground(new Color(52, 52, 52));
 		vitesse.setForeground(new Color(98, 148, 49));
 		vitesse.setMaximum(100);
-		vitesse.setMinimum(0);
+		vitesse.setMinimum(1);
 		vitesse.setValue(20);
 		vitesse.setPaintTicks(true);
 		vitesse.setPaintLabels(true);
@@ -269,12 +269,12 @@ public class Fenetre extends JFrame implements Observer {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == Bvalider) {		
 				valvitesse = vitesse.getValue();
-				tailleflotte =  flotte.getValue();
+				tailleflotte = flotte.getValue();
 			}
 			changerPan(0);
 		}
 	}
-
+	
 	@Override
 	public void updateCoords(int iD, int suivant) {
 		// TODO Auto-generated method stub
