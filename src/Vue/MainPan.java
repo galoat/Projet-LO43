@@ -1,21 +1,17 @@
 package Vue;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- * <b>MainPan eest un panel avec une image de fond</b>
+ * <b>MainPan est le constituant principal des differents panels de la Vue</b>
  * <p>
- * Cette classe permet de definir un panel personnalise, avec pour background
- * l'image voulue
+ * Cette classe permet de definir un panel personnalise, avec pour background la
+ * couleur voulue
  * </p>
  * 
  * @author florian + theo
- * @version 0.1
+ * @version 1.0
  */
 public class MainPan extends JPanel {
 	private static final long serialVersionUID = 1L;

@@ -344,7 +344,8 @@ public class Fenetre extends JFrame implements Observer {
 	/**
 	 * <b>Listener des options</b>
 	 * <p>
-	 * Cette classe interne est destinee a appliquer (ou non) les paramtres definis dans les options lors de la pression sur un bouton...
+	 * Cette classe interne est destinee a appliquer (ou non) les paramtres
+	 * definis dans les options lors de la pression sur un bouton...
 	 * </p>
 	 * 
 	 * @author florian + theo
@@ -357,13 +358,13 @@ public class Fenetre extends JFrame implements Observer {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//Si on a valide les parametres
+			// Si on a valide les parametres
 			if (e.getSource() == Bvalider) {
-				//On redefinis les variables
+				// On redefinis les variables
 				valvitesse = vitesse.getValue();
 				tailleflotte = flotte.getValue();
 			}
-			//Et on revient sur le panel principal
+			// Et on revient sur le panel principal
 			changerPan(0);
 		}
 	}
@@ -379,11 +380,15 @@ public class Fenetre extends JFrame implements Observer {
 		return 0;
 
 	}
+
 	/**
-	 * Fonction chargee de transmettre a la simulation le nombre de passagers en attente d'une voiture,
-	 * ou en instance de depart...
-	 * @param attdepart Nombre de passagers en instance de depart
-	 * @param attvoiture Nombre de passagers en attente d'une voiture
+	 * Fonction chargee de transmettre a la simulation le nombre de passagers en
+	 * attente d'une voiture, ou en instance de depart...
+	 * 
+	 * @param attdepart
+	 *            Nombre de passagers en instance de depart
+	 * @param attvoiture
+	 *            Nombre de passagers en attente d'une voiture
 	 */
 	@Override
 	public void updatePassagers(int attdepart, int attvoiture) {
