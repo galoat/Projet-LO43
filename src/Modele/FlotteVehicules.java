@@ -96,7 +96,24 @@ public class FlotteVehicules {
 				Passager p = listeAttente.get(0);
 			System.out.println("demande de "+ p.getDebut() +" a" +p.getFin());
 			if(!p.isEmbarque()){
+				boolean dispo=true;
 				int i=0;
+				while(i<vehicules.size()&&!vehicules.get(i).isDispo()){
+					i++;
+				}
+				if(i==vehicules.size()){
+					dispo=false;
+					try {
+						wait(50000);
+					} catch (InterruptedException e) {
+						
+						e.printStackTrace();
+					}
+				}
+				if(dispo==true){
+					
+				
+				i=0;
 				while(i<vehicules.size()&&!vehicules.get(i).isDispo()){
 					i++;
 				}
@@ -119,6 +136,7 @@ public class FlotteVehicules {
 			}
 		}
 	}
+		}		
 	}
 	public  synchronized void liberer(int iD){
 		int i=0;
