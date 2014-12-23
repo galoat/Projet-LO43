@@ -42,6 +42,7 @@ public class Simulation extends MainPan implements Observer {
 	private int centerx = 169, centery = 178, r = 25, dist = 132, iD = 0,
 			tailleflotte, vitesse;
 	private Verificateur verif;
+	private boolean running;
 
 	/**
 	 * Constructeur de la simulation : initialisation des composants
@@ -62,6 +63,7 @@ public class Simulation extends MainPan implements Observer {
 		this.verif = verif;
 		this.vitesse = vitesse;
 		this.tailleflotte = tailleflotte;
+		running = true;
 		// On initialise la liste des vehicules affiches
 		vehicules = new ArrayList<Vehicule>();
 		// On initialise la liste des places et de leurs coordonnees
@@ -82,7 +84,9 @@ public class Simulation extends MainPan implements Observer {
 		passagerpan = new JPanel();
 
 		pause = mere.prepButton("Pause");
+		pause.addActionListener(new ControlListener());
 		reset = mere.prepButton("Reinitialiser");
+		reset.addActionListener(new ControlListener());
 		envoyer = mere.prepButton("Envoyer");
 		envoyer.addActionListener(new SendListener());
 
@@ -296,6 +300,19 @@ public class Simulation extends MainPan implements Observer {
 		}
 
 	}
+	private class ControlListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if(e.getSource() == reset){
+				
+			}else{
+				running = !running;
+			}
+		}
+
+	}
 
 	/**
 	 * Le MapPan contient la map, et donc les differents vehicules qui se
@@ -449,58 +466,75 @@ public class Simulation extends MainPan implements Observer {
 			// System.out.println("Da");
 			while (true) {
 				// Si la destination a ete modifiee
-				if (x != xdest || y != ydest) {
-					// System.out.println("Da2");
-					this.xi = x;
-					this.yi = y;
-					decalx = 0;
-					decaly = 0;
-					coef = 1;
-					angle = Math.acos((xdest - xi)
-							/ Math.sqrt(Math.pow(xdest - xi, 2)
-									+ Math.pow(ydest - yi, 2)));
-					if (xdest < xi || ydest < yi) {
-						if (xdest < xi && ydest > yi) {
-							decalx = (int) (apparence.getHeight(null) * Math
-									.cos(1.57 - angle));
-							decaly = (int) (apparence.getHeight(null) * Math
-									.sin(1.57 - angle));
-						} else {
-							if (xdest < xi) {
-								decalx = (int) -(apparence.getHeight(null) * Math
+				if(running){
+					if (x != xdest || y != ydest) {
+						// System.out.println("Da2");
+						this.xi = x;
+						this.yi = y;
+						decalx = 0;
+						decaly = 0;
+						coef = 1;
+						angle = Math.acos((xdest - xi)
+								/ Math.sqrt(Math.pow(xdest - xi, 2)
+										+ Math.pow(ydest - yi, 2)));
+						if (xdest < xi || ydest < yi) {
+							if (xdest < xi && ydest > yi) {
+								decalx = (int) (apparence.getHeight(null) * Math
 										.cos(1.57 - angle));
 								decaly = (int) (apparence.getHeight(null) * Math
 										.sin(1.57 - angle));
+							} else {
+								if (xdest < xi) {
+									decalx = (int) -(apparence.getHeight(null) * Math
+											.cos(1.57 - angle));
+									decaly = (int) (apparence.getHeight(null) * Math
+											.sin(1.57 - angle));
+								}
+								coef = -coef;
 							}
-							coef = -coef;
 						}
+						angle = angle * coef;
+						// On calcule les deltas necessaires aux deplacements
+						float dX = ((xdest - x) * vitesse / (float) 1000);
+						float dY = ((ydest - y) * vitesse / (float) 1000);
+						float xt = x, yt = y;
+						// Tant qu'on est pas arrive a la destination
+						while (x != xdest || y != ydest) {
+							if(running){
+								try {
+									sleep(25);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								// on se deplace
+								xt += dX;
+								yt += dY;
+								x = Math.round(xt);
+								y = Math.round(yt);
+								// et on relance le paint
+							}else{
+								try {
+									sleep(25);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}map.repaint();
+						}
+						// Lorsqu'on est arrive, on le notifie
+						verif.notifArrivee(iD);
 					}
-					angle = angle * coef;
-					// On calcule les deltas necessaires aux deplacements
-					float dX = ((xdest - x) * vitesse / (float) 1000);
-					float dY = ((ydest - y) * vitesse / (float) 1000);
-					float xt = x, yt = y;
-					// Tant qu'on est pas arrive a la destination
-					while (x != xdest || y != ydest) {
+					// Sinon on attend une modification
+					else {
 						try {
-							sleep(25);
+							sleep(200);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						// on se deplace
-						xt += dX;
-						yt += dY;
-						x = Math.round(xt);
-						y = Math.round(yt);
-						// et on relance le paint
-						map.repaint();
 					}
-					// Lorsqu'on est arrive, on le notifie
-					verif.notifArrivee(iD);
-				}
-				// Sinon on attend une modification
-				else {
+				}else{
 					try {
 						sleep(200);
 					} catch (InterruptedException e) {
