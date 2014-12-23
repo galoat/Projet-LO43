@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -561,14 +562,28 @@ public class Simulation extends MainPan implements Observer {
 	// trajet)
 	@Override
 	public int updateDebutMission(int dep) {
+		int type, r;
+		Random rand = new Random();
 		// ATTENTION ! FAUX ! IL FAUT READAPTER L'IDENTIFIANT DU DEPART AVEC LES
 		// PLACES D'ENTREE
 		int i = 0;
 		while (places.get(i).iD != dep) {
 			i++;
 		}
+		r = rand.nextInt(100);
+		if(r<80){
+			type=0;
+		}else if(r<85){
+			type=1;
+		}else if(r<90){
+			type=2;
+		}else if(r<95){
+			type=3;
+		}else{
+			type=4;
+		}
 		Vehicule veh = new Simulation.Vehicule(iD, places.get(i).x,
-				places.get(i).y, 0, "toto");
+				places.get(i).y, type, "toto");
 		iD++;
 		vehicules.add(veh);
 		veh.start();
