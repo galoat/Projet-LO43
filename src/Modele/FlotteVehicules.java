@@ -101,7 +101,7 @@ public class FlotteVehicules {
 		if (listeAttente.size() == 0 || allUse == true) {
 
 			try {
-				wait(500);
+				wait(500);	
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -111,7 +111,7 @@ public class FlotteVehicules {
 			while ( j<listeAttente.size()) {
 				Passager p = listeAttente.get(j);
 
-				boolean dispo = true;
+				boolean dispo = false;
 			
 				// verification qu'il reste des vehicule libre
 				for (Vehicule c : vehicules) {
@@ -157,6 +157,7 @@ public class FlotteVehicules {
 
 	public synchronized void lancerVehicule(int iD, boolean start) {
 		int i = 0;
+		
 		while (vehicules.get(i).getID() != iD) {
 			i++;
 		}

@@ -146,6 +146,7 @@ public class Controleur implements Observable,Runnable {
 				e.printStackTrace();
 			}
 		} else if (boite.getSizeRMap() != 0) {
+			
 			traiteRequete(boite.getRMap());
 			System.out.println("map");
 			try {
@@ -264,6 +265,7 @@ public class Controleur implements Observable,Runnable {
 		// egaux alors les ressource sont libre et on peut les reserver+passer le boolean de la voiture en true
 		if(trueInRequete==trueInGeneral){
 			//fonction permettant de de metre les ressource en indisponibilité
+		
 			for(int j: tab){
 				general.put(j, false);
 			}

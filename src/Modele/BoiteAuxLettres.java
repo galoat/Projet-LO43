@@ -96,14 +96,17 @@ public class BoiteAuxLettres {
 	 * lorsque on trouber le bon chemin
 	 * @param Id : un entier etant l'identifiant du vehicule
 	 */
-	public void supressionDoublon(int Id) {
+	public synchronized void supressionDoublon(int Id) {
+		
 		int i=0;
 		for(RMap r : rMap){
 			if(r.getIdentifiant()==Id){
+				//il sont 2 a la modifier
 				rMap.remove(i);
 			}
 		}
 		i++;
+	
 	}
 
 	/**
@@ -112,7 +115,7 @@ public class BoiteAuxLettres {
 	 * @param req
 	 *            La requete de mise a jour de la carte
 	 */
-	public void addRequete(RMap req) {
+	public synchronized void addRequete(RMap req) {
 		rMap.add(req);
 	}
 
