@@ -568,7 +568,7 @@ public class Simulation extends MainPan implements Observer {
 			i++;
 		}
 		Vehicule veh = new Simulation.Vehicule(iD, places.get(i).x,
-				places.get(i).y, 3, "toto");
+				places.get(i).y, 0, "toto");
 		iD++;
 		vehicules.add(veh);
 		veh.start();
