@@ -306,7 +306,12 @@ public class Simulation extends MainPan implements Observer {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(e.getSource() == reset){
-				
+				for(Vehicule v : vehicules){
+					v.stop();
+				}
+				vehicules.clear();
+				map.repaint();
+				verif.resetAll();
 			}else{
 				running = !running;
 			}

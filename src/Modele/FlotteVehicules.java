@@ -89,6 +89,16 @@ public class FlotteVehicules {
 		listeAttente.add(m);
 	}
 
+	
+	public void resetAll(){
+		listeAttente.clear();
+		for (Vehicule v : vehicules){
+			if(!v.isDispo()){
+				v.setDispo(true);
+				v.getCerveau().stop();
+			}
+		}
+	}
 	public synchronized void checkAttente() {
 
 		// System.out.println("verification liste attente vehicule");

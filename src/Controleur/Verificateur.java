@@ -35,5 +35,9 @@ public class Verificateur {
 		Thread t=new Thread(model);
 		t.start();
 	}
+	
+	public void resetAll(){
+		model.resetAll();
+	}
 
 }
