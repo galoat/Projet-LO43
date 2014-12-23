@@ -9,8 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.net.URL;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,6 +41,13 @@ public class BarPanel extends JPanel {
 	public BarPanel(final Fenetre mere) {
 		// On stocke la fenetre-mere
 		this.mere = mere;
+
+		// On cree ensuite les boutons de controle
+		ImageIcon icon = creerImage("close.png", "");
+		ImageIcon icon2 = creerImage("reduce.png", "");
+		close = new JButton("");
+		reduce = new JButton("");
+
 		// On ajouteles mouse listeners
 		addMouseListener(new Adapter());
 		addMouseMotionListener(new MotionAdapter());
@@ -51,11 +56,7 @@ public class BarPanel extends JPanel {
 		this.setBackground(new Color(98, 148, 49));// 150,50,50
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 		this.setPreferredSize(new Dimension(350, 25));
-		// On cree ensuite les boutons de controle
-		ImageIcon icon = creerImage("close.png", "");
-		ImageIcon icon2 = creerImage("reduce.png", "");
-		close = new JButton("");
-		reduce = new JButton("");
+
 		// On les rend transparents
 		close.setContentAreaFilled(false);
 		reduce.setContentAreaFilled(false);
@@ -65,17 +66,17 @@ public class BarPanel extends JPanel {
 		reduce.setRolloverEnabled(false);
 		close.setFocusPainted(false);
 		reduce.setFocusPainted(false);
+
 		// Et on leur attribue des images
 		close.setIcon(icon);
 		reduce.setIcon(icon2);
+
 		// Enfin, on ajoute les action listeners
 		close.addActionListener(new manageButtonListener());
 		reduce.addActionListener(new manageButtonListener());
+
 		this.add(reduce);
 		this.add(close);
-		// Petite bordure esthétique
-		// this.setBorder(BorderFactory.createMatteBorder(0, 0, 1,
-		// 0,Color.BLACK));
 	}
 
 	/**
