@@ -76,7 +76,7 @@ public class Cerveau extends Thread {
 			}
 		}
 	}
-
+	
 	public int getiDVehiculeGraphique() {
 		return iDVehiculeGraphique;
 	}

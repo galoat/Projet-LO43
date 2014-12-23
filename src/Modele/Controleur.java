@@ -290,17 +290,17 @@ public class Controleur implements Observable,Runnable {
 	}
 
 	public void updatePassagersEnAttente(){
-		int attvoiture = 0, attdepart = 0;
+		int attdepart = 0;
 		System.out.println(maFlotte.listeAttente.isEmpty());
-		for(Passager p : maFlotte.listeAttente){
-			if(p.embarque){
+		
+		for(Vehicule p: maFlotte.getVehicules()){
+			if(p.isDispo()==false){
 				attdepart++;
-			}else{
-				attvoiture++;
-			}System.out.println(maFlotte.listeAttente.isEmpty());
-		}
+			}
+			}
+	
 		for (Observer obs : listObserver)
-			obs.updatePassagers(attdepart, attvoiture);
+			obs.updatePassagers(attdepart, maFlotte.listeAttente.size());
 	}
 	
 	public BoiteAuxLettres getBoite() {
