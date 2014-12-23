@@ -303,6 +303,22 @@ public class Controleur implements Observable,Runnable {
 			obs.updatePassagers(attdepart, maFlotte.listeAttente.size());
 	}
 	
+	public void resetAll(){
+		boite.resetAll();
+		maFlotte.resetAll();
+		for (int j = 1; j < 7; j++) {
+			general.put(j, true);
+		}
+		for (int j = 11; j < 17; j++) {
+			general.put(j, true);
+		}
+		for (int j = 21; j < 27; j++) {
+			general.put(j, true);
+		}
+		general.put(30, true);
+		
+	}
+	
 	public BoiteAuxLettres getBoite() {
 		return boite;
 	}

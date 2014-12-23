@@ -67,7 +67,14 @@ public class BoiteAuxLettres {
 	public void addRequete(RLib req) {
 		rLib.add(req);
 	}
-
+	
+	
+	public void resetAll(){
+		rLib.clear();
+		rFin.clear();
+		rDepart.clear();
+		rMap.clear();
+	}
 	/**
 	 * fonction servant a ajouter une requete de depart On ajoute cette requete
 	 * a la suite des autre requete de depart.
