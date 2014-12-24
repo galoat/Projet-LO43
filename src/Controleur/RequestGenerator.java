@@ -11,47 +11,77 @@ public class RequestGenerator extends Thread{
 	private Verificateur verif;
 	private int compteur = 0, dep, ar;
 	private Random r;
-	private boolean running;
+	private boolean running, fichier;
 	private ArrayList<RDepart> rdep;
 	
-	public RequestGenerator(Verificateur verif){
+	public RequestGenerator(Verificateur verif, boolean fichier){
 		this.verif = verif;
 		r = new Random();
 		running = true;
+		this.fichier = fichier;
 	}
-	
 	public void run(){
-		while(true){
-			if(running){
-				compteur++;
-				try {
-					sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if(compteur%2 == 0){
-					dep = r.nextInt(5) + 1;
-					ar = r.nextInt(5) + 1;
-					while(dep == ar){
-						ar = r.nextInt(5) + 1;
+		if(fichier){
+			Lecteur l=new Lecteur(System.getProperty("user.dir")+"/requetes.txt");
+			rdep = l.convert();
+			while(!rdep.isEmpty()){
+				if(running){
+					if(compteur == rdep.get(0).getTemps()){
+						try {
+							verif.newRequest(rdep.get(0).getDebut(), rdep.get(0).getFin());
+						} catch (RequeteException | RDepartException e) {
+							e.printStackTrace();
+						}rdep.remove(0);
 					}
+					compteur++;
 					try {
-						verif.newRequest(dep, ar);
-					} catch (RequeteException | RDepartException e) {
+						sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else{
+					try {
+						sleep(200);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
 			}
-			else{
-				try {
-					sleep(200);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+		}else{
+			while(true){
+				if(running){
+					if(compteur%2 == 0){
+						dep = r.nextInt(5) + 1;
+						ar = r.nextInt(5) + 1;
+						while(dep == ar){
+							ar = r.nextInt(5) + 1;
+						}
+						try {
+							verif.newRequest(dep, ar);
+						} catch (RequeteException | RDepartException e) {
+							e.printStackTrace();
+						}
+					}
+					compteur++;
+					try {
+						sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else{
+					try {
+						sleep(200);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
-			
 		}
 	}
 

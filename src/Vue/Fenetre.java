@@ -46,7 +46,7 @@ public class Fenetre extends JFrame implements Observer {
 	private MainPan fenpanmain, fenpanopt, fenpancredits, actual;
 	private JPanel buttonpan, optpan, controlpan;
 	private JLabel titre, vitesseLabel, flotteLabel;
-	private JButton Bcredits, Bmanu, Bauto, Bopt, Bvalider, Bannuler;
+	private JButton Bcredits, Bmanu, Bauto, Bopt, Bvalider, Bannuler, Bfichier;
 	private BarPanel barpan;
 	private Simulation s;
 	private JSlider vitesse, flotte;
@@ -120,12 +120,14 @@ public class Fenetre extends JFrame implements Observer {
 		// On cree les boutons
 		Bmanu = prepButton("Mode Manuel");
 		Bauto = prepButton("Mode Automatique");
+		Bfichier = prepButton("Mode Fichier");
 		Bopt = prepButton("Options");
 		Bcredits = prepButton("Credits");
 
 		// On leur attribue des listeners
 		Bmanu.addActionListener(new changeButtonListener());
 		Bauto.addActionListener(new changeButtonListener());
+		Bfichier.addActionListener(new changeButtonListener());
 		Bopt.addActionListener(new changeButtonListener());
 		Bcredits.addActionListener(new changeButtonListener());
 
@@ -133,6 +135,8 @@ public class Fenetre extends JFrame implements Observer {
 		buttonpan.add(Bmanu);
 		buttonpan.add(Box.createRigidArea(new Dimension(5, 10)));
 		buttonpan.add(Bauto);
+		buttonpan.add(Box.createRigidArea(new Dimension(5, 10)));
+		buttonpan.add(Bfichier);
 		buttonpan.add(Box.createRigidArea(new Dimension(5, 10)));
 		buttonpan.add(Bopt);
 		buttonpan.add(Box.createRigidArea(new Dimension(5, 10)));
@@ -320,7 +324,7 @@ public class Fenetre extends JFrame implements Observer {
 			// Si on veut acceder au mode automatique
 			if (e.getSource() == Bauto) {
 				// On lance la simulation
-				verif.debutSim(tailleflotte, true);
+				verif.debutSim(tailleflotte, true, false);
 				s = new Simulation(true, Fenetre.this, verif, valvitesse,
 						tailleflotte);
 				changerPan(2);
@@ -328,8 +332,15 @@ public class Fenetre extends JFrame implements Observer {
 			// Si on veut acceder au mode manuel
 			if (e.getSource() == Bmanu) {
 				// On lance la simulation
-				verif.debutSim(tailleflotte, false);
+				verif.debutSim(tailleflotte, false, false);
 				s = new Simulation(false, Fenetre.this, verif, valvitesse,
+						tailleflotte);
+				changerPan(2);
+			}
+			if (e.getSource() == Bfichier) {
+				// On lance la simulation
+				verif.debutSim(tailleflotte, true, true);
+				s = new Simulation(true, Fenetre.this, verif, valvitesse,
 						tailleflotte);
 				changerPan(2);
 			}

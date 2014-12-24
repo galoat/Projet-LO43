@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import Exception.RDepartException;
 import Modele.RDepart;
 
-//Reader r=new Reader(System.getProperty("user.dir")+"/dataski.txt");
+
 /**
  * 
  *
@@ -61,7 +61,7 @@ public class Lecteur {
 						rtext.get(i).indexOf("\t")));
 				temp = temp.substring(rtext.get(i).indexOf("\t") + 1);
 				temps = Integer.parseInt(temp);
-				if (dep >= 1 && dep <= 6 && ar >= 1 && ar <= 6) {
+				if (dep >= 1 && dep <= 6 && ar >= 1 && ar <= 6 && ar != dep) {
 					try {
 						rdep.add(new RDepart(dep, ar, temps));
 					} catch (RDepartException e) {

@@ -32,13 +32,17 @@ public class Verificateur {
 		}
 		
 	}
-	public void debutSim(int tailleflotte, boolean auto){
+	public void debutSim(int tailleflotte, boolean auto, boolean fichier){
 		model.debutSim(tailleflotte);
 		Thread t=new Thread(model);
 		this.auto = auto;
 		t.start();
 		if(auto){
-			reqGen = new RequestGenerator(this);
+			if(fichier){
+				reqGen = new RequestGenerator(this, true);
+			}else{
+				reqGen = new RequestGenerator(this, false);
+			}
 			reqGen.start();
 			
 		}
