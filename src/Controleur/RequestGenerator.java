@@ -1,15 +1,19 @@
 package Controleur;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import Exception.RDepartException;
 import Exception.RequeteException;
+import Modele.RDepart;
 
 public class RequestGenerator extends Thread{
 	private Verificateur verif;
 	private int compteur = 0, dep, ar;
 	private Random r;
 	private boolean running;
+	private ArrayList<RDepart> rdep;
+	
 	public RequestGenerator(Verificateur verif){
 		this.verif = verif;
 		r = new Random();
