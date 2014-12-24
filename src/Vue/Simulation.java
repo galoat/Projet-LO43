@@ -364,6 +364,7 @@ public class Simulation extends MainPan implements Observer {
 			} else {
 				//Si on veut mettre en pause, on change juste le booleen correspondant
 				running = !running;
+				verif.pause(running);
 			}
 		}
 	}

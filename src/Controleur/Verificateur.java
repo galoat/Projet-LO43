@@ -8,6 +8,8 @@ import Modele.RDepart;
 
 public class Verificateur {
 	protected Controleur model;
+	private RequestGenerator reqGen;
+	private boolean auto;
 
 	public Verificateur(Controleur c) {
 		model = c;
@@ -30,14 +32,30 @@ public class Verificateur {
 		}
 		
 	}
-	public void debutSim(int tailleflotte){
+	public void debutSim(int tailleflotte, boolean auto){
 		model.debutSim(tailleflotte);
 		Thread t=new Thread(model);
+		this.auto = auto;
 		t.start();
+		if(auto){
+			reqGen = new RequestGenerator(this);
+			reqGen.start();
+			
+		}
 	}
 	
 	public void resetAll(){
 		model.resetAll();
+		if(auto){
+			reqGen.reset();;
+		}
+	}
+	
+	public void pause(boolean running){
+		model.pauseAll(running);
+		if(auto){
+			reqGen.setRunning(running);
+		}
 	}
 
 }

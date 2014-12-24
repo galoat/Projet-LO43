@@ -45,14 +45,16 @@ public class Controleur implements Observable,Runnable {
 	private BoiteAuxLettres boite;
 	private FlotteVehicules maFlotte;
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
+	private boolean running;
 
 	public Controleur() {
 		createHashMap();
 		boite = new BoiteAuxLettres();
+		running = true;
 	}
 	/**
 	 * fonction appeler lorsque on veut faire une simulation en automatique
-	 */
+	 *//*
 	public void debutSimAuto(int taille){
 		maFlotte = new FlotteVehicules(taille, boite);
 		while(true){
@@ -77,7 +79,7 @@ public class Controleur implements Observable,Runnable {
 				}
 			}
 			}	
-	}
+	}*/
 /**
  * FOnction demarant la simulation en mode manuel 
  * @param taille
@@ -278,10 +280,10 @@ public class Controleur implements Observable,Runnable {
 /**
  * fonction servat a generer un nombre alleatoire entre 1 et 6
  * @param 
- */
+ *//*
 	private int generateur(){
 		return 1 + (int)(Math.random() * 5 + 1);
-	}
+	}*/
 	public void updateArriveeTemp(int iD) {
 		for (Vehicule v : maFlotte.getVehicules()) {
 			// On se place sur le vehicule auquel est lie le vehicule graphique
@@ -319,6 +321,10 @@ public class Controleur implements Observable,Runnable {
 		}
 		general.put(30, true);
 		
+	}
+	
+	public void pauseAll(boolean running){
+		this.running = running;
 	}
 	
 	public BoiteAuxLettres getBoite() {
@@ -359,9 +365,19 @@ public class Controleur implements Observable,Runnable {
 	public void run() {
 		
 		while(true){
-			maFlotte.checkAttente();
-			updatePassagersEnAttente();
-			traiteRequete();
+			if(running){
+				maFlotte.checkAttente();
+				updatePassagersEnAttente();
+				traiteRequete();
+			}else{
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		}
 	}
 }

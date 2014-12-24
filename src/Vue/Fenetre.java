@@ -320,7 +320,7 @@ public class Fenetre extends JFrame implements Observer {
 			// Si on veut acceder au mode automatique
 			if (e.getSource() == Bauto) {
 				// On lance la simulation
-				verif.debutSim(tailleflotte);
+				verif.debutSim(tailleflotte, true);
 				s = new Simulation(true, Fenetre.this, verif, valvitesse,
 						tailleflotte);
 				changerPan(2);
@@ -328,7 +328,7 @@ public class Fenetre extends JFrame implements Observer {
 			// Si on veut acceder au mode manuel
 			if (e.getSource() == Bmanu) {
 				// On lance la simulation
-				verif.debutSim(tailleflotte);
+				verif.debutSim(tailleflotte, false);
 				s = new Simulation(false, Fenetre.this, verif, valvitesse,
 						tailleflotte);
 				changerPan(2);
