@@ -468,7 +468,7 @@ public class Simulation extends MainPan implements Observer {
 	 */
 	public class Vehicule extends Thread {
 
-		int iD, x, y, xi, yi, xdest, ydest, type, coef, decalx, decaly;
+		int iD, x, y, xi, yi, xdest, ydest, type, coef, decalx, decaly, distreelle, distcalcul;
 		double angle;
 		Image apparence;
 
@@ -519,6 +519,8 @@ public class Simulation extends MainPan implements Observer {
 						// System.out.println("Da2");
 						this.xi = x;
 						this.yi = y;
+						distcalcul = (int) Math.sqrt(Math.pow((xdest-xi), 2) + Math.pow((ydest-yi), 2));
+						distreelle = 0;
 						decalx = 0;
 						decaly = 0;
 						coef = 1;
@@ -547,7 +549,7 @@ public class Simulation extends MainPan implements Observer {
 						float dY = ((ydest - y) * vitesse / (float) 1000);
 						float xt = x, yt = y;
 						// Tant qu'on est pas arrive a la destination
-						while (x != xdest || y != ydest) {
+						while ((x != xdest || y != ydest) && distreelle<=distcalcul) {
 							if (running) {
 								try {
 									sleep(25);
@@ -569,6 +571,12 @@ public class Simulation extends MainPan implements Observer {
 									e.printStackTrace();
 								}
 							}
+							map.repaint();
+							distreelle = (int) Math.sqrt(Math.pow((x-xi), 2) + Math.pow((y-yi), 2));
+						}
+						if(distreelle>=distcalcul){
+							x = xdest;
+							y = ydest;
 							map.repaint();
 						}
 						// Lorsqu'on est arrive, on le notifie
