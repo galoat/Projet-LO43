@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -45,7 +46,7 @@ public class Fenetre extends JFrame implements Observer {
 	private Verificateur verif;
 	private MainPan fenpanmain, fenpanopt, fenpancredits, actual;
 	private JPanel buttonpan, optpan, controlpan;
-	private JLabel titre, vitesseLabel, flotteLabel;
+	private JLabel titre, vitesseLabel, flotteLabel, utbm, creds;
 	private JButton Bcredits, Bmanu, Bauto, Bopt, Bvalider, Bannuler, Bfichier;
 	private BarPanel barpan;
 	private Simulation s;
@@ -220,7 +221,22 @@ public class Fenetre extends JFrame implements Observer {
 	 * Fonction chargee de la creation du panel des credits
 	 */
 	public void createCreditsPan() {
-
+		fenpancredits = new MainPan();
+		JButton back = prepButton("Retour");
+		fenpancredits.setPreferredSize(new Dimension(350, 375));
+		fenpancredits.setLayout(new BorderLayout());
+		Icon icon = new ImageIcon(getClass().getResource("Utbm.png"));
+		utbm = new JLabel(" ", icon, JLabel.CENTER);
+		creds = new JLabel("<html><div style= \"text-align:center; \">Ce projet a été réalisé, dans le cadre de l'UV LO43, par<br><br>"
+				+ "Théo BURI - theo.buri@utbm.fr<br>"
+				+ "Florian LACOUR - florian.lacour@utbm.fr</div></html>", JLabel.CENTER);
+		creds.setForeground(new Color(98, 148, 49));
+		fenpancredits.add(utbm, BorderLayout.NORTH);
+		fenpancredits.add(creds, BorderLayout.CENTER);
+		fenpancredits.add(back, BorderLayout.SOUTH);
+		fenpancredits.setBorder(BorderFactory.createEmptyBorder(20,10,10,10));
+		
+		
 	}
 
 	/**
