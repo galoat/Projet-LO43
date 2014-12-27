@@ -47,7 +47,7 @@ public class Fenetre extends JFrame implements Observer {
 	private MainPan fenpanmain, fenpanopt, fenpancredits, actual;
 	private JPanel buttonpan, optpan, controlpan;
 	private JLabel titre, vitesseLabel, flotteLabel, utbm, creds;
-	private JButton Bcredits, Bmanu, Bauto, Bopt, Bvalider, Bannuler, Bfichier;
+	private JButton Bcredits, Bmanu, Bauto, Bopt, Bvalider, Bannuler, Bfichier, Bretour;
 	private BarPanel barpan;
 	private Simulation s;
 	private JSlider vitesse, flotte;
@@ -222,7 +222,8 @@ public class Fenetre extends JFrame implements Observer {
 	 */
 	public void createCreditsPan() {
 		fenpancredits = new MainPan();
-		JButton back = prepButton("Retour");
+		Bretour = prepButton("Retour");
+		Bretour.addActionListener(new changeButtonListener());
 		fenpancredits.setPreferredSize(new Dimension(350, 375));
 		fenpancredits.setLayout(new BorderLayout());
 		Icon icon = new ImageIcon(getClass().getResource("Utbm.png"));
@@ -233,7 +234,7 @@ public class Fenetre extends JFrame implements Observer {
 		creds.setForeground(new Color(98, 148, 49));
 		fenpancredits.add(utbm, BorderLayout.NORTH);
 		fenpancredits.add(creds, BorderLayout.CENTER);
-		fenpancredits.add(back, BorderLayout.SOUTH);
+		fenpancredits.add(Bretour, BorderLayout.SOUTH);
 		fenpancredits.setBorder(BorderFactory.createEmptyBorder(20,10,10,10));
 		
 		
@@ -364,6 +365,9 @@ public class Fenetre extends JFrame implements Observer {
 			if (e.getSource() == Bcredits) {
 				createCreditsPan();
 				changerPan(3);
+			}
+			if (e.getSource() == Bretour) {
+				changerPan(0);
 			}
 		}
 	}
