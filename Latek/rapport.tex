@@ -147,7 +147,7 @@ Université de technologie de Belfort-Montbéliard
 Trois sujet nous on été présentés. Nous avons fait le choix de traiter le sujet de la "Flotte de véhicules autonomes", et ceci pour plusieurs raisons :
 \begin{itemize}
   \item Premièrement, ce sujet nous semblait être le plus à même d'être modifié, amélioré, contrairement aux deux jeux de plateau, aux règles déjà préétablies...
-  \item ensuite, n'étant que deux, sur un maximum de quatre étudiants par groupe autorisés, les autres sujets ne nous ont pas parus réalisables en temps et en heures et sans bugs majeurs...
+  \item Ensuite, n'étant que deux, sur un maximum de quatre étudiants par groupe autorisés, les autres sujets ne nous ont pas parus réalisables en temps et en heures et sans bugs majeurs...
 \end{itemize}
 Nous présenterons tout d'abord le sujet, ses contraintes, et les libertés prises par rapport à celles-ci. Par la suite, nous parlerons des différents diagrammes UML, et les expliquerons. Enfin, nous terminerons par l'implémentation en Java et l'interface graphique.
 
@@ -168,8 +168,8 @@ Le plateau donné par le sujet est le suivant :
 Chaque place, exceptée celle du centre, est rattachée à une place de départ et une place de sortie. Les voitures disposant d'un passager partent depuis une place d'entrée (que celui-ci leur donne) et, à la fin de celle-ci, rejoignent une place de sortie (même chose).\\
 La place centrale n'est utilisée que lors d'un trajet reliant deux places opposées...
 \subsection{Passagers et contrôleur}
-Chaque passager doit être transporté d'une place à une autre. Pour ce faire, ils envoient une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci assignera cette mission à un des véhicules de sa flotte (sous la forme d'un passager, ayant un départ et une arrivée). Celui-ci calculera ensuite le trajet qu'il suivra pour la mener à bien.\\
-C'est alors le véhicule qui décide de partir : pour cela il doit envoyer une requête au contrôleur pour savoir si son chemin est déjà réservé. Si ce n'est pas le cas, le contrôleur l'autorise, et le véhicule part. La requête se fait sous la forme d'une Request Map, constituée de booléens indiquant l'intention du véhicule de réserver une place ou non.\\
+Chaque passager doit être transporté d'une place à une autre. Pour ce faire, il envoi une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci assignera cette "mission" à un des véhicules de sa flotte (sous la forme d'un passager, ayant un départ et une arrivée). Celui-ci calculera ensuite le trajet qu'il suivra pour la mener à bien.\\
+C'est alors le véhicule qui décide de partir : pour cela il doit envoyer une requête au contrôleur pour savoir si son chemin est déjà réservé. Si ce n'est pas le cas, le contrôleur l'y autorise, et le véhicule part. La requête se fait sous la forme d'une Request Map, constituée de booléens indiquant l'intention du véhicule de réserver une place ou non.\\
 Pour exemple, lorsqu'une voiture désire aller de la place I1 à O2, elle aura besoin de réserver I1, R1, R2 et O2. La Request Map seras alors la suivante :
 \vspace{0.5cm}
 
@@ -187,7 +187,7 @@ Afin d'éviter toute erreur lors de la réservation, nous avons défini la prior
 \begin{center}
 I1<I2<I3<I4<I5<I6<R1<R2<R3<R4<R5<R6<O1<O2<O3<O4<O5<O6<C
 \end{center}
-Ceci permettra d'éviter que deux véhicules tentent de réserver la même place à deux moments différents, et que le contrôleur les valide...
+Ceci permettra d'éviter que deux véhicules tentent de réserver la même place à deux moments différents, et que le contrôleur les valide quand même...
 
 \subsection{Contraintes et libertés prises sur le sujet}
 
@@ -203,6 +203,8 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
 \vspace{0.25cm}
 \begin{itemize}
   \item Un véhicule ne peut pas contourner une place occupée pour mener sa mission à bien.
+  \item Un passager, lors de sa demande, est placé en liste d'attente. Il se voit alors immédiatement embarqué dans un véhicule, et attends le départ.
+  \item S'il n'y a aucun véhicule disponible, il attends qu'un véhicule se libère et le prenne en charge.
 \end{itemize}
 \setcounter{chapter}{0}
 \setcounter{section}{0}
@@ -215,7 +217,16 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
 \begin{itemize}
 \item Voir les crédits (c'est à dire les auteurs du programme, nous)
 \item Choisir de jouer en mode manuel, dans ce cas il devras par la suite choisir lui-même les missions attribuées aux véhicules.
-\item Jouer en simulation, dans ce mode toutes les requête sont générées par le programme : l'utilisateur se contente de regarde la simulation s'opérer.
+\item Jouer en simulation (mode automatique), dans ce mode toutes les requête sont générées par le programme : l'utilisateur se contente de regarde la simulation s'opérer.
+\item Jouer en simulation paramétrée (mode fichier), dans ce mode toutes les requête sont générées par le programme, mais elles ont été définies à l'avance dans un fichier texte, et selon le format qui suit :
+\vspace{0.1cm}
+\begin{center}
+{Départ}	{Arrivée}	{Moment d'arrivée} (chaque nombre est séparé par une tabulation)
+\end{center}
+\vspace{0.1cm}
+Le moment d'arrivée correspond au moment t (en secondes, depuis le début de la simulation) où cette requête sera envoyée au contrôleur...
+
+
 \item Avoir accès aux options : une fois dans ce menu, il peut choisir de changer la rapidité des voitures.
 \end{itemize}
 Nous avons choisi de diviser l'utilisateur principal en deux autres : un utilisateur qui utiliserait le mode manuel, et un autre qui utiliserait le mode automatique. Ceci étant dû au fait que l'utilisateur en mode manuel pourra accéder à des fonctions interdites au mode automatique (la création d'un passager).\\
