@@ -191,7 +191,7 @@ public class Controleur implements Observable,Runnable {
 
 		Passager p = new Passager(r.getDebut(), r.getFin());
 		try {
-			maFlotte.donnerPassager(p);
+			maFlotte.ajoutListeAttente(p);
 		} catch (FlotteException e) {
 			// si il n'y a plus de place pour les vehicule
 			

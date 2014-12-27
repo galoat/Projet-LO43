@@ -39,13 +39,6 @@ public class Vehicule implements Observable {
 	private BoiteAuxLettres boite;
 	public boolean dispo;
 	private Cerveau cerveau;
-	public Cerveau getCerveau() {
-		return cerveau;
-	}
-
-	public void setCerveau(Cerveau cerveau) {
-		this.cerveau = cerveau;
-	}
 
 	/**
 	 * Passager permettant de conna&icirc;tre le point de depart et
@@ -222,6 +215,13 @@ public class Vehicule implements Observable {
 
 	public void setPassager(Passager passager) {
 		this.passager = passager;
+	}
+	public Cerveau getCerveau() {
+		return cerveau;
+	}
+
+	public void setCerveau(Cerveau cerveau) {
+		this.cerveau = cerveau;
 	}
 
 }

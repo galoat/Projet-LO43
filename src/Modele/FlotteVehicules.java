@@ -54,13 +54,6 @@ public class FlotteVehicules {
 	}
 
 	/**
-	 * 
-	 */
-	public void ajoutListeAttente(Passager m) {
-		listeAttente.add(m);
-	}
-
-	/**
 	 * Constructeur de FlotteVehicules
 	 * 
 	 * @param c
@@ -85,7 +78,7 @@ public class FlotteVehicules {
 	 *            Un passager
 	 */
 	// exception si la liste des vehicule est compléte ?
-	public synchronized void donnerPassager(Passager m) throws FlotteException {
+	public synchronized void ajoutListeAttente(Passager m) throws FlotteException {
 		listeAttente.add(m);
 	}
 
