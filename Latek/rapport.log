@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.19)  27 DEC 2014 15:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.12.15)  28 DEC 2014 15:05
 entering extended mode
 **rapport.tex
-(C:\Users\PropriÃ©taire\git\Projet-LO43\Latek\rapport.tex
+(C:\Users\Hellong\Documents\GitHub\Projet-LO43\Latek\rapport.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -591,7 +591,7 @@ Package color Info: Driver file: pdftex.def on input line 130.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2014/09/06 1.5e listings language file
 )
-(C:\Users\PropriÃ©taire\git\Projet-LO43\Latek\rapport.aux)
+(C:\Users\Hellong\Documents\GitHub\Projet-LO43\Latek\rapport.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 137.
 LaTeX Font Info:    ... okay on input line 137.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 137.
@@ -675,7 +675,7 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 ) [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(C:\Users\PropriÃ©taire\git\Projet-LO43\Latek\rapport.toc
+(C:\Users\Hellong\Documents\GitHub\Projet-LO43\Latek\rapport.toc
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 4.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
@@ -722,8 +722,8 @@ Overfull \hbox (1.85698pt too wide) in paragraph at lines 165--170
 [][]
  []
 
-[5 <C:/Users/PropriÃ©taire/git/Projet-LO43/Latek/Images/Plateau.png>] [6]
-[7
+[5 <C:/Users/Hellong/Documents/GitHub/Projet-LO43/Latek/Images/Plateau.png>]
+[6] [7
 
 ]
 Chapitre 1.
@@ -734,21 +734,21 @@ Chapitre 2.
 <Images/boite.png, id=35, 158.84344pt x 185.19188pt>
 File: Images/boite.png Graphic file (type png)
  <use Images/boite.png>
-Package pdftex.def Info: Images/boite.png used on input line 244.
+Package pdftex.def Info: Images/boite.png used on input line 245.
 (pdftex.def)             Requested size: 158.84305pt x 185.1914pt.
 
-Overfull \hbox (2.3529pt too wide) in paragraph at lines 244--245
+Overfull \hbox (2.3529pt too wide) in paragraph at lines 245--246
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--245
-\T1/lmr/m/n/10 quêtes dif-fé-rentes, sto-ckées cha-cunes dans une liste dif-fé-
-rente :
+Underfull \hbox (badness 10000) in paragraph at lines 243--246
+\T1/lmr/m/n/10 quêtes dif-fé-rentes, sto-ckées cha-cune dans une liste dif-fé-r
+ente :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
  []
 
@@ -756,29 +756,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 245--246
 File: Images/controleur.png Graphic file (type png)
 
 <use Images/controleur.png>
-Package pdftex.def Info: Images/controleur.png used on input line 262.
+Package pdftex.def Info: Images/controleur.png used on input line 263.
 (pdftex.def)             Requested size: 146.79807pt x 161.10147pt.
 
-Overfull \hbox (4.53429pt too wide) in paragraph at lines 262--263
+Overfull \hbox (4.53429pt too wide) in paragraph at lines 263--264
 [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 259--264
+\T1/lmr/m/n/10 prio-rité :
  []
 
 [9
 
- <C:/Users/PropriÃ©taire/git/Projet-LO43/Latek/Images/boite.png> <C:/Users/Prop
-riÃ©taire/git/Projet-LO43/Latek/Images/controleur.png>]
+ <C:/Users/Hellong/Documents/GitHub/Projet-LO43/Latek/Images/boite.png> <C:/Use
+rs/Hellong/Documents/GitHub/Projet-LO43/Latek/Images/controleur.png>]
 <Images/cerveau.png, id=42, 125.71968pt x 121.20282pt>
 File: Images/cerveau.png Graphic file (type png)
 
 <use Images/cerveau.png>
-Package pdftex.def Info: Images/cerveau.png used on input line 280.
+Package pdftex.def Info: Images/cerveau.png used on input line 282.
 (pdftex.def)             Requested size: 125.71936pt x 121.20251pt.
- [10 <C:/Users/PropriÃ©taire/git/Projet-LO43/Latek/Images/cerveau.png>] [11
+ [10 <C:/Users/Hellong/Documents/GitHub/Projet-LO43/Latek/Images/cerveau.png>] 
+[11
 
 ]
 Chapitre 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--299
+Underfull \hbox (badness 10000) in paragraph at lines 309--310
 
  []
 
@@ -787,38 +793,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 298--299
 ]
 Chapitre 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--315
+Underfull \hbox (badness 10000) in paragraph at lines 327--328
 
  []
 
 [13
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 355--357
+Underfull \hbox (badness 10000) in paragraph at lines 368--370
 
  []
 
-[14] [15] [16] [17
+[14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 505--507
 
-]
-<Images/CasUtilisation.PNG, id=70, 685.8122pt x 291.33844pt>
+ []
+
+[16] [17
+
+] <Images/CasUtilisation.PNG, id=70, 685.8122pt x 291.33844pt>
 File: Images/CasUtilisation.PNG Graphic file (type png)
 
 <use Images/CasUtilisation.PNG>
-Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 487.
+Package pdftex.def Info: Images/CasUtilisation.PNG used on input line 522.
 (pdftex.def)             Requested size: 686.62677pt x 291.111pt.
  [18
 
 
- <C:/Users/PropriÃ©taire/git/Projet-LO43/Latek/Images/CasUtilisation.PNG>]
+ <C:/Users/Hellong/Documents/GitHub/Projet-LO43/Latek/Images/CasUtilisation.PNG
+>]
 <Images/SequenceDiagram1.png, id=75, 747.54282pt x 355.3275pt>
 File: Images/SequenceDiagram1.png Graphic file (type png)
 
 <use Images/SequenceDiagram1.png>
-Package pdftex.def Info: Images/SequenceDiagram1.png used on input line 494.
+Package pdftex.def Info: Images/SequenceDiagram1.png used on input line 529.
 (pdftex.def)             Requested size: 747.82616pt x 355.34286pt.
 
-Overfull \hbox (31.59032pt too wide) in paragraph at lines 494--495
+Overfull \hbox (31.59032pt too wide) in paragraph at lines 529--530
 [][] 
  []
 
@@ -829,16 +840,16 @@ Overfull \hbox (31.59032pt too wide) in paragraph at lines 494--495
 ]
 Overfull \vbox (2.646pt too high) has occurred while \output is active []
 
- [19 <C:/Users/PropriÃ©taire/git/Projet-LO43/Latek/Images/SequenceDiagram1.png>
-]
+ [19 <C:/Users/Hellong/Documents/GitHub/Projet-LO43/Latek/Images/SequenceDiagra
+m1.png>]
 <Images/Diagrammedeclasses.png, id=84, 815.045pt x 907.39pt>
 File: Images/Diagrammedeclasses.png Graphic file (type png)
 
 <use Images/Diagrammedeclasses.png>
-Package pdftex.def Info: Images/Diagrammedeclasses.png used on input line 499.
+Package pdftex.def Info: Images/Diagrammedeclasses.png used on input line 534.
 (pdftex.def)             Requested size: 571.16187pt x 634.37947pt.
 
-Overfull \hbox (45.5595pt too wide) in paragraph at lines 499--500
+Overfull \hbox (45.5595pt too wide) in paragraph at lines 534--535
 [] [] 
  []
 
@@ -849,25 +860,26 @@ Overfull \hbox (45.5595pt too wide) in paragraph at lines 499--500
 Overfull \vbox (34.14363pt too high) has occurred while \output is active []
 
 
-[20 <C:/Users/PropriÃ©taire/git/Projet-LO43/Latek/Images/Diagrammedeclasses.png
->] (C:\Users\PropriÃ©taire\git\Projet-LO43\Latek\rapport.aux) ) 
+[20 <C:/Users/Hellong/Documents/GitHub/Projet-LO43/Latek/Images/Diagrammedeclas
+ses.png>] (C:\Users\Hellong\Documents\GitHub\Projet-LO43\Latek\rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 7134 strings out of 493921
- 97856 string characters out of 3147257
+ 7131 strings out of 493921
+ 97888 string characters out of 3147275
  281080 words of memory out of 3000000
- 10288 multiletter control sequences out of 15000+200000
+ 10285 multiletter control sequences out of 15000+200000
  49876 words of font info for 41 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  35i,7n,72p,891b,1635s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program File
-s/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/font
-s/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/
-8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on rapport.pdf (22 pages, 270860 bytes).
+{C
+:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/M
+iKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/d
+vips/fontname/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/hel
+vetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+
+Output written on rapport.pdf (22 pages, 273587 bytes).
 PDF statistics:
  115 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

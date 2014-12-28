@@ -168,8 +168,8 @@ Le plateau donné par le sujet est le suivant :
 Chaque place, exceptée celle du centre, est rattachée à une place de départ et une place de sortie. Les voitures disposant d'un passager partent depuis une place d'entrée (que celui-ci leur donne) et, à la fin de celle-ci, rejoignent une place de sortie (même chose).\\
 La place centrale n'est utilisée que lors d'un trajet reliant deux places opposées...
 \subsection{Passagers et contrôleur}
-Chaque passager doit être transporté d'une place à une autre. Pour ce faire, il envoi une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci assignera cette "mission" à un des véhicules de sa flotte (sous la forme d'un passager, ayant un départ et une arrivée). Celui-ci calculera ensuite le trajet qu'il suivra pour la mener à bien.\\
-C'est alors le véhicule qui décide de partir : pour cela il doit envoyer une requête au contrôleur pour savoir si son chemin est déjà réservé. Si ce n'est pas le cas, le contrôleur l'y autorise, et le véhicule part. La requête se fait sous la forme d'une Request Map, constituée de booléens indiquant l'intention du véhicule de réserver une place ou non.\\
+Chaque passager doit être transporté d'une place à une autre. Pour ce faire, il envoie une requête au module qui se charge du contrôle du plateau : le contrôleur. Par la suite, celui-ci assignera cette "mission" à un des véhicules de sa flotte (sous la forme d'un passager, ayant un départ et une arrivée). Celui-ci calculera ensuite le trajet qu'il suivra pour la mener à bien.\\
+C'est alors le véhicule qui décide de partir : pour cela il doit envoyer une requête au contrôleur pour savoir si son chemin est déjà réservé (c'est à dire, si une des places qu'il souhaite utiliser a déjà été réservée par un autre véhicule). Si ce n'est pas le cas, le contrôleur l'y autorise, et le véhicule part. La requête se fait sous la forme d'une Request Map, constituée de booléens indiquant l'intention du véhicule de réserver une place ou non.\\
 Pour exemple, lorsqu'une voiture désire aller de la place I1 à O2, elle aura besoin de réserver I1, R1, R2 et O2. La Request Map seras alors la suivante :
 \vspace{0.5cm}
 
@@ -205,6 +205,7 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
   \item Un véhicule ne peut pas contourner une place occupée pour mener sa mission à bien.
   \item Un passager, lors de sa demande, est placé en liste d'attente. Il se voit alors immédiatement embarqué dans un véhicule, et attends le départ.
   \item S'il n'y a aucun véhicule disponible, il attends qu'un véhicule se libère et le prenne en charge.
+  \item Lors de la fin de sa mission (débarquement du passager), le véhicule ne reste pas sur sa place. Il est "libéré" (il rejoint les véhicules libres), et sera donc capable de partir de n'importe quelle place de départ lors de sa prochaine mission (et non pas uniquement de celle correspondant à la place d'arrivée de sa mission précédente). Ceci permet au véhicule d'éviter d'effectuer un trajet supplémentaire en début de mission pour aller chercher le passager sur sa place de départ...
 \end{itemize}
 \setcounter{chapter}{0}
 \setcounter{section}{0}
@@ -221,7 +222,7 @@ Ainsi, par rapport à ces différentes consignes, nous avons choisi de prendre c
 \item Jouer en simulation paramétrée (mode fichier), dans ce mode toutes les requête sont générées par le programme, mais elles ont été définies à l'avance dans un fichier texte, et selon le format qui suit :
 \vspace{0.1cm}
 \begin{center}
-{Départ}	{Arrivée}	{Moment d'arrivée} (chaque nombre est séparé par une tabulation)
+[Départ]	[Arrivée]	[Moment d'arrivée] (chaque nombre est séparé par une tabulation)
 \end{center}
 \vspace{0.1cm}
 Le moment d'arrivée correspond au moment t (en secondes, depuis le début de la simulation) où cette requête sera envoyée au contrôleur...
@@ -229,8 +230,8 @@ Le moment d'arrivée correspond au moment t (en secondes, depuis le début de la
 
 \item Avoir accès aux options : une fois dans ce menu, il peut choisir de changer la rapidité des voitures.
 \end{itemize}
-Nous avons choisi de diviser l'utilisateur principal en deux autres : un utilisateur qui utiliserait le mode manuel, et un autre qui utiliserait le mode automatique. Ceci étant dû au fait que l'utilisateur en mode manuel pourra accéder à des fonctions interdites au mode automatique (la création d'un passager).\\
-En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'utilisateur (et quel que soit son mode) pourra mettre la simulation en pause et, si nécessaire, réinitialiser celle-ci. 
+Nous avons choisi de diviser l'utilisateur principal en deux autres : un utilisateur qui utiliserait le mode manuel, et un autre qui utiliserait le mode automatique ou le mode fichier (les actons possibles pour ces deux modes sont similaires). Ceci étant dû au fait que l'utilisateur en mode manuel pourra accéder à des fonctions interdites au mode automatique et au mode fichier (la création d'un passager).\\
+En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'utilisateur (et quel que soit son mode) pourra mettre la simulation en pause ou, si nécessaire, réinitialiser celle-ci. 
 \section{Diagramme de séquence(annexe B)}
 \hspace{0.5cm} Le diagramme de séquence permet de représenter les interactions entre les différentes classes selon un ordre chronologique. Ici, il représente l'envoi d'une requête de départ par l'utilisateur, et les actions qui s'en suivent, jusqu'à la fin du trajet du véhicule.
 \section{Diagramme de classes(annexe C)}
@@ -239,7 +240,7 @@ En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'u
 \chapter{Description des classes}
 \section{Classe BoiteAuxLettre}
      
-      Il s'agit de la classe recevant toute les requêtes, qu'elles soient envoyées depuis la partie graphique (c'est à dire des requêtes pour la création d'une nouvelle mission, et donc d'un nouveau passager), ou du modèle. Il y a 4 requêtes différentes, stockées chacunes dans une liste différente:
+      Il s'agit de la classe recevant toute les requêtes, qu'elles soient envoyées depuis la partie graphique (c'est à dire des requêtes pour la création d'une nouvelle mission, et donc d'un nouveau passager), ou du modèle. Il y a 4 requêtes différentes, stockées chacune dans une liste différente:
       \begin{wrapfigure}[17]{l}{5.5cm}
 \includegraphics[scale=1]{Images/boite.png}
 \end{wrapfigure} \\  
@@ -256,7 +257,7 @@ En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'u
 
 
 Il s'agit de la classe principale : c'est elle qui s'occupe de gérer les déplacements des différents véhicules sur la carte. Le contrôleur a directement accès à la boîte aux lettres, et donc aux requêtes qu'elle contient.\\
-C'est également lui qui possède la "carte" (ici, une HashMap) des différentes places du réseau routier : il est le seul à agir dessus.
+C'est également lui qui possède la "carte" (ici, une HashMap) des différentes places du réseau routier : il est le seul à agir dessus (les rendre disonibles ou non).
 La méthode traiteRequete() se charge de traiter les requêtes selon leur priorité :
 \begin{wrapfigure}[16]{l}{5cm}
 \includegraphics[scale=1]{Images/controleur.png}
@@ -269,10 +270,11 @@ La méthode traiteRequete() se charge de traiter les requêtes selon leur priori
       \end{itemize}
 
 Par la suite, et en fonction des requêtes qu'il reçoit, le contrôleur a plusieurs tâches. Il peut libérer un véhicule en fin de trajet, en réserver un autre et lui attribuer un passager. Enfin, il valide (ou non) les chemins demandés par les véhicules, et se charge ensuite de réserver les ressources correspondantes.
+Il dispose enfin d'une fonction pour réinitialiser la totalité du système (à la demande de l'utilisateur), ainsi qu'une autre pour le mettre en pause, ou reprendre (même chose)...
 \section{Les classes Requêtes}
 
 Etant donné que le but de chaque requête a été explicité ci-dessus, et que la structure de celles-ci ne présente pas d'intérêt particulier, nous nous intéresserons à leurs caractéristiques générales. \\
-Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres. Un requête, une fois traitée, est immédiatement détruite. Enfin,à chaque liste de requêtes est attribuée une priorité, afin que le contrôleur traite les requêtes les plus importantes en premier.
+Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres. Une requête, une fois traitée, est immédiatement détruite. Enfin, à chaque liste de requêtes est attribuée une priorité, afin que le contrôleur traite les requêtes les plus importantes en premier.
 
 \section{La classe Cerveau}
 \begin{wrapfigure}[10]{l}{4.5cm}
@@ -283,6 +285,15 @@ Par la suite, il se charge d'acheminer le véhicule jusqu'à sa destination, et 
 \vspace{0.3cm}
 En parallèle, le cerveau se charge également de synchroniser l'avancée du trajet avec la partie graphique : en effet, afin d'éviter des bugs d'affichage, le modèle doit attendre que le véhicule affiché atteigne la place suivante avant d'envoyer les requêtes de libération et, à la fin du trajet, la requête de fin de trajet.
 \vspace{0.5cm}
+\section{La Classe Flotte de Véhicules}
+
+%\begin{wrapfigure}[16]{l}{5cm}
+%\vspace{-0.5cm}
+%\includegraphics[scale=1]{Images/vehicule.png}
+%\end{wrapfigure}
+Cette classe possède la totalité des véhicules existant dans le système. Elle est elle-même instanciée dans le contrôleur. Elle se charge, à la demande du contrôleur, de gérer les passagers : à leur apparition (requête de début de trajet), ils sont placés dans une file d'attente. Si la flotte possède des véhicules libres, elles les attribuera aux passagers en attente. Le contrôleur demandera recevra alors régulièrement des requêtes pour réserver des trajets de leur part.\\
+La flotte vérifiera régulièrement (là-encore, à la demande du contrôleur) si un véhicule s'est libéré, et est ainsi disposé à accepter un nouveau passager.
+Enfin, c'est elle qui libère les véhicules à la fin de leur mission.
 \section{La Classe Véhicule}
 
 %\begin{wrapfigure}[16]{l}{5cm}
@@ -302,9 +313,11 @@ Afin de permettre une meilleure représenation des différentes parties du progr
 \item Le modèle est la partie calculatoire du programme. C'est lui qui, dans notre cas, se charge de la totalité de la simulation (voitures, contrôleur, trajets, etc...). Il peut alors envoyer des données à la vue pour qu'elle les affiche (faire bouger un véhicule, par exemple).
 \end{itemize}
 Ces trois parties sont mises en relation par le biais d'interfaces "Observer" et "Observable", qui permettent au modèle d'envoyer des informations à la vue sans même avoir conscience de son existence. Cette indépendance permet de modifier la vue à volonté sans avoir à modifier le modèle...
-\section{Des threads pour régir les déplacements}
+\section{Des Threads pour régir les déplacements}
 
-Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicule de bouger indépendamment. En effet, chaque véhicule actif (c'est à dire embarquant un passager) est dirigé par un Thread (la classe Cerveau). De cette manière, ils peuvent tous agir indépendamment. De plus, le contrôleur possède lui aussi un Thread, afin de pouvoir traiter de lui-même les requêtes qui arrivent dans la boîte aux lettres. Cette utilisation de nombreux Threads pourrait être problématique si un grand nombre de véhicules étaient présents simultanément sur la carte. Nous avons malgré tout persisté en se basant sur le fait que, telle que la carte et les contraintes sont faites, le nombre maximum de voitures sur la carte à un instant donné est de 3. Pas de risque de trop grande consommation des ressources, donc.
+Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicule de bouger indépendamment. En effet, chaque véhicule actif (c'est à dire embarquant un passager) est dirigé par un Thread (la classe Cerveau). De cette manière, ils peuvent tous agir indépendamment. De plus, le contrôleur possède lui aussi un Thread, afin de pouvoir traiter de lui-même les requêtes qui arrivent dans la boîte aux lettres. 
+Enfin, une classe située au niveau du vérificateur en comporte un, afin de pouvoir générer des requêtes à des moments donnés (mode fichier et mode automatique)...\\
+Cette utilisation de nombreux Threads pourrait être problématique si un grand nombre de véhicules étaient présents simultanément sur la carte. Nous avons malgré tout persisté en se basant sur le fait que, telle que la carte et les contraintes sont faites, le nombre maximum de voitures sur la carte à un instant donné est de 3. Pas de risque de trop grande consommation des ressources, donc.
 
 %\chapter{Difficultés rencontrées}
 
@@ -439,7 +452,9 @@ public void run() {
 	//On calcule le trajet
 	corps.findPath(corps.passager);
 	requestmap = corps.trajetToMap(corps.trajet);
+	//Tant qu'on a pas eu d'autorisation
 	while (start != true) {
+		//Si on a eu une reponse (negative)		
 		if (maj) {
 			corps.sendRMap(requestmap);
 			maj = false;
@@ -451,18 +466,17 @@ public void run() {
 			}
 		}
 	}
-	//On se positionne au depart
+	//On se positionne au depart et on recupere l'ID du vehicule graphique attribue
 	iDVehiculeGraphique = corps.notifyDebutMission(corps.trajet.get(0));
-	System.out.println("Depart : " + corps.trajet.get(0));
 	//Et on va de points en points
-	while (i < corps.trajet.size()) {
+	while (i <corps.trajet.size()) {
 		//Si la voiture graphique a termine de bouger
 		if(graphtop){
 			graphtop=false;
 			corps.sendRLib(corps.trajet.get(i-1));
-			i++;
 			//Nouvelles coordonnees
-			corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i-1));
+			corps.notifyCoords(iDVehiculeGraphique, corps.trajet.get(i));
+			i++;
 		}else{
 			try {
 				sleep(100);
@@ -471,11 +485,32 @@ public void run() {
 			}
 		}
 	}//Le trajet est termine
-	corps.sendRLib(corps.trajet.get(i-1));
-	corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond a la fin du trajet
-	corps.sendRFinTrajet();
+	while (fin == false) {
+		//Si la voiture graphique a termine de bouger
+		if(graphtop){
+			graphtop=false;
+			corps.notifyCoords(iDVehiculeGraphique, 99); //L'identifiant 99 correspond a la fin du trajet
+			corps.sendRFinTrajet(corps.trajet.get(i-1));
+			fin = true;
+		}else{
+			try {
+				sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
 \end{lstlisting}
+Son fonctionnement nécessite quelques explications.\\
+Premièrement, les booléens :\\
+\begin{itemize}
+\item "maj" est mis à True par le cotrôleur, lorsqu'il a traité la requête du véhicule. Cela indique au véhicule qu'il a reçu une réponse (il peut alors renvoyer une requête), et lui évite donc de surcharger la boîte aux lettres de requêtes inutiles.
+\item "start" est mis à True lorsque le contrôleur autorise le véhicules à partir.
+\item "graphtop" est mis à True par le véhcule "graphique" (celui qui est affiché) lorsqu'il a atteint la place suivante. Cela permet alors au véhicule de se rendre à la place d'après, puis d'attendre que la partie graphique aie fini de l'afficher, etc...
+\item "fin" est mis à True par le cerveau lui-même, lorsqu'il arrive à la place d'arrivée. il attends donc une dernière fois le véhicule graphique, puis entame la procédure de libération.
+\end{itemize}
+
 \chapter*{Conclusion}
 \vspace{7cm}
 Grâce à ce projet, vous avons pu faire une modélisation de notre projet a l'aide du langage UML. Ceci nous a permit d'en découvrir l'utilité et la practicité, ainsi que d'engager un travail de réflexion sur notre projet en amont... Nous avons alors pu économiser du temps sur un éventuel défaut d'architecture que l'on aurait pu commettre sans l'aide de ce langage. De plus, ce projet nous a fait découvrir de nouvelles fonctionnalités de Java, à savoir les Threads et les exception. Enfin, nous avons implémenté dans ce projet une Javadoc, afin que la communication entre les différents développeurs (notamment les futurs) soit plus simple. L'outil Git nous a également été d'une grande aide, pour stocker notre projet, gérer les différents bugs et simplifier la gestion d'un code à deux (versionnage, travail simultané sur un fichier, etc...).
