@@ -120,7 +120,6 @@ public class Controleur implements Observable,Runnable {
 	public synchronized void traiteRequete() {
 		if (boite.getSizeRFintrajet() != 0) {
 			traiteRequete(boite.getRFinTrajet());
-			System.out.println("fin trajet");
 			//System.out.println(general);
 			try {
 				wait(10);
@@ -130,7 +129,6 @@ public class Controleur implements Observable,Runnable {
 			}
 		} else if (boite.getSizeRLib() != 0) {
 			traiteRequete(boite.getRLib());
-			System.out.println("liberation");
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
@@ -139,7 +137,6 @@ public class Controleur implements Observable,Runnable {
 			}
 		} else if (boite.getSizeRDepart() != 0) {
 			traiteRequete(boite.getDepart());
-			System.out.println("depart");
 			
 			try {
 				wait(10);
@@ -150,7 +147,6 @@ public class Controleur implements Observable,Runnable {
 		} else if (boite.getSizeRMap() != 0) {
 			
 			traiteRequete(boite.getRMap());
-			System.out.println("map");
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
@@ -160,7 +156,6 @@ public class Controleur implements Observable,Runnable {
 
 		} else {
 			try {
-			//	System.out.println("rien dans la boite");
 				wait(1000);
 			} catch (InterruptedException e) {
 				
@@ -225,9 +220,7 @@ public class Controleur implements Observable,Runnable {
 	 *            une request map
 	 */
 	private  void traiteRequete(RMap r) {
-		System.out.println(r.getIdentifiant());
 		ArrayList<Boolean> m = r.getRequest_map();
-	//	System.out.println(m);
 		// compteur pour savoir ou on en est dans les boucles
 		int i = 1;
 		// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
@@ -273,8 +266,6 @@ public class Controleur implements Observable,Runnable {
 			}
 			maFlotte.lancerVehicule(r.getIdentifiant(), true);	
 		}
-		//System.out.println("au depart");
-		//System.out.println(general);
 		maFlotte.setMaj(r.getIdentifiant());
 	}
 /**
@@ -295,7 +286,6 @@ public class Controleur implements Observable,Runnable {
 
 	public void updatePassagersEnAttente(){
 		int attdepart = 0;
-		System.out.println(maFlotte.listeAttente.isEmpty());
 		
 		for(Vehicule p: maFlotte.getVehicules()){
 			if(p.isDispo()==false){

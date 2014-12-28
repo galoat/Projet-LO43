@@ -510,13 +510,10 @@ public class Simulation extends MainPan implements Observer {
 		 * Fonction run() du thread
 		 */
 		public void run() {
-			// map.repaint();
-			// System.out.println("Da");
 			while (true) {
 				// Si la destination a ete modifiee
 				if (running) {
 					if (x != xdest || y != ydest) {
-						// System.out.println("Da2");
 						this.xi = x;
 						this.yi = y;
 						distcalcul = (int) Math.sqrt(Math.pow((xdest-xi), 2) + Math.pow((ydest-yi), 2));
@@ -645,7 +642,5 @@ public class Simulation extends MainPan implements Observer {
 	public void updatePassagers(int attdepart, int attvoiture) {
 		p1.setText(Integer.toString(attdepart));
 		p2.setText(Integer.toString(attvoiture));
-		System.out.println("attdepart : " + attdepart + " attvoiture : "
-				+ attvoiture);
 	}
 }

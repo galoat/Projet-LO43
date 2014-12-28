@@ -270,7 +270,7 @@ La méthode traiteRequete() se charge de traiter les requêtes selon leur priori
       \end{itemize}
 
 Par la suite, et en fonction des requêtes qu'il reçoit, le contrôleur a plusieurs tâches. Il peut libérer un véhicule en fin de trajet, en réserver un autre et lui attribuer un passager. Enfin, il valide (ou non) les chemins demandés par les véhicules, et se charge ensuite de réserver les ressources correspondantes.
-Il dispose enfin d'une fonction pour réinitialiser la totalité du système (à la demande de l'utilisateur), ainsi qu'une autre pour le mettre en pause, ou reprendre (même chose)...
+Il dispose également d'une fonction pour réinitialiser la totalité du système (à la demande de l'utilisateur), ainsi qu'une autre pour le mettre en pause, ou reprendre (même chose)...
 \section{Les classes Requêtes}
 
 Etant donné que le but de chaque requête a été explicité ci-dessus, et que la structure de celles-ci ne présente pas d'intérêt particulier, nous nous intéresserons à leurs caractéristiques générales. \\
@@ -319,8 +319,12 @@ Nous avons fait le choix d'utiliser des Threads pour permettre à chaque véhicu
 Enfin, une classe située au niveau du vérificateur en comporte un, afin de pouvoir générer des requêtes à des moments donnés (mode fichier et mode automatique)...\\
 Cette utilisation de nombreux Threads pourrait être problématique si un grand nombre de véhicules étaient présents simultanément sur la carte. Nous avons malgré tout persisté en se basant sur le fait que, telle que la carte et les contraintes sont faites, le nombre maximum de voitures sur la carte à un instant donné est de 3. Pas de risque de trop grande consommation des ressources, donc.
 
-%\chapter{Difficultés rencontrées}
-
+\section{Un mot sur la génération automatique des requêtes}
+La génération automatique des requêtes se fait à l'aide d'un Thread, situé (selon le modèle MVC) entre la Vue et le Modèle, en parallèle du Vérificateur (qui exploite d'alleurs une référence dessus). Ne pas le placer dans le modèle permet d'avoir une partie calculatoire souple, qui traitera toutes les requêtes, quelle que soit leur provenance... Cette classe se divise en deux fonctionnalités.
+\begin{itemize}
+\item Le mode automatique correspond à une génération aléatoire des requêtes. Elles sont envoyées toutes les deux secondes dans la boîte aux lettres et ce, tant que la simulation continue.
+\item Le mode fichier, qui exploite un fichier texte contenant  des requêtes écrites selon un format particulier (voir II.1.1). Ce mode se sert d'un compteur que le Thread incrémente chaque seconde pour savoir quand envoyer la requête.
+\end{itemize}
 \chapter{Fonctions importantes}
 Ce chapitre est destiné à mettre plus en lumières certaines fonctions que nous avons jugé assez importantes pour nous y attarder. Nous en donnerons le code, puis expliciterons sa fonction et son fonctionnement.
 \section{Classe Controleur}
@@ -430,10 +434,57 @@ public void findPath(Passager p) {
 }
 \end{lstlisting}
 Grâce à cette liste de points,  la classe va pouvoir générer une RMap qui seras par la suite envoyée à la boîte aux lettres, formatée comme indiqué  dans la partie Requête.
+\section{Classe Flotte de Véhicules}
+\begin{lstlisting}
+public synchronized void checkAttente() {
+	boolean allUse = true;
+	for (Vehicule v : vehicules) {
+		if (v.isDispo() == true) {
+			allUse = false;
+		}
+	}
+	if (listeAttente.size() == 0 || allUse == true) {
+		try {
+			wait(500);	
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	} else {
+		int j = 0;
+		while ( j<listeAttente.size()) {
+			Passager p = listeAttente.get(j);
+			boolean dispo = false;
+			// verification qu'il reste des vehicule libre
+			for (Vehicule c : vehicules) {
+				if (c.isDispo()) {
+					dispo = true;
+				}
+			}
+			if (dispo == true) {
+				int i = 0;
+				//on va cherche le vehicule dispo
+				while (i < vehicules.size()-1 && !vehicules.get(i).isDispo()) {
+					i++;
+				}
+				p.setEmbarque(true);
+				vehicules.get(i).setDispo(false);
+				vehicules.get(i).setPassager(p);
+				vehicules.get(i).setCerveau(new Cerveau(vehicules.get(i)));
+				vehicules.get(i).getCerveau().start();
+				listeAttente.remove(p);
+				j--;
+				}
+			j++;
+		}
+	}
+}
+\end{lstlisting}
+C'est cete foncton qui permet à la Flotte de Véhicules de vérifier s'il n'est pas possible d'assigner un véhicule (qui se serait libéré entre temps) à un passager en attente. Pour cela, on commence par vérifier si au moins un véhicule est libre. Si c'est le cas, on cherche à assigner un véhicule au plus de passagers possible. Chaque véhicule nouvellement réservé se voit attribuer un cerveau (instancié pour l'occasion), cerveau dont le Thread est alors lancé.
+\vspace{0.3cm}
 \section{Classe Boite au lettres}
 Cette classe possède 4 listes, chacune de ses liste a la même logique: dans un premier temps le Contrôleur doit pouvoir accéder à la taille de cette liste afin de savoir si elle est vide ou non.
 \\
-Ensuite, lorsque le Contrôleur veut une requête il faut lui envoyer puis supprimer cette requête de la liste. Voici un exemple d'implémentation pour la méthode getDepart
+Ensuite, lorsque le Contrôleur veut une requête il faut lui envoyer puis supprimer cette requête de la liste. Voici un exemple d'implémentation pour la méthode getDepart :
 
 \begin{lstlisting}
 public RDepart getDepart() {
@@ -503,14 +554,22 @@ public void run() {
 }
 \end{lstlisting}
 Son fonctionnement nécessite quelques explications.\\
-Premièrement, les booléens :\\
+Premièrement, les booléens :
 \begin{itemize}
-\item "maj" est mis à True par le cotrôleur, lorsqu'il a traité la requête du véhicule. Cela indique au véhicule qu'il a reçu une réponse (il peut alors renvoyer une requête), et lui évite donc de surcharger la boîte aux lettres de requêtes inutiles.
-\item "start" est mis à True lorsque le contrôleur autorise le véhicules à partir.
-\item "graphtop" est mis à True par le véhcule "graphique" (celui qui est affiché) lorsqu'il a atteint la place suivante. Cela permet alors au véhicule de se rendre à la place d'après, puis d'attendre que la partie graphique aie fini de l'afficher, etc...
-\item "fin" est mis à True par le cerveau lui-même, lorsqu'il arrive à la place d'arrivée. il attends donc une dernière fois le véhicule graphique, puis entame la procédure de libération.
+\item \textbf{maj} est mis à \textit{True} par le cotrôleur, lorsqu'il a traité la requête du véhicule. Cela indique au véhicule qu'il a reçu une réponse (il peut alors renvoyer une requête), et lui évite donc de surcharger la boîte aux lettres de requêtes inutiles.
+\item \textbf{start} est mis à \textit{True} lorsque le contrôleur autorise le véhicules à partir.
+\item \textbf{graphtop} est mis à \textit{True} par le véhicule "graphique" (celui qui est affiché) lorsqu'il a atteint la place suivante. Cela permet alors au véhicule de se rendre à la place d'après, puis d'attendre que la partie graphique aie fini de l'afficher, etc...
+\item \textbf{fin} est mis à \textit{True} par le cerveau lui-même, lorsqu'il arrive à la place d'arrivée. il attends donc une dernière fois le véhicule graphique, puis entame la procédure de libération.
 \end{itemize}
+Ensuite, la fonction \textit{notifyCoords(int, int)} permet au cerveau (en passant par le véhicule) d'envoyer l'identifiant de la place suivante au véhicule graphique. Celui-ci est fait de telle sorte qu'il cherchera toujours à atteindre les cordonnées qu'on lui donne. Il rejoindra donc la place donnée par le cerveau (et mettra graphtop à True lorsqu'il y sera), après avoir tranformé l'identifiant en coordonnées (x, y).
 
+\chapter{Difficultés rencontrées}
+Au cours du développement de ce projet, nous avos dû faire face à plusieurs difficulés :
+\begin{itemize}
+\item Ce projet était pour nous une occasion d'utiliser l'outil Git pour la première fois. Cela a donc engendré certains problèmes de fichiers perdus, ou encore des \textit{merge} ayant corrompu des fichiers UML. Fort heureusement, le versionnage du code nous a permis de retrouver les fichiers fonctionnels assez facilement...
+\item L'implémentaton des Threads, que nous avions commencé avant d'avoir suivi les TDs les concernant, a été difficile. Ce n'est qu'après avoir pu nous familiariser avec la synchronisation (mot clé \textit{synchronized}) que de nombreux bugs ont pu être corrigés.
+\item D'autres bugs sont apparus, dûs au fait que nous n'utilisons pas le même système d'exploitation : l'un est sous Linux, l'autre sous Windows. Et malgré la portabilité du langage Java, certaines fonctions ne se comportent pas exactement de la même façon sur les deux plateformes, occasionnant quelques bugs graphiques...
+\end{itemize}
 \chapter*{Conclusion}
 \vspace{7cm}
 Grâce à ce projet, vous avons pu faire une modélisation de notre projet a l'aide du langage UML. Ceci nous a permit d'en découvrir l'utilité et la practicité, ainsi que d'engager un travail de réflexion sur notre projet en amont... Nous avons alors pu économiser du temps sur un éventuel défaut d'architecture que l'on aurait pu commettre sans l'aide de ce langage. De plus, ce projet nous a fait découvrir de nouvelles fonctionnalités de Java, à savoir les Threads et les exception. Enfin, nous avons implémenté dans ce projet une Javadoc, afin que la communication entre les différents développeurs (notamment les futurs) soit plus simple. L'outil Git nous a également été d'une grande aide, pour stocker notre projet, gérer les différents bugs et simplifier la gestion d'un code à deux (versionnage, travail simultané sur un fichier, etc...).

@@ -94,7 +94,6 @@ public class FlotteVehicules {
 	}
 	public synchronized void checkAttente() {
 
-		// System.out.println("verification liste attente vehicule");
 		boolean allUse = true;
 		for (Vehicule v : vehicules) {
 			if (v.isDispo() == true) {
@@ -123,10 +122,6 @@ public class FlotteVehicules {
 					}
 				}
 				if (dispo == true) {
-
-					System.out.println(" traite demande de " + p.getDebut()
-							+ " a" + p.getFin());
-
 						int i = 0;
 					//on va cherche le vehicule dispo
 					while (i < vehicules.size()-1 && !vehicules.get(i).isDispo()) {
@@ -140,7 +135,6 @@ public class FlotteVehicules {
 						listeAttente.remove(p);
 						j--;
 				} else {
-					System.out.println("liste en attente");
 				}
 				j++;
 			}
