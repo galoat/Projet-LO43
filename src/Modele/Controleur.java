@@ -120,7 +120,6 @@ public class Controleur implements Observable,Runnable {
 	public synchronized void traiteRequete() {
 		if (boite.getSizeRFintrajet() != 0) {
 			traiteRequete(boite.getRFinTrajet());
-			//System.out.println(general);
 			try {
 				wait(10);
 			} catch (InterruptedException e) {

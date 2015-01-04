@@ -26,7 +26,6 @@ public class Verificateur {
 		if(dep != ar){
 			RDepart m =new RDepart(dep, ar);
 			model.getBoite().addRequete(m);
-		//	System.out.println("sdgvfdgdg");
 		}else{
 			throw new RequeteException();
 		}
