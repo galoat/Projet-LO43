@@ -26,7 +26,7 @@ public class RequestGenerator extends Thread{
 			rdep = l.convert();
 			while(!rdep.isEmpty()){
 				if(running){
-					if(compteur == rdep.get(0).getTemps()){
+					while(!rdep.isEmpty() && compteur == rdep.get(0).getTemps()){
 						try {
 							verif.newRequest(rdep.get(0).getDebut(), rdep.get(0).getFin());
 						} catch (RequeteException | RDepartException e) {
@@ -37,7 +37,6 @@ public class RequestGenerator extends Thread{
 					try {
 						sleep(1000);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -45,7 +44,6 @@ public class RequestGenerator extends Thread{
 					try {
 						sleep(200);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

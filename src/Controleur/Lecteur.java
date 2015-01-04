@@ -13,7 +13,7 @@ import Modele.RDepart;
 /**
  * 
  *
- * @author Theo Buri
+ * @author florian + theo
  */
 public class Lecteur {
 
@@ -24,7 +24,7 @@ public class Lecteur {
 		this.path = path;
 	}
 
-	// Reads in the file, and stores datas in a list of string
+	// Lis le fichier, et stocke tout dans une liste
 	public LinkedList<String> getReq() {
 		final LinkedList<String> inside = new LinkedList<String>();
 		try {
@@ -45,7 +45,7 @@ public class Lecteur {
 		return inside;
 	}
 
-	// Converts the list of strings in a graph
+	// Convertis la liste de donnees en une liste de requetes de depart
 	public ArrayList<RDepart> convert() {
 		LinkedList<String> rtext = this.getReq();
 		ArrayList<RDepart> rdep = new ArrayList<RDepart>();
@@ -65,7 +65,6 @@ public class Lecteur {
 					try {
 						rdep.add(new RDepart(dep, ar, temps));
 					} catch (RDepartException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -76,6 +75,7 @@ public class Lecteur {
 		return rdep;
 	}
 
+	//Trie la liste de requetes, en premier celle qui sera lancee le plus tot
 	ArrayList<RDepart> tri(ArrayList<RDepart> atrier) {
 		boolean action = false;
 		for (int i = 0; i < atrier.size(); i++) {
