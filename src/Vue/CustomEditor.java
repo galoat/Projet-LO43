@@ -25,8 +25,6 @@ public class CustomEditor extends BasicComboBoxEditor {
 
 	/**
 	 * Constructeur de la classe
-	 * 
-	 * @see JComboBox
 	 */
 	public CustomEditor() {
 		// Initialisation
@@ -62,7 +60,6 @@ public class CustomEditor extends BasicComboBoxEditor {
 	 * 
 	 * @param item
 	 *            L'item a ajouter a la liste deroulante
-	 * @see JComboBox
 	 */
 	public void setItem(Object item) {
 		if (item == null) {

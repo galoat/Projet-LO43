@@ -12,7 +12,6 @@ import Modele.RDepart;
  * automatiquement, ou a partir d'un fichier, des requetes et de les envoyer
  * dans la BoiteAuxLettres
  * 
- * @see BoiteAuxLettres
  * @author florian + theo
  * @version 1.0
  */

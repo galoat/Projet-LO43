@@ -281,7 +281,8 @@ public class Simulation extends MainPan implements Observer {
 	 * 
 	 * @param ID
 	 *            L'identifiant du vehicule concerne
-	 * @param suivant La place suivante a atteindre
+	 * @param suivant
+	 *            La place suivante a atteindre
 	 */
 	public void updateCoords(int ID, int suivant) {
 		int i = 0;
@@ -333,6 +334,7 @@ public class Simulation extends MainPan implements Observer {
 			}
 		}
 	}
+
 	/**
 	 * Listener des boutons de pause et reset
 	 * 
@@ -346,20 +348,21 @@ public class Simulation extends MainPan implements Observer {
 		@SuppressWarnings("deprecation")
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//Si on veut reinitialiser
+			// Si on veut reinitialiser
 			if (e.getSource() == reset) {
-				//On arrete les Threads des vehicules affiches
+				// On arrete les Threads des vehicules affiches
 				for (Vehicule v : vehicules) {
 					v.stop();
 				}
-				//On les detruit
+				// On les detruit
 				vehicules.clear();
-				//On repeint
+				// On repeint
 				map.repaint();
-				//Puis on reinitialise le modele
+				// Puis on reinitialise le modele
 				verif.resetAll();
 			} else {
-				//Si on veut mettre en pause, on change juste le booleen correspondant
+				// Si on veut mettre en pause, on change juste le booleen
+				// correspondant
 				running = !running;
 				verif.pause(running);
 			}
@@ -465,7 +468,8 @@ public class Simulation extends MainPan implements Observer {
 	 */
 	public class Vehicule extends Thread {
 
-		int iD, x, y, xi, yi, xdest, ydest, type, coef, decalx, decaly, distreelle, distcalcul;
+		int iD, x, y, xi, yi, xdest, ydest, type, coef, decalx, decaly,
+				distreelle, distcalcul;
 		double angle;
 		Image apparence;
 
@@ -504,7 +508,8 @@ public class Simulation extends MainPan implements Observer {
 		}
 
 		/**
-		 * Fonction run() du thread
+		 * Fonction run() du thread, qui se charge de faire evoluer les
+		 * coordonnees du vehicules, puis de le "repeindre"
 		 */
 		public void run() {
 			while (true) {
@@ -513,14 +518,19 @@ public class Simulation extends MainPan implements Observer {
 					if (x != xdest || y != ydest) {
 						this.xi = x;
 						this.yi = y;
-						distcalcul = (int) Math.sqrt(Math.pow((xdest-xi), 2) + Math.pow((ydest-yi), 2));
+						distcalcul = (int) Math.sqrt(Math.pow((xdest - xi), 2)
+								+ Math.pow((ydest - yi), 2));
 						distreelle = 0;
 						decalx = 0;
 						decaly = 0;
 						coef = 1;
+						// On calcule l'angle selon lequel l'image doit être
+						// orientee
 						angle = Math.acos((xdest - xi)
 								/ Math.sqrt(Math.pow(xdest - xi, 2)
 										+ Math.pow(ydest - yi, 2)));
+						// Et on calcule le decalage a appliquer pour remettre
+						// l'image a sa place
 						if (xdest < xi || ydest < yi) {
 							if (xdest < xi && ydest > yi) {
 								decalx = (int) (apparence.getHeight(null) * Math
@@ -543,12 +553,12 @@ public class Simulation extends MainPan implements Observer {
 						float dY = ((ydest - y) * vitesse / (float) 1000);
 						float xt = x, yt = y;
 						// Tant qu'on est pas arrive a la destination
-						while ((x != xdest || y != ydest) && distreelle<=distcalcul) {
+						while ((x != xdest || y != ydest)
+								&& distreelle <= distcalcul) {
 							if (running) {
 								try {
 									sleep(25);
 								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 								// on se deplace
@@ -561,14 +571,14 @@ public class Simulation extends MainPan implements Observer {
 								try {
 									sleep(25);
 								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 							}
 							map.repaint();
-							distreelle = (int) Math.sqrt(Math.pow((x-xi), 2) + Math.pow((y-yi), 2));
+							distreelle = (int) Math.sqrt(Math.pow((x - xi), 2)
+									+ Math.pow((y - yi), 2));
 						}
-						if(distreelle>=distcalcul){
+						if (distreelle >= distcalcul) {
 							x = xdest;
 							y = ydest;
 							map.repaint();
@@ -603,18 +613,25 @@ public class Simulation extends MainPan implements Observer {
 
 	}
 
-	// appellee lorsqu'un nouveau vehicule graphique doit etre cree (debut d'un
-	// trajet)
+	/**
+	 * Fonction qui se charge de la creation du vehicule graphique au debut de
+	 * sa mission
+	 * 
+	 * @param dep
+	 *            La place de depart de ce vehicule
+	 */
 	@Override
 	public int updateDebutMission(int dep) {
 		int type, r;
 		Random rand = new Random();
-		// ATTENTION ! FAUX ! IL FAUT READAPTER L'IDENTIFIANT DU DEPART AVEC LES
-		// PLACES D'ENTREE
 		int i = 0;
 		while (places.get(i).iD != dep) {
 			i++;
 		}
+		// On choisit l'apparence du vehicule
+		// Il s'agit d'une petit Easter Egg :
+		// 80% des voitures sont normales, mais on peut parfois rencontrer la
+		// Batmobile, le bus de Scooby-Doo, Starsky et Hutch...
 		r = rand.nextInt(100);
 		if (r < 80) {
 			type = 0;
@@ -627,8 +644,9 @@ public class Simulation extends MainPan implements Observer {
 		} else {
 			type = 4;
 		}
+		//Puis on le cree
 		Vehicule veh = new Simulation.Vehicule(iD, places.get(i).x,
-				places.get(i).y, type, "toto");
+				places.get(i).y, type, "Vehicule");
 		iD++;
 		vehicules.add(veh);
 		veh.start();

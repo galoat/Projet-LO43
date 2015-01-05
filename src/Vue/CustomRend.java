@@ -25,8 +25,6 @@ public class CustomRend extends JPanel implements ListCellRenderer<Object> {
 
 	/**
 	 * Constructeur de la classe
-	 * 
-	 * @see JComboBox
 	 */
 	public CustomRend() {
 		// Initialisation
@@ -47,8 +45,6 @@ public class CustomRend extends JPanel implements ListCellRenderer<Object> {
 
 	/**
 	 * Rendu d'un item qu'on affiche lorsqu'il est selectionne, etc...
-	 * 
-	 * @see JComboBox
 	 */
 	@Override
 	public Component getListCellRendererComponent(JList<?> list, Object value,
