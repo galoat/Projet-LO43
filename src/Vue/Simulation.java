@@ -281,10 +281,7 @@ public class Simulation extends MainPan implements Observer {
 	 * 
 	 * @param ID
 	 *            L'identifiant du vehicule concerne
-	 * @param dep
-	 *            Son pointde depart
-	 * @param ar
-	 *            Son point d'arrivee
+	 * @param suivant La place suivante a atteindre
 	 */
 	public void updateCoords(int ID, int suivant) {
 		int i = 0;

@@ -77,7 +77,6 @@ public class FlotteVehicules {
 	 * @param m
 	 *            Un passager
 	 */
-	// exception si la liste des vehicule est compléte ?
 	public synchronized void ajoutListeAttente(Passager m) throws FlotteException {
 		listeAttente.add(m);
 	}
@@ -173,7 +172,7 @@ public class FlotteVehicules {
 	 * Retourn la capaciter en nombre de vehicule du plateau
 	 * 
 	 * @return la capaciter en nombre de vehicule du plateau
-	 * @see capaciter
+	 * @see capacite
 	 */
 
 	public int getCapacite() {

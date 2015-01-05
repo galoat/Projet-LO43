@@ -65,7 +65,7 @@ public class RDepart {
 	 *            le point de depart de la voiture
 	 * @param f
 	 *            Le point d'arriver de la voiture
-	 * @param temps Le temps (en secondes) que la requete mettra a etre lancee
+	 * @param t Le temps (en secondes) que la requete mettra a etre lancee
 	 * @throws RDepartException
 	 *             si l'entier f ou d est superieur a 6 ou inferieur a 1 ou
 	 *             encore si on commence a la meme place

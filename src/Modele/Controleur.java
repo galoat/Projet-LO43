@@ -8,12 +8,12 @@ import Exception.RDepartException;
 
 /**
  * <b> La classe qui regit toute la partie Objet </b>
- * <p>
+ * 
  * Ses caracteristiques sont les suivantes :
  * <ul>
- * <li><b>HashMap<Integer, Boolean></b> une hashmap representant l'occupation
- * des places sur le plateau. Le premier parametre etant l'identifiant de la
- * place et le second son occupation</li>
+ * <li><b>HashMap&lsaquo;Integer, Boolean&rsaquo;</b> une hashmap representant
+ * l'occupation des places sur le plateau. Le premier parametre etant
+ * l'identifiant de la place et le second son occupation</li>
  * <li><b>BoiteAuxLettres</b> elle contient les differentes requetes envoyees au
  * contreleur</li>
  * <li><b>FlotteVehicule</b> contient toutes les voitures auxquelles le
@@ -23,23 +23,23 @@ import Exception.RDepartException;
  * @author florian + theo
  * @version 0.1
  */
-public class Controleur implements Observable,Runnable {
+public class Controleur implements Observable, Runnable {
 
 	/**
 	 * La liste des points atteignables sou forme d'int comme suivant
 	 * <ul>
-	 * <li>les clees de 1 a 6 sont les clees des place d'entrees</li>
-	 * <li>les clees de 11 a 16 sont les clees des routes</li>
-	 * <li>les clees de 21 a 16 sont les clees des places de sorties</li>
-	 * <li>La clee 30 est une clee en reference vers le centre.
+	 * <li>les cles de 1 a 6 sont les cles des place d'entrees</li>
+	 * <li>les cles de 11 a 16 sont les cles des routes</li>
+	 * <li>les cles de 21 a 16 sont les cles des places de sorties</li>
+	 * <li>La cle 30 est une cle en reference vers le centre.
 	 * </ul>
-	 * Le second parametre et la disponibilité de la map: true si la cette
-	 * portion de map est libre false si elle est deja reserver.
+	 * Le second parametre et la disponibilite de la map: true si cette portion
+	 * de map est libre false si elle est deja reservee.
 	 * 
 	 */
 	private HashMap<Integer, Boolean> general;
 	/**
-	 * Une reference sur la boite contenant toute les requete adresser a
+	 * Une reference sur la boite contenant toute les requete adressees a
 	 * l'utilisateur.
 	 */
 	private BoiteAuxLettres boite;
@@ -52,47 +52,20 @@ public class Controleur implements Observable,Runnable {
 		boite = new BoiteAuxLettres();
 		running = true;
 	}
+
 	/**
-	 * fonction appeler lorsque on veut faire une simulation en automatique
-	 *//*
-	public void debutSimAuto(int taille){
+	 * Fonction demarrant la simulation en mode manuel
+	 * 
+	 * @param taille
+	 *            le nombre de vehicules au depart
+	 */
+	public void debutSim(int taille) {
 		maFlotte = new FlotteVehicules(taille, boite);
-		while(true){
-			int a =generateur();
-			int b=generateur();
-			if(a!=b){
-				RDepart r	=null;
-				try {
-				 r=new RDepart(a,b);
-				} catch (RDepartException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				boite.addRequete(r);
-			}else
-			{
-				try {
-					wait(100000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			}	
-	}*/
-/**
- * FOnction demarant la simulation en mode manuel 
- * @param taille
- * 				le nombre devehicule au depart
- */
-	public void debutSim(int taille){
-		maFlotte = new FlotteVehicules(taille, boite);
-		
+
 	}
+
 	/**
 	 * Constructeur de la Hashmap
-	 * 
-	 * @return void
 	 * */
 	private void createHashMap() {
 		general = new HashMap<Integer, Boolean>();
@@ -109,13 +82,11 @@ public class Controleur implements Observable,Runnable {
 	}
 
 	/**
-	 * Fonction permetant de traiter la requete "general" celon un ordre de
-	 * prioriter: elle traiteras dans un premier temp les requete de fin de
-	 * mission apres quoi nous traiterons les requete de liberation de ressource
-	 * puis les requete pour une nouvelle voiture et enfin les requete d'update
-	 * de map
-	 * 
-	 * @throws InterruptedException
+	 * Fonction permettant de traiter les requetes "en general" selon un ordre
+	 * de priorite : elle traitera dans un premier temps les requetes de fin de
+	 * mission apres quoi nous traiterons les requetes de liberation de
+	 * ressource puis les requetes pour une nouvelle voiture et enfin les
+	 * requetes d'update de map
 	 */
 	public synchronized void traiteRequete() {
 		if (boite.getSizeRFintrajet() != 0) {
@@ -123,7 +94,7 @@ public class Controleur implements Observable,Runnable {
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
-				
+
 				e.printStackTrace();
 			}
 		} else if (boite.getSizeRLib() != 0) {
@@ -131,25 +102,25 @@ public class Controleur implements Observable,Runnable {
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
-				
+
 				e.printStackTrace();
 			}
 		} else if (boite.getSizeRDepart() != 0) {
 			traiteRequete(boite.getDepart());
-			
+
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
-				
+
 				e.printStackTrace();
 			}
 		} else if (boite.getSizeRMap() != 0) {
-			
+
 			traiteRequete(boite.getRMap());
 			try {
 				wait(10);
 			} catch (InterruptedException e) {
-				
+
 				e.printStackTrace();
 			}
 
@@ -157,7 +128,7 @@ public class Controleur implements Observable,Runnable {
 			try {
 				wait(1000);
 			} catch (InterruptedException e) {
-				
+
 				e.printStackTrace();
 			}
 		}
@@ -165,21 +136,21 @@ public class Controleur implements Observable,Runnable {
 	}
 
 	/**
-	 * fonction permettant de traiter les requete de liberation de ressource
+	 * Fonction permettant de traiter les requetes de liberation de ressource
 	 * 
 	 * @param r
-	 *            une requete de liberation de vehicule
+	 *            Une requete de liberation de vehicule
 	 */
 	private synchronized void traiteRequete(RLib r) {
 		general.put(r.getLib(), true);
-		
+
 	}
 
 	/**
-	 * fonction utiliser pour traiter les requete de depart
+	 * Fonction utilisee pour traiter les requetes de depart
 	 * 
 	 * @param r
-	 *            une requete de depart
+	 *            Une requete de depart
 	 */
 	private synchronized void traiteRequete(RDepart r) {
 
@@ -188,49 +159,49 @@ public class Controleur implements Observable,Runnable {
 			maFlotte.ajoutListeAttente(p);
 		} catch (FlotteException e) {
 			// si il n'y a plus de place pour les vehicule
-			
+
 			try {
 				wait(1000);
 			} catch (InterruptedException e1) {
-				
+
 				e1.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	/**
-	 * fonction utiliser pour traiter une requete de fin de trajet
+	 * Fonction utilisee pour traiter une requete de fin de trajet
 	 * 
 	 * @param r
-	 *            une requete de fin de trajet
+	 *            Une requete de fin de trajet
 	 */
-	private  void traiteRequete(RFinTrajet r) {
+	private void traiteRequete(RFinTrajet r) {
 
 		maFlotte.liberer(r.getIdentifiant());
 	}
 
 	/**
-	 * Focntion qui vas comparer sa liste de requet avec la liste du controleur
-	 * si toute les ressource sont disponnible alors elle reserveras sont chemin
-	 * dans la liste principal et changeras le boolean du vehicule en true.
+	 * Fonction qui vas comparer sa liste de requetes avec la liste du
+	 * controleur. Si toutes les ressources sont disponibles alors elle
+	 * reservera les places correspondantes et autorisera le vehicule a partir
 	 * 
 	 * @param r
-	 *            une request map
+	 *            Une request map
 	 */
-	private  void traiteRequete(RMap r) {
+	private void traiteRequete(RMap r) {
 		ArrayList<Boolean> m = r.getRequest_map();
 		// compteur pour savoir ou on en est dans les boucles
 		int i = 1;
-		// il y aura au maximum 5 routes de reserver+ l'ietreateur sur ce
+		// il y aura au maximum 5 routes reservees + l'iterateur sur ce
 		// tableau
 		ArrayList<Integer> tab = new ArrayList<Integer>();
-		
-		// entier pour savoir combien de true il y a dans la requestMapr e
+
+		// entier pour savoir combien de true il y a dans la requestMap en
 		// general
 
 		int trueInRequete = 0;
-		// entie pour connaitre le nombre de true dans la liste general;
+		// entier pour connaitre le nombre de true dans la liste general;
 		int trueInGeneral = 0;
 		for (Boolean b : m) {
 			if (b == true) {
@@ -239,64 +210,72 @@ public class Controleur implements Observable,Runnable {
 				if (general.get(i)) {
 					trueInGeneral++;
 					tab.add(i);
-					
+
 				}
 			}
-			
+
 			i++;
-			//changement de la valeur de i a cause des clée de la hasmap
-			if(i==7){
-				i=11;
+			// changement de la valeur de i a cause des cles de la hashmap
+			if (i == 7) {
+				i = 11;
 			}
-			if(i==17){
-				i=21;
+			if (i == 17) {
+				i = 21;
 			}
-			if(i==27){
-				i=30;
+			if (i == 27) {
+				i = 30;
 			}
 		}
-		// si le nombre true dans la request map et dans la hasmap general sont
-		// egaux alors les ressource sont libre et on peut les reserver+passer le boolean de la voiture en true
-		if(trueInRequete==trueInGeneral){
-			//fonction permettant de de metre les ressource en indisponibilité
-		
-			for(int j: tab){
+		// Si le nombre de "true" dans la request map et dans la hashmap general
+		// sont
+		// egaux alors les ressources sont libres et on peut les reserver +
+		// passer
+		// le boolean de la voiture en true
+		if (trueInRequete == trueInGeneral) {
+			// fonction permettant de de metre les ressource en indisponibilite
+
+			for (int j : tab) {
 				general.put(j, false);
 			}
-			maFlotte.lancerVehicule(r.getIdentifiant(), true);	
+			maFlotte.lancerVehicule(r.getIdentifiant(), true);
 		}
 		maFlotte.setMaj(r.getIdentifiant());
 	}
-/**
- * fonction servat a generer un nombre alleatoire entre 1 et 6
- * @param 
- *//*
-	private int generateur(){
-		return 1 + (int)(Math.random() * 5 + 1);
-	}*/
+
+	/**
+	 * Fonction notifiant a un vehicule que son homologue graphique a termine
+	 * son deplacement
+	 * 
+	 * @param iD
+	 *            L'identifiant du vehicule a prevenir
+	 */
 	public void updateArriveeTemp(int iD) {
 		for (Vehicule v : maFlotte.getVehicules()) {
 			// On se place sur le vehicule auquel est lie le vehicule graphique
-			if (v.getCerveau() != null && v.getCerveau().getiDVehiculeGraphique() == iD) {
+			if (v.getCerveau() != null
+					&& v.getCerveau().getiDVehiculeGraphique() == iD) {
 				v.getCerveau().setGraphtop(true);
 			}
 		}
 	}
 
-	public void updatePassagersEnAttente(){
+	public void updatePassagersEnAttente() {
 		int attdepart = 0;
-		
-		for(Vehicule p: maFlotte.getVehicules()){
-			if(p.isDispo()==false){
+
+		for (Vehicule p : maFlotte.getVehicules()) {
+			if (p.isDispo() == false) {
 				attdepart++;
 			}
-			}
-	
+		}
+
 		for (Observer obs : listObserver)
 			obs.updatePassagers(attdepart, maFlotte.listeAttente.size());
 	}
-	
-	public void resetAll(){
+
+	/**
+	 * Fonction effectuant une reinitialisation complete du systeme
+	 */
+	public void resetAll() {
 		boite.resetAll();
 		maFlotte.resetAll();
 		for (int j = 1; j < 7; j++) {
@@ -309,13 +288,13 @@ public class Controleur implements Observable,Runnable {
 			general.put(j, true);
 		}
 		general.put(30, true);
-		
+
 	}
-	
-	public void pauseAll(boolean running){
+
+	public void pauseAll(boolean running) {
 		this.running = running;
 	}
-	
+
 	public BoiteAuxLettres getBoite() {
 		return boite;
 	}
@@ -333,14 +312,13 @@ public class Controleur implements Observable,Runnable {
 	public void removeObserver() {
 		listObserver = new ArrayList<Observer>();
 	}
-	
-	public void updateObsVehicules(Observer obs){
+
+	public void updateObsVehicules(Observer obs) {
 		maFlotte.setObsVehicules(obs);
 	}
 
 	@Override
 	public void notifyCoords(int iD, int suivant) {
-	
 
 	}
 
@@ -349,16 +327,19 @@ public class Controleur implements Observable,Runnable {
 		return 0;
 	}
 
-	
+	/**
+	 * Fonction run() du controleur, lancant regulierement la verification de la
+	 * liste d'attente, une mise a jour grphique et le traitement d'une requete
+	 */
 	@Override
 	public void run() {
-		
-		while(true){
-			if(running){
+
+		while (true) {
+			if (running) {
 				maFlotte.checkAttente();
 				updatePassagersEnAttente();
 				traiteRequete();
-			}else{
+			} else {
 				try {
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
@@ -366,7 +347,7 @@ public class Controleur implements Observable,Runnable {
 					e.printStackTrace();
 				}
 			}
-			
+
 		}
 	}
 }

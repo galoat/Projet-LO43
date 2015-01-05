@@ -1,17 +1,17 @@
 package Modele;
 /**
- * <b> Passager est la classe qui donne les point oiu doit aller el vehicule
- * <p> Les parametre sont les suivant
+ * <b> Passager est la classe qui donne les points de depart et d'arrivee du vehicule</b>
+ * Les parametres sont les suivants
  * <ul>
- * <li>un interger indiquant le point de depart de la course</li>
- * <li> un integer indiquant le point d'arriver de la course </li>
+ * <li> Un integer indiquant le point de depart de la course</li>
+ * <li> Un integer indiquant le point d'arrivee de la course </li>
  * </ul>
- * @author flacour +theo
+ * @author florian +theo
  *
  */
 public class Passager {
 /**
- * un entier representant le debut du trajet
+ * Un entier representant le debut du trajet
  */
 	int debut;
 	/**
@@ -25,7 +25,7 @@ public class Passager {
 	boolean embarque;
 	
 	/**	
-	 * Constructeur par default de Passager
+	 * Constructeur par defaut de Passager
 	 * @param debut
 	 * 				Le point de depart de la course
 	 * @param fin
@@ -36,17 +36,9 @@ public class Passager {
 		this.fin=fin;
 		this.embarque = false;
 	}
-	/**
-	 * retourne le debut de la course
-	 * @return retourne le debut de la course
-	 */
 	public int getDebut() {
 		return debut;
 	}
-	/**
-	 * retourne la fin de la course
-	 * @return retourne la fin de la course
-	 */
 	public int getFin() {
 		return fin;
 	}

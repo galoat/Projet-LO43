@@ -26,7 +26,6 @@ import Modele.Observer;
 
 /**
  * <b>Classe principale de la vue</b>
- * <p>
  * Cette classe est celle de la fenetre, chargee d'afficher la totalite du
  * programme. Elle dispose elle meme de plusieurs interfaces :
  * <ul>
@@ -35,7 +34,6 @@ import Modele.Observer;
  * <li>Les credits</li>
  * <li>La simulation en elle-meme</li>
  * </ul>
- * </p>
  * 
  * @author florian + theo
  * @version 2.5

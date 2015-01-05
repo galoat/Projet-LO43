@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * <b>Panel charge de remplacer le look&feel classique du système</b>
+ * <b>Panel charge de remplacer le look & feel classique du système</b>
  * <p>
  * Il permet la fermeture et la reduction de la fenetre, et egalement son
  * deplacement

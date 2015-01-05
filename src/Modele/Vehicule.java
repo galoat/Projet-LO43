@@ -4,8 +4,7 @@ package Modele;
 import java.util.ArrayList;
 
 /**
- * <b> Vehicule est la classe contenant toutes les voitures autonomes
- * <p>
+ * <b> Vehicule est la classe contenant toutes les voitures autonomes </b>
  * Un membre de Vehicule est compos&eacute; des caract&eacute;ristiques
  * suivantes
  * <ul>
@@ -129,6 +128,8 @@ public class Vehicule implements Observable {
 
 	/**
 	 * Fonction permettant de convertir un trajet en une RMap
+	 * @param trajet Le trajet qui doit etre converti
+	 * @return La RMap correspondant au trajet
 	 */
 	public RMap trajetToMap(ArrayList<Integer> trajet) {
 		RMap rq = new RMap(ID);
