@@ -241,7 +241,7 @@ En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'u
 \section{Classe BoiteAuxLettre}
      
       Il s'agit de la classe recevant toute les requêtes, qu'elles soient envoyées depuis la partie graphique (c'est à dire des requêtes pour la création d'une nouvelle mission, et donc d'un nouveau passager), ou du modèle. Il y a 4 requêtes différentes, stockées chacune dans une liste différente:
-      \begin{wrapfigure}[17]{l}{5.5cm}
+      \begin{wrapfigure}[18]{l}{5cm}
 \includegraphics[scale=1]{Images/boite.png}
 \end{wrapfigure} \\  
       \begin{itemize}
@@ -251,17 +251,15 @@ En outre, une fois sur l'écran de "jeu" (où se déplacent les véhicules), l'u
       \item Enfin, une liste de requêtes de libération de ressources : ces requêtes sont envoyées par les véhicules lorsqu'il n'ont plus besoin d'une place (lorsqu'ils sont déjà passés de dessus). Le contrôleur peut alors considérer ces places comme disponibles.
       \end{itemize}
 
+\vspace{1cm}
+\hspace{-1cm}\section{La classes Contrôleur}
 
-\section{La classes Contrôleur}
-
-
-
-Il s'agit de la classe principale : c'est elle qui s'occupe de gérer les déplacements des différents véhicules sur la carte. Le contrôleur a directement accès à la boîte aux lettres, et donc aux requêtes qu'elle contient.\\
-C'est également lui qui possède la "carte" (ici, une HashMap) des différentes places du réseau routier : il est le seul à agir dessus (les rendre disonibles ou non).
-La méthode traiteRequete() se charge de traiter les requêtes selon leur priorité :
 \begin{wrapfigure}[16]{l}{5cm}
 \includegraphics[scale=1]{Images/controleur.png}
-\end{wrapfigure}
+\end{wrapfigure}Il s'agit de la classe principale : c'est elle qui s'occupe de gérer les déplacements des différents véhicules sur la carte. Le contrôleur a directement accès à la boîte aux lettres, et donc aux requêtes qu'elle contient.\\
+C'est également lui qui possède la "carte" (ici, une HashMap) des différentes places du réseau routier : il est le seul à agir dessus (les rendre disonibles ou non).
+La méthode traiteRequete() se charge de traiter les requêtes selon leur priorité :
+
  \begin{itemize}
       \item Les requêtes de fin de trajet sont prioritaires sur toutes les autres : rendre un véhicule à nouveau disponible signifie le débarquement d'un passager, et donc la capacité d'en accepter de nouveaux.
       \item Les requêtes de libération de ressources arrivent en second. En effet, rendre une place disponible le plus vite possible est prioritaire pour pouvoir valider les trajets d'autres véhicules.
@@ -277,7 +275,7 @@ Etant donné que le but de chaque requête a été explicité ci-dessus, et que 
 Chaque type de requêtes a sa propre liste, contenue dans la boîte aux lettres. Une requête, une fois traitée, est immédiatement détruite. Enfin, à chaque liste de requêtes est attribuée une priorité, afin que le contrôleur traite les requêtes les plus importantes en premier.
 
 \section{La classe Cerveau}
-\begin{wrapfigure}[10]{l}{4.5cm}
+\begin{wrapfigure}[12]{l}{4.5cm}
 \vspace{-0.5cm}
 \includegraphics[scale=1]{Images/cerveau.png}
 \end{wrapfigure}Il s'agit du Thread chargé de négocier le départ puis l'arrivée d'un véhicule. Il est ajouté au véhicule lorsque celui-ci reçoit un passager. C'est alors lui qui se charge, après avoir calculé le chemin à emprunter, de faire la demande de réservation auprès du contrôleur et, si celui-ci l'autorise, à faire partir le véhicule. Cette autorisation se fait par le biais d'un booléen, modifié par la flotte de véhicules, à la demande du contrôleur.\\
@@ -564,7 +562,7 @@ Premièrement, les booléens :
 Ensuite, la fonction \textit{notifyCoords(int, int)} permet au cerveau (en passant par le véhicule) d'envoyer l'identifiant de la place suivante au véhicule graphique. Celui-ci est fait de telle sorte qu'il cherchera toujours à atteindre les cordonnées qu'on lui donne. Il rejoindra donc la place donnée par le cerveau (et mettra graphtop à True lorsqu'il y sera), après avoir tranformé l'identifiant en coordonnées (x, y).
 
 \chapter{Difficultés rencontrées}
-Au cours du développement de ce projet, nous avos dû faire face à plusieurs difficulés :
+Au cours du développement de ce projet, nous avos dû faire face à plusieurs difficultés :
 \begin{itemize}
 \item Ce projet était pour nous une occasion d'utiliser l'outil Git pour la première fois. Cela a donc engendré certains problèmes de fichiers perdus, ou encore des \textit{merge} ayant corrompu des fichiers UML. Fort heureusement, le versionnage du code nous a permis de retrouver les fichiers fonctionnels assez facilement...
 \item L'implémentaton des Threads, que nous avions commencé avant d'avoir suivi les TDs les concernant, a été difficile. Ce n'est qu'après avoir pu nous familiariser avec la synchronisation (mot clé \textit{synchronized}) que de nombreux bugs ont pu être corrigés.
@@ -577,19 +575,20 @@ Grâce à ce projet, vous avons pu faire une modélisation de notre projet a l'a
 \appendix
 %diagrame cas d'utilisation
 \begin{landscape}
+\setcounter{page}{19}
 \chapter*{Annexe A}
-\includegraphics[width=684px, height=290px]{Images/CasUtilisation.PNG}
+\includegraphics[width=723px, height=475px]{Images/CasUtilisation.PNG}
 \end{landscape}
-\setcounter{page}{18}
+\setcounter{page}{20}
 \begin{landscape}
 %diagrame de sequence
 \vspace{-5cm}
 \chapter*{Annexe B}
 \includegraphics[width=745px, height=354px]{Images/SequenceDiagram1.png}
 \end{landscape}
-\setcounter{page}{19}
+\setcounter{page}{21}
 %diagrame de sequence
 \chapter*{Annexe C}
-\hspace{-2cm}\includegraphics[width=569px, height=632px]{Images/Diagrammedeclasses.png}
+\hspace{-2cm}\includegraphics[width=546px, height=718px]{Images/Diagrammedeclasses.png}
 
 \end{document}
