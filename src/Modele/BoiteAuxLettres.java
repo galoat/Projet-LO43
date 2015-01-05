@@ -16,7 +16,7 @@ import java.util.LinkedList;
  * </ul>
  * 
  * @author florian + theo
- * @version 0.1
+ * @version 1.0
  */
 public class BoiteAuxLettres {
 	/**

@@ -9,18 +9,27 @@ import java.util.LinkedList;
 import Exception.RDepartException;
 import Modele.RDepart;
 
-
 /**
+ * <b>Le lecteur de fichiers du programme</b> Cette classe permet de lire un
+ * fichier disposant d'un format particulier, et de transformer les donnees
+ * collectees en objets exploitables
  * 
- *
+ * 
  * @author florian + theo
+ * @version 1.0
  */
 public class Lecteur {
-
+	//Le chemin du fichier
 	protected String path;
 
+	/**
+	 * Constructeur du Lecteur
+	 * 
+	 * @param path
+	 *            L'emplacement du fichier à lire
+	 * 
+	 */
 	public Lecteur(final String path) {
-
 		this.path = path;
 	}
 
@@ -75,7 +84,7 @@ public class Lecteur {
 		return rdep;
 	}
 
-	//Trie la liste de requetes, en premier celle qui sera lancee le plus tot
+	// Trie la liste de requetes, en premier celle qui sera lancee le plus tot
 	ArrayList<RDepart> tri(ArrayList<RDepart> atrier) {
 		boolean action = false;
 		for (int i = 0; i < atrier.size(); i++) {
